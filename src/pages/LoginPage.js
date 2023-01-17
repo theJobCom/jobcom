@@ -3,6 +3,8 @@ import { Tabs, Tab } from '@mui/material';
 import { Container, Box } from '@mui/system'
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
+import LoginTab from '../components/LoginTab';
+import SignUpTab from '../components/SignUpTab';
 
 const LoginPage = () => {
   const [value, setValue] = React.useState("1");
