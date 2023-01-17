@@ -5,7 +5,11 @@ import { useForm } from 'react-hook-form'
 
 const SignUpTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  
+
+  const onSubmit = async (data) => {
+    console.log(data)
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextField
