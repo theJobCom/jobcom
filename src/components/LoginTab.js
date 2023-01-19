@@ -11,8 +11,18 @@ const LoginTab = () => {
     console.log(data)
   }
 
+  const useStyle = makeStyles()((theme) => ({
+    form: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "10px"
+    }
+  }));
+
+  const {classes} = useStyle();
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <TextField
       variant='outlined'
       type="text"
@@ -22,7 +32,7 @@ const LoginTab = () => {
         error={!!errors?.username}
         helperText={errors?.username ? errors.username.message : null} 
       />
-      <TextField
+      {/* <TextField
       variant='outlined'
       type="email"
       label="email"
@@ -30,7 +40,7 @@ const LoginTab = () => {
       {...register("email", { required: "Add Your Email" })}
         error={!!errors?.email}
         helperText={errors?.email ? errors.email.message : null}
-      />
+      /> */}
       <TextField
       variant='outlined'
       type="password"
