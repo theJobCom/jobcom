@@ -1,7 +1,8 @@
 import { Typography, Button } from '@mui/material';
-import { Box, } from '@mui/system';
+import { Box } from '@mui/system';
 import React from 'react'
 import { makeStyles } from 'tss-react/mui'
+import { BsPlusLg } from 'react-icons/bs';
 
 const ProfilePage = () => {
   const useStyle = makeStyles()(() => ({
@@ -15,13 +16,14 @@ const ProfilePage = () => {
     wrapper: {
       display: "flex",
       flexDirection: "column",
+      gap: "30px"
     },
     topbox: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       textAlign: "center",
-      gap: "20px"
+      gap: "30px"
     },
     meta: {
       display: "flex",
@@ -32,7 +34,19 @@ const ProfilePage = () => {
       width: "200px",
       height: "200px",
       borderRadius: "50%",
-      backgroundColor: "#36454f"
+      backgroundColor: "#c0c0c0"
+    },
+    bottomBox: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      borderTop: "2px solid #c0c0c0",
+      gap: "30px",
+      borderBottom: "2px solid #c0c0c0",
+      width: "800px",
+      height: "300px",
+      cursor: "pointer"
     }
   }))
 
@@ -51,6 +65,7 @@ const ProfilePage = () => {
           <Button variant="outlined">Upload Profile Picture</Button>
         </Box>
         <Box className={classes.bottomBox}>
+          <BsPlusLg style={{fontSize: "2rem"}} />
           <Typography variant="subtitle1">Tailor Your Portfolio</Typography>
         </Box>
       </Box>
