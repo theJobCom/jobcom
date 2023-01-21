@@ -32,15 +32,6 @@ const LoginTab = () => {
         error={!!errors?.username}
         helperText={errors?.username ? errors.username.message : null} 
       />
-      {/* <TextField
-      variant='outlined'
-      type="email"
-      label="email"
-      fullWidth
-      {...register("email", { required: "Add Your Email" })}
-        error={!!errors?.email}
-        helperText={errors?.email ? errors.email.message : null}
-      /> */}
       <TextField
       variant='outlined'
       type="password"
@@ -54,6 +45,7 @@ const LoginTab = () => {
         variant="contained"
         type="submit"
         size="large"
+        sx={{bgcolor: "#6941C6", textTransform: "capitalize", fontFamily: "Work Sans"}}
       >
         Login
       </Button>
