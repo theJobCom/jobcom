@@ -1,5 +1,5 @@
 import { Typography, Button } from '@mui/material';
-import { Box, letterSpacing } from '@mui/system';
+import { borderRadius, Box, fontFamily, letterSpacing } from '@mui/system';
 import React from 'react'
 import { makeStyles } from 'tss-react/mui'
 import SideBar from '../components/SideBar';
@@ -51,23 +51,70 @@ const ProfilePage = () => {
       fontWeight: "600",
       fontSize: "22px",
       lineHeight: "28px",
-      color: "#344054"
+      color: "#344054",
+      fontFamily: "Work Sans"
     },
     userData: {
       display: "flex",
       alignItems: "center",
       width: "150px",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      fontFamily: "Work Sans"
     },
     data: {
       fontWeight: "500",
       fontSize: "16px",
       lineHeight: "24px",
       letterSpacing: "0.15px",
-      color: "#344054"
+      color: "#344054",
+      fontFamily: "Work Sans"
     },
     num: {
       fontWeight: "700",
+    },
+    rightBox: {
+      width: "60vw",
+      height: "665px",
+      border: "2px dashed grey",
+      padding: "161px 53px",
+      borderRadius: "10px"
+    },
+    list: {
+      marginLeft: 20,
+      lineHeight: "24px",
+      letterSpacing: "0.15px",
+      fontFamily: "Work sans",
+      color: "#344054"
+    },
+    title: {
+      fontWeight: "600",
+      fontSize: "28px",
+      lineHeight: "36px",
+      color: "#344054",
+      fontFamily: "Work Sans",
+      marginBottom: "16px"
+    },
+    tagline: {
+      fontFamily: "Work Sans",
+      fontWeight: "300",
+      fontSize: "22px",
+      lineHeight: "28px",
+      color: "#344054",
+      marginBottom: "63px"
+    },
+    btn: {
+      marginTop: "48px",
+      backgroundColor: "#6941c6",
+      padding: "16px",
+      borderRadius: "10px",
+      textTransform: "capitalize",
+      color: "#fff",
+      fontFamily: "Work Sans",
+      fontSize: "14px",
+      "&:hover": {
+        backgroundColor: "#6941c6",
+        color: "#fff",
+      },
     }
   }))
 
@@ -94,15 +141,15 @@ const ProfilePage = () => {
         </Box>
         <Box className={classes.rightBox}>
           <Box className={classes.intro}>
-          <h2 className={classes.title}>Welcome to JobCom</h2>
-          <h3 className={classes.tagline}>One-Click to showcase your best work in one site</h3>
+          <p className={classes.title}>Welcome to JobCom 🎉</p>
+          <p className={classes.tagline}>One-Click to showcase your best work in one site</p>
           </Box>
           <ol className={classes.list}>
-            <li>Add Basic information about you</li>
+            <li className={classes.listItem}>Add Basic information about you</li>
             <li>Add more stuff, like projects or achievements</li>
             <li>Add an image and hightlight your favorite project</li>
           </ol>
-          <Button>+ Make your Own Portfolio</Button>
+          <Button className={classes.btn}>+ Make your Own Portfolio</Button>
         </Box>
       </Box>
     </div>
