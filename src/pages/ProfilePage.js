@@ -1,11 +1,17 @@
-import { Typography, Button } from '@mui/material';
-import { borderRadius, Box, fontFamily, letterSpacing } from '@mui/system';
+import { Button, Modal } from '@mui/material';
+import { Box } from '@mui/system';
 import React from 'react'
 import { makeStyles } from 'tss-react/mui'
 import SideBar from '../components/SideBar';
 import CameraIcon from '../icons/Icons/camera.png'
+import ApplicationForm from '../pages/ApplicationForm'
 
 const ProfilePage = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const useStyle = makeStyles()(() => ({
     container: {
       height: "100vh",
@@ -115,6 +121,14 @@ const ProfilePage = () => {
         backgroundColor: "#6941c6",
         color: "#fff",
       },
+      modal: {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%",
+        p: 24,
+        width: "500px"
+      }
     }
   }))
 
@@ -123,6 +137,14 @@ const ProfilePage = () => {
   return (
     <div className={classes.container}>
       <SideBar />
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+          <ApplicationForm />
+      </Modal>
       <Box className={classes.mainBox}>
         <Box className={classes.leftBox}>
           <Box className={classes.imageBox}>
@@ -149,7 +171,7 @@ const ProfilePage = () => {
             <li>Add more stuff, like projects or achievements</li>
             <li>Add an image and hightlight your favorite project</li>
           </ol>
-          <Button className={classes.btn}>+ Make your Own Portfolio</Button>
+          <Button onClick={handleOpen} className={classes.btn}>+ Make your Own Portfolio</Button>
         </Box>
       </Box>
     </div>
