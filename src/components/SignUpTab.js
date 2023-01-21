@@ -62,8 +62,9 @@ const SignUpTab = () => {
         variant="contained"
         type="submit"
         size="large"
+        sx={{bgcolor: "#6941C6", textTransform: "capitalize", fontFamily: "Work Sans"}}
       >
-        Login
+        sign up
       </Button>
     </form>
   )
