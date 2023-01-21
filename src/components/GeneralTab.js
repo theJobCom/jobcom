@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { FormControl, InputLabel, TextareaAutosize, TextField, Select, MenuItem, Button} from '@mui/material';
+import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form'
 
 const GeneralTab = () => {
@@ -48,15 +48,6 @@ const GeneralTab = () => {
         error={!!errors?.nationality}
         helperText={errors?.nationality ? errors.nationality.message : null} 
       />
-      {/* <TextField
-      variant='outlined'
-      type="email"
-      label="email"
-      fullWidth
-      {...register("email", { required: "Add Your Email" })}
-        error={!!errors?.email}
-        helperText={errors?.email ? errors.email.message : null}
-      /> */}
       <TextField
       variant='outlined'
       type="text"
