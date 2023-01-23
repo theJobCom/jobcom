@@ -1,11 +1,12 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui'
-import { Box, positions } from '@mui/system';
+import { Box, fontSize, lineHeight, positions } from '@mui/system';
 import Link from '@mui/material/Link';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
 import { AiFillMediumCircle } from 'react-icons/ai';
 import { HiExternalLink } from 'react-icons/hi';
+import { BiRightArrowAlt } from 'react-icons/bi';
 import profile from '../images/profile.png'
 import cert1 from '../images/cert1.png'
 import cert2 from '../images/cert2.png'
@@ -35,6 +36,7 @@ const PortfolioPage = () => {
       position: "relative",
       width: "250px",
       height: "250px",
+      marginBottom: "22px"
     },
     profile: {
       width: "100%",
@@ -54,6 +56,67 @@ const PortfolioPage = () => {
       alignItems: "center",
       justifyContent: "center",
       cursor: "pointer"
+    },
+    userName: {
+      fontWeight: "600",
+      fontSize: "22px",
+      lineHeight: "28px",
+      marginBottom: "8px"
+    },
+    country: {
+      fontSize: "16px",
+      lineHeight: "24px",
+      fontWeight: "600",
+    },
+    role: {
+      fontSize: "16px",
+      lineHeight: "24px",
+      fontWeight: "500",
+    },
+    location: {
+      fontWeight: "500",
+      fontSize: "12px",
+    },
+    metadata: {
+      marginTop: "20px",
+      marginBottom: "36px",
+      display: "flex",
+      width: "70%",
+      alignItems: "center",
+      justifyContent: "space-between"
+    },
+    viewDocs: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "12px",
+      marginBottom: "36px"
+    },
+    links: {
+      fontWeight: "700",
+      fontSize: "16px",
+      lineHeight: "24px",
+      textTransform: "uppercase",
+      letterSpacing: "0.5px",
+      color: "#6941C6",
+      textDecoration: "none",
+      display: "flex",
+      alignItems: "center"
+    },
+    contacts: {
+      display: "flex",
+      gap: "14px",
+      marginTop: "10px"
+    },
+    linkedIn: {
+      fontSize: 28
+    },
+    gthb: {
+      fontSize: 28,
+      color: "#000"
+    },
+    medium: {
+      fontSize: 30,
+      color: "#000"
     }
   }));
 
@@ -73,23 +136,24 @@ const PortfolioPage = () => {
                   <img src={cameraIcon} alt="profilePic" className={classes.cameraIcon} />
                 </Box>
               </Box>
-              <span className={classes.userName}></span>
-              <p>🇩🇪 Germany</p>
+              <span className={classes.userName}>John Doe (@john.doe)</span>
+              <p className={classes.country}>🇩🇪 Germany</p>
               <p className={classes.role}>Software Developer</p>
-              <small className={classes.location}></small>
+              <small className={classes.location}>Melbourne, Australia</small>
               <Box className={classes.metadata}>
                 <p className={classes.data}><strong>28</strong> Likes</p>
                 <p className={classes.data}><strong>129</strong> Visits</p>
               </Box>
             </Box>
             <Box className={classes.viewDocs}>
-              <Link href="#" className={classes.links}>View Resume</Link>
-              <Link href="#" className={classes.links}>View Cover letter</Link>
+              <Link href="#" className={classes.links}>View Resume<BiRightArrowAlt/></Link>
+              <Link href="#" className={classes.links}>View Cover letter<BiRightArrowAlt/></Link>
             </Box>
+              <p className={classes.role}>Contact me</p>
             <Box className={classes.contacts}>
-              <Link href="#"><GrLinkedin/></Link>
-              <Link href="#"><GoMarkGithub/></Link>
-              <Link href="#"><AiFillMediumCircle/></Link>
+              <Link href="#" className={classes.linkedIn}><GrLinkedin/></Link>
+              <Link href="#" className={classes.gthb}><GoMarkGithub/></Link>
+              <Link href="#" className={classes.medium}><AiFillMediumCircle/></Link>
             </Box>
           </Box>
           <Box className={classes.boxRight}>
