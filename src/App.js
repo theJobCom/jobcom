@@ -3,13 +3,13 @@ import ApplicationForm from './pages/ApplicationForm';
 import LoginPage from './pages/LoginPage';
 import LoginTab from './pages/LoginPage';
 import ProfilePage from "./pages/ProfilePage"
-
+import PortfolioPage from './pages/PortfolioPage';
 function App() {
   return (
     <BrowserRouter>      
       <div className="App">
         <Routes>
-          <Route path="/" element={<LoginPage/>} exact>
+          <Route path="/" element={<PortfolioPage/>} exact>
           </Route>
         </Routes>
       </div>

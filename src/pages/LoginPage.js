@@ -8,7 +8,7 @@ import LoginTab from '../components/LoginTab';
 import SignUpTab from '../components/SignUpTab';
 import { FcGoogle } from 'react-icons/fc';
 import { GrLinkedin } from 'react-icons/gr';
-import {GoMarkGithub} from 'react-icons/go'
+import { GoMarkGithub } from 'react-icons/go';
 
 const LoginPage = () => {
   const [value, setValue] = React.useState("1");
