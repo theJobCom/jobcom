@@ -145,6 +145,34 @@ const PortfolioPage = () => {
       flexDirection: "column",
       width: "720px",
       gap: "5px"
+    },
+    descBoxIII: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px"
+    },
+    achieveBox: {
+      display: "flex",
+      gap: "24px",
+      width: "100%"
+    },
+    achieveDesc: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      gap: "10px"
+    },
+    certIcon: {
+      height: "100px"
+    },
+    topTitle: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "450px"
+    },
+    issedTxt: {
+      fontSize: "12px"
     }
   }));
 
@@ -212,33 +240,40 @@ const PortfolioPage = () => {
               </Box>
             </Box>
             <Box className={classes.descBoxIII}>
-              <h5 className={classes.subtitle}>Education</h5>
+              <h5 className={classes.subtitle}>Achievements</h5>
               <Box className={classes.achieveBox}>
-                <img src={cert1} alt="certificate icon" />
+                <img src={cert1} alt="certificate icon" className={classes.certIcon}/>
                 <Box className={classes.achieveDesc}>
-                  <h6 className={classes.jobTitle}>AWS Developer</h6>
+                  <Box className={classes.topTitle}>
+                    <h6 className={classes.jobTitle}>AWS Developer</h6>
+                    <small className={classes.timePeriod}>Sept 2022</small>
+                  </Box>
                   <small className={classes.issuedBy}>issued by AWS</small>
                   <small className={classes.issedTxt}>AWS Certification for Developer</small>
                 </Box>
-                <small className={classes.timePeriod}>Dec 2022</small>
               </Box>
               <Box className={classes.achieveBox}>
-                <img src={cert2} alt="certificate icon" />
+                <img src={cert2} alt="certificate icon" className={classes.certIcon} />
                 <Box className={classes.achieveDesc}>
-                  <h6 className={classes.jobTitle}>AWS Developer</h6>
+                  <Box className={classes.topTitle}>
+                    <h6 className={classes.jobTitle}>AWS Developer</h6>
+                    <small className={classes.timePeriod}>Sept 2022</small>
+                  </Box>
                   <small className={classes.issuedBy}>issued by AWS</small>
                   <small className={classes.issedTxt}>AWS Certification for Developer</small>
                 </Box>
-                <small className={classes.timePeriod}>Dec 2022</small>
               </Box>
               <Box className={classes.achieveBox}>
-                <img src={cert3} alt="certificate icon" />
+                <img src={cert3} alt="certificate icon" className={classes.certIcon}/>
                 <Box className={classes.achieveDesc}>
-                  <h6 className={classes.jobTitle}>AWS Developer</h6>
+                  <Box className={classes.topTitle}>
+                    <h6 className={classes.jobTitle}>AWS Developer</h6>
+                    <small className={classes.timePeriod}>Sept 2022</small>
+                  </Box>
                   <small className={classes.issuedBy}>issued by AWS</small>
                   <small className={classes.issedTxt}>AWS Certification for Developer</small>
                 </Box>
-                <small className={classes.timePeriod}>Dec 2022</small>
+                
               </Box>
             </Box>
           </Box>
