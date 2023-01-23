@@ -28,7 +28,7 @@ const PortfolioPage = () => {
       <Box className={classes.boxTop}>
         <Box className={classes.boxLeft}>
           <Box className={classes.profileSec}>
-            <img src="" alt="profilePic" />
+            <img src={profile} alt="profilePic" />
             <span className={classes.userName}></span>
             <p>🇩🇪 Germany</p>
             <p className={classes.role}>Software Developer</p>
@@ -72,7 +72,7 @@ const PortfolioPage = () => {
           <Box className={classes.descBoxIII}>
             <h5 className={classes.subtitle}>Education</h5>
             <Box className={classes.achieveBox}>
-              <img src="" alt="certificate icon" />
+              <img src={cert1} alt="certificate icon" />
               <Box className={classes.achieveDesc}>
                 <h6 className={classes.jobTitle}>AWS Developer</h6>
                 <small className={classes.issuedBy}>issued by AWS</small>
@@ -81,7 +81,7 @@ const PortfolioPage = () => {
               <small className={classes.timePeriod}>Dec 2022</small>
             </Box>
             <Box className={classes.achieveBox}>
-              <img src="" alt="certificate icon" />
+              <img src={cert2} alt="certificate icon" />
               <Box className={classes.achieveDesc}>
                 <h6 className={classes.jobTitle}>AWS Developer</h6>
                 <small className={classes.issuedBy}>issued by AWS</small>
@@ -90,7 +90,7 @@ const PortfolioPage = () => {
               <small className={classes.timePeriod}>Dec 2022</small>
             </Box>
             <Box className={classes.achieveBox}>
-              <img src="" alt="certificate icon" />
+              <img src={cert3} alt="certificate icon" />
               <Box className={classes.achieveDesc}>
                 <h6 className={classes.jobTitle}>AWS Developer</h6>
                 <small className={classes.issuedBy}>issued by AWS</small>
@@ -105,7 +105,7 @@ const PortfolioPage = () => {
         <h5 className={classes.subtitle}>Description</h5>
         <Box className={classes.projects}>
           <Box className={classes.project}>
-            <img src="" alt="project screenshot" />
+            <img src={project1} alt="project screenshot" />
             <Box className={classes.projectDesc}>
               <h6 className={classes.jobTitle}>Ai ChatBox <span className={classes.timePeriod}>2023</span></h6>
               <small className={classes.industry}>Artificial Intelligence</small>
@@ -118,7 +118,7 @@ const PortfolioPage = () => {
         </Box>
         <Box className={classes.projects}>
           <Box className={classes.project}>
-            <img src="" alt="project screenshot" />
+            <img src={project2} alt="project screenshot" />
             <Box className={classes.projectDesc}>
               <h6 className={classes.jobTitle}>Ai ChatBox <span className={classes.timePeriod}>2023</span></h6>
               <small className={classes.industry}>Artificial Intelligence</small>
@@ -131,7 +131,7 @@ const PortfolioPage = () => {
         </Box>
         <Box className={classes.projects}>
           <Box className={classes.project}>
-            <img src="" alt="project screenshot" />
+            <img src={project3} alt="project screenshot" />
             <Box className={classes.projectDesc}>
               <h6 className={classes.jobTitle}>Ai ChatBox <span className={classes.timePeriod}>2023</span></h6>
               <small className={classes.industry}>Artificial Intelligence</small>
