@@ -13,7 +13,8 @@ const SideBar = () => {
       alignItems: "center",
       justifyContent: "space-between",
       borderRight: "1px solid #d0d5dd", 
-      padding: "40px 0"
+      padding: "40px 0",
+      position: "fixed"
     },
     logo: {
       width: "44px",

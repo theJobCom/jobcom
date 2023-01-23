@@ -27,7 +27,7 @@ const PortfolioPage = () => {
       overflowX: "hidden"
     },
     wrapper: {
-      padding: "50px 20px",
+      padding: "50px 20px 20px 160px",
       maxWidth: "1400px"
     },
     boxTop: {
