@@ -2,13 +2,16 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { TextField, Button } from '@mui/material';
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     console.log(data)
+    navigate('/profilepage')
   }
 
   const useStyle = makeStyles()((theme) => ({

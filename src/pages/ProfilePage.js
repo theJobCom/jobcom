@@ -18,7 +18,7 @@ const ProfilePage = () => {
       display: "flex",
     },
     mainBox: {
-      padding: "60px",
+      padding: "60px 60px 60px 130px",
       display: "flex",
       gap: "50px",
       justifyContent: "center"
@@ -148,7 +148,7 @@ const ProfilePage = () => {
       <Box className={classes.mainBox}>
         <Box className={classes.leftBox}>
           <Box className={classes.imageBox}>
-            <img className={classes.imageHolder} />
+            <img className={classes.imageHolder} alt="" />
             <Box className={classes.cameraIconBox}>
               <img src={CameraIcon} alt="camera icon"/>
             </Box>
