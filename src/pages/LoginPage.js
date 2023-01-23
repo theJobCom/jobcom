@@ -28,7 +28,6 @@ const LoginPage = () => {
     },
     boxLeft: {
       width: "70vw",
-      backgroundColor: "black",
       height: "100%"
     },
     boxRight: {
