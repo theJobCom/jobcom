@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui'
-import { Box, fontSize, lineHeight, positions } from '@mui/system';
+import { Box } from '@mui/system';
 import Link from '@mui/material/Link';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
