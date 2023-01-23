@@ -18,7 +18,7 @@ const ProfilePage = () => {
       display: "flex",
     },
     mainBox: {
-      padding: "60px",
+      padding: "60px 60px 60px 130px",
       display: "flex",
       gap: "50px",
       justifyContent: "center"

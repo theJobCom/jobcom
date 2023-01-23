@@ -2,10 +2,12 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [location, setLocation] = React.useState('');
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setLocation(event.target.value)
@@ -13,6 +15,7 @@ const Contact = () => {
 
   const onSubmit = async (data) => {
     console.log(data)
+    navigate("/portfolioPage")
   }
 
   const useStyle = makeStyles()((theme) => ({
