@@ -24,14 +24,17 @@ const PortfolioPage = () => {
       height: "100vh",
       width: "100vw",
       display: "flex",
+      overflowX: "hidden"
     },
     wrapper: {
-      padding: "50px 20px"
+      padding: "50px 20px",
+      maxWidth: "1400px"
     },
     boxTop: {
       width: "100%",
       display: "flex",
-      gap: "31px"
+      gap: "31px",
+      marginBottom: "80px"
     },
     imageBox: {
       position: "relative",
@@ -60,7 +63,7 @@ const PortfolioPage = () => {
     },
     userName: {
       fontWeight: "600",
-      fontSize: "22px",
+      fontSize: "21px",
       lineHeight: "28px",
       marginBottom: "8px"
     },
@@ -140,10 +143,12 @@ const PortfolioPage = () => {
       display: "flex",
       gap: "29px"
     },
+    about: {
+      fontSize: "13px"
+    },
     jobDesc: {
       display: "flex",
       flexDirection: "column",
-      width: "720px",
       gap: "5px"
     },
     descBoxIII: {
@@ -173,6 +178,31 @@ const PortfolioPage = () => {
     },
     issedTxt: {
       fontSize: "12px"
+    },
+    projectWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+    },
+
+    project: {
+      display: "flex",
+      gap: "20px",
+    },
+    projectDesc: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      gap: "13px",
+    },
+    projectTitle: {
+      fontSize: "16px",
+      fontWeight: "600",
+      lineHeight: "16px"
+    },
+    period: {
+      fontWeight: "400",
+      marginLeft: "8px",
     }
   }));
 
@@ -224,7 +254,7 @@ const PortfolioPage = () => {
                 <Box className={classes.jobDesc}>
                   <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
                   <small className={classes.location}>Melbourne, Australia</small>
-                  <small className={classes.location}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</small>
+                  <p className={classes.about}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p>
                 </Box>
               </Box>
             </Box>
@@ -235,7 +265,7 @@ const PortfolioPage = () => {
                 <Box className={classes.jobDesc}>
                   <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
                   <small className={classes.location}>Melbourne, Australia</small>
-                  <small className={classes.location}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</small>
+                  <p className={classes.about}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p>
                 </Box>
               </Box>
             </Box>
@@ -279,43 +309,45 @@ const PortfolioPage = () => {
           </Box>
         </Box>
         <Box className={classes.boxBottom}>
-          <h5 className={classes.subtitle}>Description</h5>
-          <Box className={classes.projects}>
-            <Box className={classes.project}>
-              <img src={project1} alt="project screenshot" />
-              <Box className={classes.projectDesc}>
-                <h6 className={classes.jobTitle}>Ai ChatBox <span className={classes.timePeriod}>2023</span></h6>
-                <small className={classes.industry}>Artificial Intelligence</small>
-                <small className={classes.text}>
-                  ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
-                </small>
-                <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+          <h5 className={classes.subtitle}>Projects</h5>
+          <Box className={classes.projectWrapper}>
+            <Box className={classes.projects}>
+              <Box className={classes.project}>
+                <img src={project1} alt="project screenshot" />
+                <Box className={classes.projectDesc}>
+                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
+                  <small className={classes.industry}>Artificial Intelligence</small>
+                  <small className={classes.text}>
+                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
+                  </small>
+                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                </Box>
               </Box>
             </Box>
-          </Box>
-          <Box className={classes.projects}>
-            <Box className={classes.project}>
-              <img src={project2} alt="project screenshot" />
-              <Box className={classes.projectDesc}>
-                <h6 className={classes.jobTitle}>Ai ChatBox <span className={classes.timePeriod}>2023</span></h6>
-                <small className={classes.industry}>Artificial Intelligence</small>
-                <small className={classes.text}>
-                  ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
-                </small>
-                <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+            <Box className={classes.projects}>
+              <Box className={classes.project}>
+                <img src={project2} alt="project screenshot" />
+                <Box className={classes.projectDesc}>
+                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
+                  <small className={classes.industry}>Artificial Intelligence</small>
+                  <small className={classes.text}>
+                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
+                  </small>
+                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                </Box>
               </Box>
             </Box>
-          </Box>
-          <Box className={classes.projects}>
-            <Box className={classes.project}>
-              <img src={project3} alt="project screenshot" />
-              <Box className={classes.projectDesc}>
-                <h6 className={classes.jobTitle}>Ai ChatBox <span className={classes.timePeriod}>2023</span></h6>
-                <small className={classes.industry}>Artificial Intelligence</small>
-                <small className={classes.text}>
-                  ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
-                </small>
-                <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+            <Box className={classes.projects}>
+              <Box className={classes.project}>
+                <img src={project3} alt="project screenshot" />
+                <Box className={classes.projectDesc}>
+                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
+                  <small className={classes.industry}>Artificial Intelligence</small>
+                  <small className={classes.text}>
+                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
+                  </small>
+                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                </Box>
               </Box>
             </Box>
           </Box>
