@@ -40,6 +40,56 @@ const PortfolioPage = () => {
         </Box>
       </Box>
       <Box className={classes.boxRight}>
+        <Box className={classes.descBox}>
+          <h5 className={classes.subtitle}>Description</h5>
+          <p className={classes.text}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p>
+        </Box>
+        <Box className={classes.descBoxII}>
+          <h5 className={classes.subtitle}>Work Experience</h5>
+          <small className={classes.timePeriod}>Jan 2023 - present</small>
+          <Box className={classes.jobDesc}>
+            <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
+            <small className={classes.location}>Melbourne, Australia</small>
+          </Box>
+        </Box>
+        <Box className={classes.descBoxII}>
+          <h5 className={classes.subtitle}>Education</h5>
+          <small className={classes.timePeriod}>Jan 2023 - present</small>
+          <Box className={classes.jobDesc}>
+            <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
+            <small className={classes.location}>Melbourne, Australia</small>
+          </Box>
+        </Box>
+        <Box className={classes.descBoxIII}>
+          <h5 className={classes.subtitle}>Education</h5>
+          <Box className={classes.achieveBox}>
+            <img src="" alt="certificate icon" />
+            <Box className={classes.achieveDesc}>
+              <h6 className={classes.jobTitle}>AWS Developer</h6>
+              <small className={classes.issuedBy}>issued by AWS</small>
+              <small className={classes.issedTxt}>AWS Certification for Developer</small>
+            </Box>
+            <small className={classes.timePeriod}>Dec 2022</small>
+          </Box>
+          <Box className={classes.achieveBox}>
+            <img src="" alt="certificate icon" />
+            <Box className={classes.achieveDesc}>
+              <h6 className={classes.jobTitle}>AWS Developer</h6>
+              <small className={classes.issuedBy}>issued by AWS</small>
+              <small className={classes.issedTxt}>AWS Certification for Developer</small>
+            </Box>
+            <small className={classes.timePeriod}>Dec 2022</small>
+          </Box>
+          <Box className={classes.achieveBox}>
+            <img src="" alt="certificate icon" />
+            <Box className={classes.achieveDesc}>
+              <h6 className={classes.jobTitle}>AWS Developer</h6>
+              <small className={classes.issuedBy}>issued by AWS</small>
+              <small className={classes.issedTxt}>AWS Certification for Developer</small>
+            </Box>
+            <small className={classes.timePeriod}>Dec 2022</small>
+          </Box>
+        </Box>
       </Box>
     </div>
   )
