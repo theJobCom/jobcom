@@ -6,6 +6,13 @@ import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
 import { AiFillMediumCircle } from 'react-icons/ai';
 import { HiExternalLink } from 'react-icons/hi';
+import profile from '../images/profile.png'
+import cert1 from '../images/cert1.png'
+import cert2 from '../images/cert2.png'
+import cert3 from '../images/cert3.png'
+import project1 from '../images/project1.png'
+import project2 from '../images/project2.png'
+import project3 from '../images/project3.png'
 
 const PortfolioPage = () => {
 
