@@ -30,7 +30,8 @@ const PortfolioPage = () => {
     },
     boxTop: {
       width: "100%",
-      display: "flex"
+      display: "flex",
+      gap: "31px"
     },
     imageBox: {
       position: "relative",
@@ -117,6 +118,33 @@ const PortfolioPage = () => {
     medium: {
       fontSize: 30,
       color: "#000"
+    },
+    boxRight: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "32px",
+      maxWidth: "1000px"
+    },
+    subtitle: {
+      fontSize: "22px",
+      fontWeight: "600",
+      lineHeight: "28px",
+      marginBottom: "16px"
+    },
+    text: {
+      fontSize: "16px",
+      fontWeight: "300",
+      lineHeight: "20px"
+    },
+    entry: {
+      display: "flex",
+      gap: "29px"
+    },
+    jobDesc: {
+      display: "flex",
+      flexDirection: "column",
+      width: "720px",
+      gap: "5px"
     }
   }));
 
@@ -163,18 +191,24 @@ const PortfolioPage = () => {
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Work Experience</h5>
-              <small className={classes.timePeriod}>Jan 2023 - present</small>
-              <Box className={classes.jobDesc}>
-                <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
-                <small className={classes.location}>Melbourne, Australia</small>
+              <Box className={classes.entry}>
+                <small className={classes.timePeriod}>Jan 2023 - present</small>
+                <Box className={classes.jobDesc}>
+                  <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
+                  <small className={classes.location}>Melbourne, Australia</small>
+                  <small className={classes.location}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</small>
+                </Box>
               </Box>
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Education</h5>
-              <small className={classes.timePeriod}>Jan 2023 - present</small>
-              <Box className={classes.jobDesc}>
-                <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
-                <small className={classes.location}>Melbourne, Australia</small>
+              <Box className={classes.entry}>
+                <small className={classes.timePeriod}>Jan 2023 - present</small>
+                <Box className={classes.jobDesc}>
+                  <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
+                  <small className={classes.location}>Melbourne, Australia</small>
+                  <small className={classes.location}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</small>
+                </Box>
               </Box>
             </Box>
             <Box className={classes.descBoxIII}>
