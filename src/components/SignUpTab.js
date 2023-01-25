@@ -3,14 +3,25 @@ import { makeStyles } from 'tss-react/mui';
 import { TextField, Button } from '@mui/material';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
+import firebaseEngine from '../initFirebase/configureFirebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignUpTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate()
-
+  const { auth } = firebaseEngine;
+  
   const onSubmit = async (data) => {
-    console.log(data)
-    navigate('/profilepage')
+    const { email, password } = data;
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredentials) => {
+      const user = userCredentials.user
+      console.log(user)
+      navigate('/profilepage')
+    })
+      .catch((error) => {
+      console.log(error)
+    })
   }
 
   const useStyle = makeStyles()((theme) => ({
