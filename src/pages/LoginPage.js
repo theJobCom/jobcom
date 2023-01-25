@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs, Tab, Button } from '@mui/material';
-import { Container, Box } from '@mui/system'
+import { Box } from '@mui/system'
 import { makeStyles } from 'tss-react/mui';
 import TabContext from '@mui/lab/TabContext';
 import TabPanel from '@mui/lab/TabPanel';
@@ -9,14 +9,33 @@ import SignUpTab from '../components/SignUpTab';
 import { FcGoogle } from 'react-icons/fc';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import firebaseEngine from '../initFirebase/configureFirebase';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [value, setValue] = React.useState("1");
+  const navigate = useNavigate();
+  const { auth } = firebaseEngine;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
+
+  const provider = new GoogleAuthProvider();
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((userCred) => {
+        const user = userCred.user
+        console.log(user)
+        navigate('/profilepage')
+      })
+      .catch((error) => {
+        console.log(error);
+    })
+  } 
 
   const useStyle = makeStyles()((theme) => ({
     container: {
@@ -124,7 +143,7 @@ const LoginPage = () => {
             <TabPanel value="2"><SignUpTab /></TabPanel>
             <p>OR</p>
             <Box className={classes.btngrp}>
-              <Button className={classes.btnggle} size="large" fullWidth><FcGoogle/> Continue with Google</Button>
+              <Button className={classes.btnggle} size="large" onClick={() => signInWithGoogle()} fullWidth><FcGoogle/> Continue with Google</Button>
               <Button className={classes.btnLnkd} size="large" fullWidth><GrLinkedin/> Continue with LinkedIn</Button>
               <Button className={classes.btnGthb} size="large" fullWidth><GoMarkGithub/> Continue with GitHub</Button>
             </Box>

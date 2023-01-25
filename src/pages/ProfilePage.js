@@ -12,6 +12,10 @@ const ProfilePage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  console.log(user);
+
   const useStyle = makeStyles()(() => ({
     container: {
       height: "100vh",
