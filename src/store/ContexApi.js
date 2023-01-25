@@ -5,7 +5,7 @@ import firebaseEngine from "../initFirebase/configureFirebase";
 const DataStore = createContext();
 
 const DataStoreContext = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = React.useState(null);
 
   const { auth } = firebaseEngine;
 
