@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { async } from '@firebase/util';
 
 
 const LoginTab = () => {

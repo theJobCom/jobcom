@@ -1,18 +1,25 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore'
+import firebaseEngine from '../initFirebase/configureFirebase';
 
 const GeneralTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [location, setLocation] = React.useState('');
+  const user = JSON.parse(localStorage.getItem('user'));
+  const { db } = firebaseEngine;
+  const userId = user.uid;
 
+
+  const appData = collection(db, "UserData")
   const handleChange = (event) => {
     setLocation(event.target.value)
   }
 
   const onSubmit = async (data) => {
-    console.log(data)
+    await addDoc(appData, {...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
   }
 
   const useStyle = makeStyles()((theme) => ({
