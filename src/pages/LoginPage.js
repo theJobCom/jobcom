@@ -34,7 +34,7 @@ const LoginPage = () => {
         navigate('/profilepage')
         setAlert({
           open: true,
-          message: `You have successfully logged in ${user.name}`,
+          message: `You have successfully logged in as ${user.displayName}`,
           type: "success"
         })
       })

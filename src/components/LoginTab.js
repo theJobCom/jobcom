@@ -23,7 +23,7 @@ const LoginTab = () => {
         console.log(user);
         setAlert({
           open: true,
-          message: `You have successfully logged in ${user.email}`,
+          message: `You have successfully logged in as ${user.displayName}`,
           type: "success"
         })
         navigate('/profilepage')
