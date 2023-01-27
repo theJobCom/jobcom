@@ -3,17 +3,23 @@ import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button, Box} from '@mui/material';
 import { useForm } from 'react-hook-form';
 import CameraIcon from '../icons/Icons/camera.png'
+import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import firebaseEngine from '../initFirebase/configureFirebase';
 
 const Project = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [location, setLocation] = React.useState('');
+  const { db } = firebaseEngine;
+  const userId = JSON.parse(localStorage.getItem('user')).uid;
+
+  const appData = collection(db, "UserData");
 
   const handleChange = (event) => {
     setLocation(event.target.value)
   }
 
   const onSubmit = async (data) => {
-    console.log(data)
+    await addDoc(appData, {...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
   }
 
   const useStyle = makeStyles()((theme) => ({
@@ -97,8 +103,8 @@ const Project = () => {
           <MenuItem value={10}>Ai</MenuItem>
           <MenuItem value={20}>FinTech</MenuItem>
           <MenuItem value={30}>E-commerce</MenuItem>
-          <MenuItem value={30}>Education</MenuItem>
-          <MenuItem value={30}>Other</MenuItem>
+          <MenuItem value={40}>Education</MenuItem>
+          <MenuItem value={50}>Other</MenuItem>
         </Select>
       </FormControl>
       <TextField
