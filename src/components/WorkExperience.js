@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { TextField, Button, FormControlLabel, Checkbox, FormGroup, FormControl, InputLabel} from '@mui/material';
+import { TextField, Button, FormControlLabel, Checkbox } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { collection, doc, addDoc } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
