@@ -1,21 +1,17 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
+import { TextField, Button} from '@mui/material';
 import { useForm } from 'react-hook-form'
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 
 const Education = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [location, setLocation] = React.useState('');
   const userId = JSON.parse(localStorage.getItem("user")).uid;
   const { db } = firebaseEngine;
 
-  const handleChange = (event) => {
-    setLocation(event.target.value)
-  }
 
-  const appData = collection(db, "UserData");
+  const appData = collection(db, "Education");
 
   const onSubmit = async (data) => {
     await addDoc(appData, {...data, createdBy: doc(db, "User", userId), createdAt: serverTimestamp()})

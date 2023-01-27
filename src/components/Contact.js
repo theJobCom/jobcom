@@ -11,7 +11,7 @@ const Contact = () => {
   const navigate = useNavigate();
   const { db } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
-  const appData = collection(db, "UserData");
+  const appData = collection(db, "Contact");
 
 
   const onSubmit = async (data) => {

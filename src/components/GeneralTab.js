@@ -13,7 +13,7 @@ const GeneralTab = () => {
   const userId = user.uid;
 
 
-  const appData = collection(db, "UserData")
+  const appData = collection(db, "General")
   const handleChange = (event) => {
     setLocation(event.target.value)
   }

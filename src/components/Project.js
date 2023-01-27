@@ -9,13 +9,18 @@ import firebaseEngine from '../initFirebase/configureFirebase';
 const Project = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [location, setLocation] = React.useState('');
+  const [year, setYear] = React.useState('');
   const { db } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
 
-  const appData = collection(db, "UserData");
+  const appData = collection(db, "Project");
 
   const handleChange = (event) => {
     setLocation(event.target.value)
+  }
+
+  const handleChangeYear = (event) => {
+    setYear(event.target.value)
   }
 
   const onSubmit = async (data) => {
@@ -81,14 +86,15 @@ const Project = () => {
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={location}
+          value={year}
+          {...register("year")}
           label="Select Year"
-          onChange={handleChange}
+          onChange={handleChangeYear}
         >
-          <MenuItem value={10}>2023</MenuItem>
-          <MenuItem value={20}>2022</MenuItem>
-          <MenuItem value={30}>2021</MenuItem>
-          <MenuItem value={30}>2020</MenuItem>
+          <MenuItem value={"2023"}>2023</MenuItem>
+          <MenuItem value={"2022"}>2022</MenuItem>
+          <MenuItem value={"2021"}>2021</MenuItem>
+          <MenuItem value={"2020"}>2020</MenuItem>
         </Select>
       </FormControl>
       <FormControl>
@@ -97,22 +103,23 @@ const Project = () => {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={location}
+          {...register("category")}
           label="Select Project category"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ai</MenuItem>
-          <MenuItem value={20}>FinTech</MenuItem>
-          <MenuItem value={30}>E-commerce</MenuItem>
-          <MenuItem value={40}>Education</MenuItem>
-          <MenuItem value={50}>Other</MenuItem>
+          <MenuItem value={"Ai"}>Ai</MenuItem>
+          <MenuItem value={"FinTech"}>FinTech</MenuItem>
+          <MenuItem value={"E-commerce"}>E-commerce</MenuItem>
+          <MenuItem value={"Education"}>Education</MenuItem>
+          <MenuItem value={"Other"}>Other</MenuItem>
         </Select>
       </FormControl>
       <TextField
         variant='outlined'
         type="text"
+        {...register("description", { required: "Add project description" })}
         label="Description"
         fullWidth
-        {...register("description", { required: "Add project description" })}
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
       />

@@ -12,7 +12,7 @@ const Achievement = () => {
   const [job, setJob] = React.useState('');
   const { db } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
-  const appData = collection(db, "UserData")
+  const appData = collection(db, "Achievements")
 
   const handleChange = (event) => {
     setJob(event.target.value)
@@ -81,34 +81,36 @@ const Achievement = () => {
         helperText={errors?.userprojectName ? errors.projectName.message : null}
       />
       <FormControl>
-        <InputLabel {...register("year")} id="demo-simple-select-helper-label">Select year*</InputLabel>
+        <InputLabel  id="demo-simple-select-helper-label">Select year*</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={year}
+          {...register("achievementYear")}
           label="Select Year"
           onChange={handleChangeYear}
-        >
-          <MenuItem value={10}>2023</MenuItem>
-          <MenuItem value={20}>2022</MenuItem>
-          <MenuItem value={30}>2021</MenuItem>
-          <MenuItem value={40}>2020</MenuItem>
+          >
+          <MenuItem value={"2023"}>2023</MenuItem>
+          <MenuItem value={"2022"}>2022</MenuItem>
+          <MenuItem value={"2021"}>2021</MenuItem>
+          <MenuItem value={"2020"}>2020</MenuItem>
         </Select>
       </FormControl>
       <FormControl>
         <InputLabel id="demo-simple-select-helper-label">Select Project category</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
+          {...register("category")}
           id="demo-simple-select-helper"
           value={job}
           label="Select Project category"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ai</MenuItem>
-          <MenuItem value={20}>FinTech</MenuItem>
-          <MenuItem value={30}>E-commerce</MenuItem>
-          <MenuItem value={40}>Education</MenuItem>
-          <MenuItem value={50}>Other</MenuItem>
+          <MenuItem value={"Ai"}>Ai</MenuItem>
+          <MenuItem value={"FinTech"}>FinTech</MenuItem>
+          <MenuItem value={"E-commerce"}>E-commerce</MenuItem>
+          <MenuItem value={"Education"}>Education</MenuItem>
+          <MenuItem value={"other"}>Other</MenuItem>
         </Select>
       </FormControl>
       <TextField

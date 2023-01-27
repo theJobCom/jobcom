@@ -10,7 +10,7 @@ const WorkExperience = () => {
 
   const { db } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
-  const appData = collection(db, 'UserData')
+  const appData = collection(db, 'WorkExperience')
 
   const onSubmit = async (data) => {
     await addDoc(appData, { ...data, createdBy: doc(db, "User", userId) });
