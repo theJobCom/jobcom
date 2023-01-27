@@ -3,15 +3,19 @@ import { makeStyles } from 'tss-react/mui';
 import { TextField, Button} from '@mui/material';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
+import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import firebaseEngine from '../initFirebase/configureFirebase';
 
 const Contact = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
+  const { db } = firebaseEngine;
+  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const appData = collection(db, "UserData");
 
 
   const onSubmit = async (data) => {
-    console.log(data)
-    navigate("/portfolioPage")
+    await addDoc(appData, {...data, createdBy: doc(db, "User", userId), createdAt: serverTimestamp()})
   }
 
   const useStyle = makeStyles()((theme) => ({
