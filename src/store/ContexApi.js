@@ -7,19 +7,94 @@ const DataStore = createContext();
 
 const DataStoreContext = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [data, setData] = useState([]);
+  const [general, setGeneral] = useState([]);
+  const [work, setWork] = useState([]);
+  const [contact, setContact] = useState([]);
+  const [education, setEducation] = useState([]);
+  const [project, setProject] = useState([]);
+  const [achievement, setAchievemet] = useState([]);
 
   const { auth, db } = firebaseEngine;
 
   useEffect(() => {
     if (user) {
-      const q = query(collection(db, "UserData"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const q = query(collection(db, "Achievement"), where("createdBy", "==", doc(db, "User", user.uid)));
       const unsubScribe = onSnapshot(q, (snapShot) => {
         let dataArr = []
         snapShot.docs.forEach((doc) => {
           dataArr.push({...doc.data(), id: doc.id})
         })
-        setData(dataArr)
+        setAchievemet(dataArr)
+      })
+      return () => unsubScribe()
+    }
+  }, [user])
+
+    useEffect(() => {
+    if (user) {
+      const q = query(collection(db, "WorkExperience"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const unsubScribe = onSnapshot(q, (snapShot) => {
+        let dataArr = []
+        snapShot.docs.forEach((doc) => {
+          dataArr.push({...doc.data(), id: doc.id})
+        })
+        setWork(dataArr)
+      })
+      return () => unsubScribe()
+    }
+    }, [user])
+  
+    useEffect(() => {
+    if (user) {
+      const q = query(collection(db, "Project"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const unsubScribe = onSnapshot(q, (snapShot) => {
+        let dataArr = []
+        snapShot.docs.forEach((doc) => {
+          dataArr.push({...doc.data(), id: doc.id})
+        })
+        setProject(dataArr)
+      })
+      return () => unsubScribe()
+    }
+    }, [user])
+  
+    useEffect(() => {
+    if (user) {
+      const q = query(collection(db, "General"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const unsubScribe = onSnapshot(q, (snapShot) => {
+        let dataArr = []
+        snapShot.docs.forEach((doc) => {
+          dataArr.push({...doc.data(), id: doc.id})
+        })
+        setGeneral(dataArr)
+      })
+      return () => unsubScribe()
+    }
+    }, [user])
+  
+    useEffect(() => {
+    if (user) {
+      const q = query(collection(db, "Education"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const unsubScribe = onSnapshot(q, (snapShot) => {
+        let dataArr = []
+        snapShot.docs.forEach((doc) => {
+          dataArr.push({...doc.data(), id: doc.id})
+        })
+        setEducation(dataArr)
+      })
+      return () => unsubScribe()
+    }
+    }, [user])
+  
+    useEffect(() => {
+    if (user) {
+      const q = query(collection(db, "Contact"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const unsubScribe = onSnapshot(q, (snapShot) => {
+        let dataArr = []
+        snapShot.docs.forEach((doc) => {
+          dataArr.push({...doc.data(), id: doc.id})
+        })
+        setContact(dataArr)
       })
       return () => unsubScribe()
     }
@@ -35,13 +110,23 @@ const DataStoreContext = ({ children }) => {
     })
   })
 
-  console.log(data)
+  console.log([education,
+      contact,
+      achievement,
+      project,
+      general,
+      work])
 
   return (
     <DataStore.Provider value={{
-      data,
       user,
-      setUser
+      setUser,
+      education,
+      contact,
+      achievement,
+      project,
+      general,
+      work
     }}>
       {children}
     </DataStore.Provider>
