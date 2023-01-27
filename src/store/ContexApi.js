@@ -13,6 +13,11 @@ const DataStoreContext = ({ children }) => {
   const [education, setEducation] = useState([]);
   const [project, setProject] = useState([]);
   const [achievement, setAchievemet] = useState([]);
+  const [alert, setAlert] = useState({
+    open: false,
+    message: "",
+    type: ""
+  })
 
   const { auth, db } = firebaseEngine;
 
@@ -132,7 +137,9 @@ const DataStoreContext = ({ children }) => {
       achievement,
       project,
       general,
-      work
+      work,
+      alert,
+      setAlert
     }}>
       {children}
     </DataStore.Provider>
