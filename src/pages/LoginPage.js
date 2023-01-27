@@ -12,11 +12,13 @@ import { GoMarkGithub } from 'react-icons/go';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { useNavigate } from 'react-router-dom';
+import { DataStoreState } from '../store/ContexApi';
 
 const LoginPage = () => {
   const [value, setValue] = React.useState("1");
   const navigate = useNavigate();
   const { auth } = firebaseEngine;
+  const { setAlert } = DataStoreState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -29,11 +31,19 @@ const LoginPage = () => {
     signInWithPopup(auth, provider)
       .then((userCred) => {
         const user = userCred.user
-        console.log(user)
         navigate('/profilepage')
+        setAlert({
+          open: true,
+          message: `You have successfully logged in ${user.name}`,
+          type: "success"
+        })
       })
       .catch((error) => {
-        console.log(error);
+        setAlert({
+          open: true,
+          message: `${error.message}`,
+          type: "error"
+        })
     })
   } 
 
