@@ -3,17 +3,27 @@ import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button, Box} from '@mui/material';
 import { useForm } from 'react-hook-form';
 import CameraIcon from '../icons/Icons/camera.png'
+import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import firebaseEngine from '../initFirebase/configureFirebase';
 
 const Achievement = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [location, setLocation] = React.useState('');
+  const [year, setYear] = React.useState('');
+  const [job, setJob] = React.useState('');
+  const { db } = firebaseEngine;
+  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const appData = collection(db, "UserData")
 
   const handleChange = (event) => {
-    setLocation(event.target.value)
+    setJob(event.target.value)
+  }
+
+  const handleChangeYear = (event) => {
+    setYear(event.target.value);
   }
 
   const onSubmit = async (data) => {
-    console.log(data)
+    await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) });
   }
 
   const useStyle = makeStyles()((theme) => ({
@@ -71,18 +81,18 @@ const Achievement = () => {
         helperText={errors?.userprojectName ? errors.projectName.message : null}
       />
       <FormControl>
-        <InputLabel id="demo-simple-select-helper-label">Select year*</InputLabel>
+        <InputLabel {...register("year")} id="demo-simple-select-helper-label">Select year*</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={location}
+          value={year}
           label="Select Year"
-          onChange={handleChange}
+          onChange={handleChangeYear}
         >
           <MenuItem value={10}>2023</MenuItem>
           <MenuItem value={20}>2022</MenuItem>
           <MenuItem value={30}>2021</MenuItem>
-          <MenuItem value={30}>2020</MenuItem>
+          <MenuItem value={40}>2020</MenuItem>
         </Select>
       </FormControl>
       <FormControl>
@@ -90,15 +100,15 @@ const Achievement = () => {
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={location}
+          value={job}
           label="Select Project category"
           onChange={handleChange}
         >
           <MenuItem value={10}>Ai</MenuItem>
           <MenuItem value={20}>FinTech</MenuItem>
           <MenuItem value={30}>E-commerce</MenuItem>
-          <MenuItem value={30}>Education</MenuItem>
-          <MenuItem value={30}>Other</MenuItem>
+          <MenuItem value={40}>Education</MenuItem>
+          <MenuItem value={50}>Other</MenuItem>
         </Select>
       </FormControl>
       <TextField
