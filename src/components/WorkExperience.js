@@ -2,12 +2,18 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { TextField, Button, FormControlLabel, Checkbox, FormGroup, FormControl, InputLabel} from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { collection, doc, addDoc } from 'firebase/firestore';
+import firebaseEngine from '../initFirebase/configureFirebase';
 
 const WorkExperience = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  const { db } = firebaseEngine;
+  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const appData = collection(db, 'UserData')
+
   const onSubmit = async (data) => {
-    console.log(data)
+    await addDoc(appData, { ...data, createdBy: doc(db, "User", userId) });
   }
 
   const useStyle = makeStyles()((theme) => ({
@@ -49,7 +55,7 @@ const WorkExperience = () => {
         error={!!errors?.endDate}
         helperText={errors?.endDate ? errors.endDate.message : null} 
       />
-      <FormControlLabel control={<Checkbox />} label="I'm currently working here" sx={{color: "grey", fontSize:"1px"}} />
+      <FormControlLabel {...register("currently")} control={<Checkbox />} label="I'm currently working here" sx={{color: "grey", fontSize:"1px"}} />
       <TextField
       variant='outlined'
       type="text"
