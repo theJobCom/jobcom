@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { DataStoreState } from '../store/ContexApi';
 
 
 const LoginTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { setAlert } = DataStoreState();
   const navigate = useNavigate();
   const { auth } = firebaseEngine;
   
@@ -19,10 +21,19 @@ const LoginTab = () => {
       .then((userCredentials) => {
         const user = userCredentials.user
         console.log(user);
+        setAlert({
+          open: true,
+          message: `You have successfully logged in ${user.email}`,
+          type: "success"
+        })
         navigate('/profilepage')
       })
       .catch((error) => {
-        console.log(error);
+        setAlert({
+          open: true,
+          message: `${error.message}`,
+          type: "error"
+        })
     })
   }
 
