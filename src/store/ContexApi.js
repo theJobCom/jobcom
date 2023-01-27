@@ -28,6 +28,7 @@ const DataStoreContext = ({ children }) => {
       })
       return () => unsubScribe()
     }
+    // eslint-disable-next-line 
   }, [user])
 
     useEffect(() => {
@@ -42,6 +43,7 @@ const DataStoreContext = ({ children }) => {
       })
       return () => unsubScribe()
     }
+    // eslint-disable-next-line 
     }, [user])
   
     useEffect(() => {
@@ -56,6 +58,7 @@ const DataStoreContext = ({ children }) => {
       })
       return () => unsubScribe()
     }
+      // eslint-disable-next-line 
     }, [user])
   
     useEffect(() => {
@@ -70,6 +73,7 @@ const DataStoreContext = ({ children }) => {
       })
       return () => unsubScribe()
     }
+      // eslint-disable-next-line 
     }, [user])
   
     useEffect(() => {
@@ -84,6 +88,7 @@ const DataStoreContext = ({ children }) => {
       })
       return () => unsubScribe()
     }
+      // eslint-disable-next-line 
     }, [user])
   
     useEffect(() => {
@@ -98,6 +103,7 @@ const DataStoreContext = ({ children }) => {
       })
       return () => unsubScribe()
     }
+      // eslint-disable-next-line 
   }, [user])
 
   useEffect(() => {

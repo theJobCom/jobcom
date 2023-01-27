@@ -66,7 +66,7 @@ const Project = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <Box className={classes.imageBox}>
-        <img className={classes.imageHolder} />
+        <img className={classes.imageHolder} alt="" />
         <Box className={classes.cameraIconBox}>
           <img src={CameraIcon} alt="camera icon"/>
         </Box>
