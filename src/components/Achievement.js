@@ -39,12 +39,7 @@ const Achievement = () => {
       height: "160px",
       position: "relative",
       borderRadius: "10px",
-    },
-    imageHolder: {
-      width: "100%",
-      height: "100%",
       backgroundColor: "#f2f4f7",
-      borderRadius: "10px"
     },
     cameraIconBox: {
       position: "absolute",
@@ -65,7 +60,6 @@ const Achievement = () => {
   return (
         <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <Box className={classes.imageBox}>
-        <img className={classes.imageHolder} />
         <Box className={classes.cameraIconBox}>
           <img src={CameraIcon} alt="camera icon"/>
         </Box>
