@@ -18,7 +18,7 @@ const SignUpTab = () => {
       const user = userCredentials.user
       setAlert({
         open: true,
-        message: `You have successfully created an account as ${user.email}`,
+        message: `You have successfully created a new account as ${user.email}`,
         type: "success"
       })
       navigate('/profilepage')
