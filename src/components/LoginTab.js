@@ -41,6 +41,8 @@ const LoginTab = () => {
     form: {
       display: "flex",
       flexDirection: "column",
+      alignItems: "start",
+      fontFamily: "Work Sans",
       gap: "10px"
     }
   }));
@@ -49,19 +51,19 @@ const LoginTab = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <label>Email</label>
       <TextField
       variant='outlined'
       type="email"
-      label="email"
       fullWidth
         {...register("email", { required: "Add Your email" })}
         error={!!errors?.email}
         helperText={errors?.email ? errors.email.message : null} 
       />
+      <label>Password</label>
       <TextField
       variant='outlined'
       type="password"
-      label="password"
       fullWidth
       {...register("password", { required: "Add Your password" })}
       error={!!errors?.password}
@@ -71,6 +73,7 @@ const LoginTab = () => {
         variant="contained"
         type="submit"
         size="large"
+        fullWidth
         sx={{bgcolor: "#6941C6", textTransform: "capitalize", fontFamily: "Work Sans"}}
       >
         Login

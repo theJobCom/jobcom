@@ -36,15 +36,19 @@ const SignUpTab = () => {
       form: {
       display: "flex",
       flexDirection: "column",
+      alignItems: "start",
+      fontFamily: "Work Sans",
       gap: "10px"
-    }
+    },
   }));
 
   const { classes } = useStyle();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      {/* <label className={classes.label}>username</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="text"
       label="username"
@@ -52,8 +56,10 @@ const SignUpTab = () => {
         {...register("username", { required: "Add Your Username" })}
         error={!!errors?.username}
         helperText={errors?.username ? errors.username.message : null} 
-      />
+      /> */}
+      <label className={classes.label}>email</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="email"
       label="email"
@@ -62,7 +68,9 @@ const SignUpTab = () => {
         error={!!errors?.email}
         helperText={errors?.email ? errors.email.message : null}
       />
+      <label className={classes.label}>password</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="password"
       label="password"
@@ -71,7 +79,9 @@ const SignUpTab = () => {
       error={!!errors?.password}
       helperText={errors?.password ? errors.password.message : null}
       />
+      <label className={classes.label}>confirm Password</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="password"
       label="confirm password"
@@ -84,6 +94,7 @@ const SignUpTab = () => {
         variant="contained"
         type="submit"
         size="large"
+        fullWidth
         sx={{bgcolor: "#6941C6", textTransform: "capitalize", fontFamily: "Work Sans"}}
       >
         sign up
