@@ -13,6 +13,7 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { useNavigate } from 'react-router-dom';
 import { DataStoreState } from '../store/ContexApi';
+import coverImage from '../images/coverImage.png';
 
 const LoginPage = () => {
   const [value, setValue] = React.useState("1");
@@ -138,6 +139,14 @@ const LoginPage = () => {
   return (
     <div className={classes.container}>
       <div className={classes.boxLeft}>
+        <Box className={classes.content}>
+          <h1>Jumpstart Your Dream Career.</h1>
+          <Box className={classes.desc}>
+            <p>JobCom is a platform that help Tech International Students in Australia to showcase their talents through stand out portfolio</p>
+            <p>Share your Portfolio Link with the Recruiters!</p>
+          </Box>
+          <img src={coverImage} alt='background image' />
+        </Box>
       </div>
       <div className={classes.boxRight}>
         <Box className={classes.logo}><Box className={classes.logoCircle}></Box><span className={classes.logoName}>JOBCOM</span></Box>
