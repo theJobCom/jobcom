@@ -98,7 +98,7 @@ const LoginPage = () => {
     btnGthb: {
       display: "flex",
       gap: 10, 
-      backgroundColor: "black",
+      backgroundColor: "grey",
       color: "white",
       fontFamily: "Work sans",
       textTransform: "capitalize",
@@ -177,8 +177,8 @@ const LoginPage = () => {
             <p>OR</p>
             <Box className={classes.btngrp}>
               <Button className={classes.btnggle} size="large" onClick={() => signInWithGoogle()} fullWidth><FcGoogle/> Continue with Google</Button>
-              <Button className={classes.btnLnkd} size="large" fullWidth><GrLinkedin/> Continue with LinkedIn</Button>
-              <Button className={classes.btnGthb} size="large" fullWidth><GoMarkGithub/> Continue with GitHub</Button>
+              <Button className={classes.btnLnkd} size="large" fullWidth disabled><GrLinkedin/> Continue with LinkedIn</Button>
+              <Button className={classes.btnGthb} size="large" fullWidth disabled><GoMarkGithub/> Continue with GitHub</Button>
             </Box>
           </TabContext>
         </Box>
