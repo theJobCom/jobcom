@@ -13,6 +13,8 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { useNavigate } from 'react-router-dom';
 import { DataStoreState } from '../store/ContexApi';
+import coverImage from '../images/coverImage.png';
+import logo from '../images/logo.png'
 
 const LoginPage = () => {
   const [value, setValue] = React.useState("1");
@@ -57,7 +59,27 @@ const LoginPage = () => {
     },
     boxLeft: {
       width: "70vw",
-      height: "100%"
+      height: "100%",
+      background: "linear-gradient(148.1deg, #F4EBFF 79.21%, #D6BBFB 101.83%);"
+    },
+    content: {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      height: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: "52px"
+    },
+    title: {
+      marginBottom: "66px",
+    },
+    desc: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "32px",
+      width: "650px",
+      marginBottom: "101px"
     },
     boxRight: {
       width: "30vw",
@@ -76,7 +98,7 @@ const LoginPage = () => {
     btnGthb: {
       display: "flex",
       gap: 10, 
-      backgroundColor: "black",
+      backgroundColor: "grey",
       color: "white",
       fontFamily: "Work sans",
       textTransform: "capitalize",
@@ -120,17 +142,6 @@ const LoginPage = () => {
       gap: "10px",
       padding: "20px"
     },
-    logoCircle: {
-      width: "43px",
-      height: "43px",
-      background: "#6941C6",
-      borderRadius: "50%"
-    },
-    logoName: {
-      fontSize: "35px",
-      lineHeight: "53.16px",
-      weight: 600
-    }
   }))
 
   const { classes } = useStyle();
@@ -138,9 +149,21 @@ const LoginPage = () => {
   return (
     <div className={classes.container}>
       <div className={classes.boxLeft}>
+        <Box className={classes.content}>
+          <h1 className={classes.title}>Jumpstart Your Dream Career.</h1>
+          <Box className={classes.desc}>
+            <p>JobCom is a platform that help Tech International Students in Australia to showcase their talents through stand out portfolio
+              <br/>
+              <br/>
+            Share your Portfolio Link with the Recruiters!</p>
+          </Box>
+          <img src={coverImage} alt='background image' />
+        </Box>
       </div>
       <div className={classes.boxRight}>
-        <Box className={classes.logo}><Box className={classes.logoCircle}></Box><span className={classes.logoName}>JOBCOM</span></Box>
+        <Box className={classes.logo}>
+          <img src={logo} alt="company logo"/>
+        </Box>
         <Box className={classes.tab}>
           <TabContext value={value}>
             <Box>
@@ -154,8 +177,8 @@ const LoginPage = () => {
             <p>OR</p>
             <Box className={classes.btngrp}>
               <Button className={classes.btnggle} size="large" onClick={() => signInWithGoogle()} fullWidth><FcGoogle/> Continue with Google</Button>
-              <Button className={classes.btnLnkd} size="large" fullWidth><GrLinkedin/> Continue with LinkedIn</Button>
-              <Button className={classes.btnGthb} size="large" fullWidth><GoMarkGithub/> Continue with GitHub</Button>
+              <Button className={classes.btnLnkd} size="large" fullWidth disabled><GrLinkedin/> Continue with LinkedIn</Button>
+              <Button className={classes.btnGthb} size="large" fullWidth disabled><GoMarkGithub/> Continue with GitHub</Button>
             </Box>
           </TabContext>
         </Box>
