@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from 'tss-react/mui'
 import ExitIcon from "../icons/Vector.png"
+import logo from "../images/image13.png"
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -29,7 +30,6 @@ const SideBar = () => {
       width: "44px",
       height: "44px",
       borderRadius: "50%",
-      backgroundColor: "#6941c6",
       cursor: "pointer"
     },
     exit: {
@@ -40,7 +40,9 @@ const SideBar = () => {
   const { classes } = useStyle();
 return (
   <div className={classes.sideBar}>
-    <Box className={classes.logo} onClick={() => onClick()}></Box>
+    <Box className={classes.logo} onClick={() => onClick()}>
+      <img src={logo} alt="company logo"/>
+    </Box>
     <Box className={classes.exit} onClick={() => logOut()}>
       <img src={ExitIcon} alt="exit icon" className={classes.exit} />
     </Box>
