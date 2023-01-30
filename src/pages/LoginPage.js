@@ -61,6 +61,25 @@ const LoginPage = () => {
       height: "100%",
       background: "linear-gradient(148.1deg, #F4EBFF 79.21%, #D6BBFB 101.83%);"
     },
+    content: {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      height: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: "52px"
+    },
+    title: {
+      marginBottom: "66px",
+    },
+    desc: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "32px",
+      width: "650px",
+      marginBottom: "101px"
+    },
     boxRight: {
       width: "30vw",
       display: "flex",
@@ -141,10 +160,12 @@ const LoginPage = () => {
     <div className={classes.container}>
       <div className={classes.boxLeft}>
         <Box className={classes.content}>
-          <h1>Jumpstart Your Dream Career.</h1>
+          <h1 className={classes.title}>Jumpstart Your Dream Career.</h1>
           <Box className={classes.desc}>
-            <p>JobCom is a platform that help Tech International Students in Australia to showcase their talents through stand out portfolio</p>
-            <p>Share your Portfolio Link with the Recruiters!</p>
+            <p>JobCom is a platform that help Tech International Students in Australia to showcase their talents through stand out portfolio
+              <br/>
+              <br/>
+            Share your Portfolio Link with the Recruiters!</p>
           </Box>
           <img src={coverImage} alt='background image' />
         </Box>
