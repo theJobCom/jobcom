@@ -9,18 +9,26 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 const SignUpTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate()
-  const { auth } = firebaseEngine;
+  const { auth, setAlert } = firebaseEngine;
   
   const onSubmit = async (data) => {
     const { email, password } = data;
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredentials) => {
+      .then((userCredentials) => {
       const user = userCredentials.user
-      console.log(user)
+      setAlert({
+        open: true,
+        message: `You have successfully created an account as ${user.email}`,
+        type: "success"
+      })
       navigate('/profilepage')
     })
       .catch((error) => {
-      console.log(error)
+      setAlert({
+        open: true,
+        message: `${error.message}`,
+        type: "error"
+      })
     })
   }
 
@@ -32,7 +40,7 @@ const SignUpTab = () => {
     }
   }));
 
-  const {classes} = useStyle();
+  const { classes } = useStyle();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
