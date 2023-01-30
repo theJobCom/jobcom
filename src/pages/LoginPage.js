@@ -58,7 +58,8 @@ const LoginPage = () => {
     },
     boxLeft: {
       width: "70vw",
-      height: "100%"
+      height: "100%",
+      background: "linear-gradient(148.1deg, #F4EBFF 79.21%, #D6BBFB 101.83%);"
     },
     boxRight: {
       width: "30vw",
