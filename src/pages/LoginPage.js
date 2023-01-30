@@ -14,6 +14,7 @@ import firebaseEngine from '../initFirebase/configureFirebase';
 import { useNavigate } from 'react-router-dom';
 import { DataStoreState } from '../store/ContexApi';
 import coverImage from '../images/coverImage.png';
+import logo from '../images/logo.png'
 
 const LoginPage = () => {
   const [value, setValue] = React.useState("1");
@@ -141,17 +142,6 @@ const LoginPage = () => {
       gap: "10px",
       padding: "20px"
     },
-    logoCircle: {
-      width: "43px",
-      height: "43px",
-      background: "#6941C6",
-      borderRadius: "50%"
-    },
-    logoName: {
-      fontSize: "35px",
-      lineHeight: "53.16px",
-      weight: 600
-    }
   }))
 
   const { classes } = useStyle();
@@ -171,7 +161,9 @@ const LoginPage = () => {
         </Box>
       </div>
       <div className={classes.boxRight}>
-        <Box className={classes.logo}><Box className={classes.logoCircle}></Box><span className={classes.logoName}>JOBCOM</span></Box>
+        <Box className={classes.logo}>
+          <img src={logo} alt="company logo"/>
+        </Box>
         <Box className={classes.tab}>
           <TabContext value={value}>
             <Box>
