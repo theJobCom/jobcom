@@ -95,7 +95,7 @@ export default function ApplicationForm() {
             <Tab label="General" sx={{marginTop: "88px"}} {...a11yProps(0)} className={classes.tabText} />
             <Tab label="Project" {...a11yProps(1)} className={classes.tabText}/>
             <Tab label="Achievement" {...a11yProps(2)} className={classes.tabText}/>
-            <Tab label="Work Experince" {...a11yProps(3)} className={classes.tabText}/>
+            <Tab label="Work Experience" {...a11yProps(3)} className={classes.tabText}/>
             <Tab label="Education" {...a11yProps(4)} className={classes.tabText}/>
             <Tab label="Contact" {...a11yProps(5)} className={classes.tabText}/>
           </Tabs>

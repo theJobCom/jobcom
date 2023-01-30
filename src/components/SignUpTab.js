@@ -66,7 +66,7 @@ const SignUpTab = () => {
       <TextField
       variant='outlined'
       type="password"
-      label="comfirm password"
+      label="confirm password"
       fullWidth
       {...register("confirmPassword", { required: "Add Your password" })}
       error={!!errors?.confirmPassword}
