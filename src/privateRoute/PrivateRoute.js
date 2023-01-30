@@ -8,6 +8,7 @@ const PrivateRoute = ({children}) => {
 
   useEffect(() => {
     setId(userId);
+    // eslint-disable-next-line
   }, [])
 
   return id ? children : navigate('/');

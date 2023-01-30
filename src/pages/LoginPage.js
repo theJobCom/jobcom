@@ -157,7 +157,7 @@ const LoginPage = () => {
               <br/>
             Share your Portfolio Link with the Recruiters!</p>
           </Box>
-          <img src={coverImage} alt='background image' />
+          <img src={coverImage} alt='background cover' />
         </Box>
       </div>
       <div className={classes.boxRight}>
