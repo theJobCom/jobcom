@@ -5,9 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { makeStyles } from 'tss-react/mui';
-import { display } from '@mui/system';
 import GeneralTab from '../components/GeneralTab';
-import { Button } from '@mui/material';
 import Project from '../components/Project';
 import Achievement from '../components/Achievement';
 import Contact from '../components/Contact'
