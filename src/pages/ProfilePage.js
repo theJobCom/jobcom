@@ -15,6 +15,23 @@ const ProfilePage = () => {
   const [education, setEducation] = useState(false);
   const [achievements, setAchievements] = useState(false);
 
+  const openResume = () => setResume(true);
+  const closeResume = () => setResume(false);
+  const openLetter = () => setLetter(true);
+  const closeLetter = () => setLetter(false);
+  const openContact = () => setContact(true);
+  const closeContact = () => setContact(false)
+  const openProject = () => setProject(true);
+  const closeProject = () => setProject(false);
+  const openGeneral = () => setGeneral(true);
+  const closeGeneral = () => setGeneral(false);
+  const openExperience = () => setExperience(true);
+  const closeExperience = () => setExperience(false);
+  const openEducation = () => setEducation(true);
+  const closeEducation = () => setEducation(false);
+  const openAchievements = () => setAchievements(true);
+  const closeAchievements = () => setAchievements(false);
+
   const useStyle = makeStyles()(() => ({
     container: {
       height: "100vh",
