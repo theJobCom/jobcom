@@ -211,102 +211,39 @@ const ProfilePage = () => {
           <Box className={classes.boxLeft}>
             <Box className={classes.profileSec}>
               <Box className={classes.imageBox}>
-                {/* <img src={profile} alt="profilePic" className={classes.profile} /> */}
                 <Box className={classes.boxIconBox}>
                   <img src={cameraIcon} alt="profilePic" className={classes.cameraIcon} />
                 </Box>
               </Box>
               <span className={classes.userName}>John Doe (@john.doe)</span>
-              {/* <p className={classes.country}>🇩🇪 Germany</p>
-              <p className={classes.role}>Software Developer</p>
-              <small className={classes.location}>Melbourne, Australia</small> */}
               <Box className={classes.metadata}>
-                {/* <p className={classes.data}><strong>0</strong> Likes</p>
-                <p className={classes.data}><strong>0</strong> Visits</p> */}
               </Box>
             </Box>
             <Box className={classes.viewDocs}>
                 <Button variant="text">+ Upload Resume</Button>
                 <Button variant="text">+ Upload Cover Letter</Button>
-              {/* <Link href="#" className={classes.links}>View Resume<BiRightArrowAlt/></Link>
-              <Link href="#" className={classes.links}>View Cover letter<BiRightArrowAlt/></Link> */}
             </Box>
               <p className={classes.role}>Contact me</p>
             <Box className={classes.contacts}>
               <Button variant="text">+ Add Contact Details</Button>
-              {/* <Link href="#" className={classes.linkedIn}><GrLinkedin/></Link>
-              <Link href="#" className={classes.gthb}><GoMarkGithub/></Link>
-            <Link href="#" className={classes.medium}><AiFillMediumCircle/></Link> */}
-
             </Box>
           </Box>
           <Box className={classes.boxRight}>
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
             <Button variant="text">+ Add General information</Button>
-              {/* <p className={classes.text}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p> */}
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Work Experience</h5>
-              {/* <Box className={classes.entry}>
-                <small className={classes.timePeriod}>Jan 2023 - present</small>
-                <Box className={classes.jobDesc}>
-                <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
-                <small className={classes.location}>Melbourne, Australia</small>
-                <p className={classes.about}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p>
-                </Box>
-              </Box> */}
               <Button variant="text">+ Add Work Experience</Button>
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Education</h5>
-              {/* <Box className={classes.entry}>
-                <small className={classes.timePeriod}>Jan 2023 - present</small>
-                <Box className={classes.jobDesc}>
-                <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
-                <small className={classes.location}>Melbourne, Australia</small>
-                <p className={classes.about}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p>
-                </Box>
-              </Box> */}
 
               <Button variant="text">+ Add Education</Button>
             </Box>
             <Box className={classes.descBoxIII}>
               <h5 className={classes.subtitle}>Achievements</h5>
-              {/* <Box className={classes.achieveBox}>
-                <img src={cert1} alt="certificate icon" className={classes.certIcon}/>
-                <Box className={classes.achieveDesc}>
-                <Box className={classes.topTitle}>
-                <h6 className={classes.jobTitle}>AWS Developer</h6>
-                <small className={classes.timePeriod}>Sept 2022</small>
-                </Box>
-                <small className={classes.issuedBy}>issued by AWS</small>
-                <small className={classes.issedTxt}>AWS Certification for Developer</small>
-                </Box>
-                </Box>
-                <Box className={classes.achieveBox}>
-                <img src={cert2} alt="certificate icon" className={classes.certIcon} />
-                <Box className={classes.achieveDesc}>
-                  <Box className={classes.topTitle}>
-                    <h6 className={classes.jobTitle}>AWS Developer</h6>
-                    <small className={classes.timePeriod}>Sept 2022</small>
-                  </Box>
-                  <small className={classes.issuedBy}>issued by AWS</small>
-                  <small className={classes.issedTxt}>AWS Certification for Developer</small>
-                  </Box>
-                  </Box>
-                  <Box className={classes.achieveBox}>
-                  <img src={cert3} alt="certificate icon" className={classes.certIcon}/>
-                  <Box className={classes.achieveDesc}>
-                  <Box className={classes.topTitle}>
-                  <h6 className={classes.jobTitle}>AWS Developer</h6>
-                  <small className={classes.timePeriod}>Sept 2022</small>
-                  </Box>
-                  <small className={classes.issuedBy}>issued by AWS</small>
-                  <small className={classes.issedTxt}>AWS Certification for Developer</small>
-                  </Box>
-                  
-                </Box> */}
                 <Button variant="text">+ Add Achievements</Button>
             </Box>
           </Box>
