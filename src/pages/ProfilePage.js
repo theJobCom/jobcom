@@ -13,7 +13,7 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
+  bgcolor: 'white',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
@@ -264,37 +264,37 @@ const ProfilePage = () => {
               </Box>
             </Box>
             <Box className={classes.viewDocs}>
-                <Button variant="text" className={classes.btnAdd} sx={{textAlign: "left"}}>+ Upload Resume</Button>
-                <Button variant="text" className={classes.btnAdd}>+ Upload Cover Letter</Button>
+                <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button>
+                <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button>
             </Box>
               <h5 className={classes.subtitle}>Contact me</h5>
             <Box className={classes.contacts}>
-              <Button variant="text" className={classes.btnAdd}>+ Add Contact Details</Button>
+              <Button variant="text" className={classes.btnAdd} onClick={openContact}>+ Add Contact Details</Button>
             </Box>
           </Box>
           <Box className={classes.boxRight}>
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
-            <Button variant="text" className={classes.btnAdd}>+ Add General information</Button>
+            <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Work Experience</h5>
-              <Button variant="text" className={classes.btnAdd}>+ Add Work Experience</Button>
+              <Button variant="text" className={classes.btnAdd} onClick={openExperience}>+ Add Work Experience</Button>
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Education</h5>
 
-              <Button variant="text" className={classes.btnAdd}>+ Add Education</Button>
+              <Button variant="text" className={classes.btnAdd} onClick={openEducation}>+ Add Education</Button>
             </Box>
             <Box className={classes.descBoxIII}>
               <h5 className={classes.subtitle}>Achievements</h5>
-                <Button variant="text" className={classes.btnAdd}>+ Add Achievements</Button>
+                <Button variant="text" className={classes.btnAdd} onClick={openAchievements}>+ Add Achievements</Button>
             </Box>
           </Box>
         </Box>
         <Box className={classes.boxBottom}>
           <h5 className={classes.subtitle}>Projects</h5>
-            <Button variant="text" className={classes.btnAdd}>+ Add Project</Button>
+            <Button variant="text" className={classes.btnAdd} onClick={openProject}>+ Add Project</Button>
         </Box>
       </Box>
       <Modal
@@ -330,21 +330,6 @@ const ProfilePage = () => {
       <Modal
         open={contact}
         onClose={closeContact}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
-      </Modal>
-      <Modal
-        open={project}
-        onClose={openProject}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
