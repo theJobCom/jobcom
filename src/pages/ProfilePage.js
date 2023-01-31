@@ -6,6 +6,14 @@ import cameraIcon from '../icons/Icons/camera.png'
 import SideBar from '../components/SideBar';
 
 const ProfilePage = () => {
+  const [resume, setResume] = useState(false);
+  const [letter, setLetter] = useState(false);
+  const [contact, setContact] = useState(false);
+  const [project, setProject] = useState(false);
+  const [general, setGeneral] = useState(false);
+  const [experience, setExperience] = useState(false);
+  const [education, setEducation] = useState(false);
+  const [achievements, setAchievements] = useState(false);
 
   const useStyle = makeStyles()(() => ({
     container: {
