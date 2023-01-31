@@ -21,7 +21,7 @@ const ProfilePage = () => {
     boxTop: {
       width: "100%",
       display: "flex",
-      gap: "31px",
+      gap: "71px",
       marginBottom: "80px"
     },
     imageBox: {
@@ -190,7 +190,11 @@ const ProfilePage = () => {
     },
     period: {
       fontWeight: "400",
-      marginLeft: "8px",
+      margicontainedt: "8px",
+    },
+    btnAdd: {
+      display: "flex",
+      justifyContent: "start",
     }
   }));
 
@@ -214,38 +218,38 @@ const ProfilePage = () => {
               </Box>
             </Box>
             <Box className={classes.viewDocs}>
-                <Button variant="text">+ Upload Resume</Button>
-                <Button variant="text">+ Upload Cover Letter</Button>
+                <Button variant="contained" className={classes.btnAdd} sx={{textAlign: "left"}}>+ Upload Resume</Button>
+                <Button variant="contained" className={classes.btnAdd}>+ Upload Cover Letter</Button>
             </Box>
               <p className={classes.role}>Contact me</p>
             <Box className={classes.contacts}>
-              <Button variant="text">+ Add Contact Details</Button>
+              <Button variant="contained" className={classes.btnAdd}>+ Add Contact Details</Button>
             </Box>
           </Box>
           <Box className={classes.boxRight}>
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
-            <Button variant="text">+ Add General information</Button>
+            <Button variant="contained" className={classes.btnAdd}>+ Add General information</Button>
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Work Experience</h5>
-              <Button variant="text">+ Add Work Experience</Button>
+              <Button variant="contained" className={classes.btnAdd}>+ Add Work Experience</Button>
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Education</h5>
 
-              <Button variant="text">+ Add Education</Button>
+              <Button variant="contained" className={classes.btnAdd}>+ Add Education</Button>
             </Box>
             <Box className={classes.descBoxIII}>
               <h5 className={classes.subtitle}>Achievements</h5>
-                <Button variant="text">+ Add Achievements</Button>
+                <Button variant="contained" className={classes.btnAdd}>+ Add Achievements</Button>
             </Box>
           </Box>
         </Box>
         <Box className={classes.boxBottom}>
           <h5 className={classes.subtitle}>Projects</h5>
 
-            <Button variant="text">+ Add Project</Button>
+            <Button variant="contained" className={classes.btnAdd}>+ Add Project</Button>
           {/* <Box className={classes.projectWrapper}>
             <Box className={classes.projects}>
               <Box className={classes.project}>
