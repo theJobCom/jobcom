@@ -2,12 +2,6 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui'
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
-// import Link from '@mui/material/Link';
-// import { GrLinkedin } from 'react-icons/gr';
-// import { GoMarkGithub } from 'react-icons/go';
-// import { AiFillMediumCircle } from 'react-icons/ai';
-// import { HiExternalLink } from 'react-icons/hi';
-// import { BiRightArrowAlt } from 'react-icons/bi';
 import cameraIcon from '../icons/Icons/camera.png'
 import SideBar from '../components/SideBar';
 
