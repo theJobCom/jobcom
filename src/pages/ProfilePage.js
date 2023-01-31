@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from 'tss-react/mui'
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
@@ -262,51 +262,145 @@ const ProfilePage = () => {
         </Box>
         <Box className={classes.boxBottom}>
           <h5 className={classes.subtitle}>Projects</h5>
-
             <Button variant="text" className={classes.btnAdd}>+ Add Project</Button>
-          {/* <Box className={classes.projectWrapper}>
-            <Box className={classes.projects}>
-              <Box className={classes.project}>
-                <img src={project1} alt="project screenshot" />
-                <Box className={classes.projectDesc}>
-                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
-                  <small className={classes.industry}>Artificial Intelligence</small>
-                  <small className={classes.text}>
-                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
-                  </small>
-                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
-                </Box>
-              </Box>
-            </Box>
-            <Box className={classes.projects}>
-              <Box className={classes.project}>
-                <img src={project2} alt="project screenshot" />
-                <Box className={classes.projectDesc}>
-                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
-                  <small className={classes.industry}>Artificial Intelligence</small>
-                  <small className={classes.text}>
-                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
-                  </small>
-                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
-                </Box>
-              </Box>
-            </Box>
-            <Box className={classes.projects}>
-              <Box className={classes.project}>
-                <img src={project3} alt="project screenshot" />
-                <Box className={classes.projectDesc}>
-                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
-                  <small className={classes.industry}>Artificial Intelligence</small>
-                  <small className={classes.text}>
-                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
-                  </small>
-                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
-                </Box>
-              </Box>
-            </Box>
-          </Box> */}
         </Box>
       </Box>
+      <Modal
+        open={resume}
+        onClose={closeResume}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={letter}
+        onClose={closeLetter}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={contact}
+        onClose={closeContact}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={project}
+        onClose={openProject}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={general}
+        onClose={closeGeneral}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={project}
+        onClose={closeProject}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={experience}
+        onClose={closeExperience}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={education}
+        onClose={closeEducation}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+      <Modal
+        open={achievements}
+        onClose={closeAchievements}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+
     </div>
   )
 }
