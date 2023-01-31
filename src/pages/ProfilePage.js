@@ -1,181 +1,361 @@
-import { Button, Modal } from '@mui/material';
-import { Box } from '@mui/system';
 import React from 'react'
 import { makeStyles } from 'tss-react/mui'
+import { Box } from '@mui/system';
+import Button from '@mui/material/Button';
+// import Link from '@mui/material/Link';
+// import { GrLinkedin } from 'react-icons/gr';
+// import { GoMarkGithub } from 'react-icons/go';
+// import { AiFillMediumCircle } from 'react-icons/ai';
+// import { HiExternalLink } from 'react-icons/hi';
+// import { BiRightArrowAlt } from 'react-icons/bi';
+import cameraIcon from '../icons/Icons/camera.png'
 import SideBar from '../components/SideBar';
-import CameraIcon from '../icons/Icons/camera.png'
-import ApplicationForm from '../pages/ApplicationForm'
 
 const ProfilePage = () => {
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  console.log(user);
 
   const useStyle = makeStyles()(() => ({
     container: {
       height: "100vh",
+      width: "100vw",
       display: "flex",
+      overflowX: "hidden"
     },
-    mainBox: {
-      padding: "60px 60px 60px 130px",
-      display: "flex",
-      gap: "50px",
-      justifyContent: "center"
+    wrapper: {
+      padding: "50px 20px 20px 160px",
+      maxWidth: "1400px"
     },
-    leftBox: {
+    boxTop: {
+      width: "100%",
       display: "flex",
-      flexDirection: "column",
-      gap: "24px"
+      gap: "31px",
+      marginBottom: "80px"
     },
     imageBox: {
-      width: "260px",
-      height: "260px",
       position: "relative",
-      borderRadius: "10px",
+      width: "250px",
+      height: "250px",
+      marginBottom: "22px"
     },
-    imageHolder: {
+    profile: {
       width: "100%",
       height: "100%",
-      backgroundColor: "#f2f4f7",
-      borderRadius: "10px"
+      borderRadius: "10px",
+      position: "relative"
     },
-    cameraIconBox: {
+    boxIconBox: {
       position: "absolute",
-      width: "64px",
-      height: "64px",
-      bottom: "10px",
-      right: "10px",
+      bottom: "11px",
+      right: "11px",
+      width: "54px",
+      height: "54px",
       borderRadius: "50%",
-      backgroundColor: "#e4e7ec",
+      backgroundColor: "#e4e7eC",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       cursor: "pointer"
     },
-    username: {
+    userName: {
       fontWeight: "600",
-      fontSize: "22px",
+      fontSize: "21px",
       lineHeight: "28px",
-      color: "#344054",
-      fontFamily: "Work Sans"
+      marginBottom: "8px"
     },
-    userData: {
-      display: "flex",
-      alignItems: "center",
-      width: "150px",
-      justifyContent: "space-between",
-      fontFamily: "Work Sans"
-    },
-    data: {
-      fontWeight: "500",
+    country: {
       fontSize: "16px",
       lineHeight: "24px",
-      letterSpacing: "0.15px",
-      color: "#344054",
-      fontFamily: "Work Sans"
-    },
-    num: {
-      fontWeight: "700",
-    },
-    rightBox: {
-      width: "60vw",
-      height: "665px",
-      border: "2px dashed grey",
-      padding: "161px 53px",
-      borderRadius: "10px"
-    },
-    list: {
-      marginLeft: 20,
-      lineHeight: "24px",
-      letterSpacing: "0.15px",
-      fontFamily: "Work sans",
-      color: "#344054"
-    },
-    title: {
       fontWeight: "600",
-      fontSize: "28px",
-      lineHeight: "36px",
-      color: "#344054",
-      fontFamily: "Work Sans",
+    },
+    role: {
+      fontSize: "16px",
+      lineHeight: "24px",
+      fontWeight: "500",
+    },
+    location: {
+      fontWeight: "500",
+      fontSize: "12px",
+    },
+    metadata: {
+      marginTop: "20px",
+      marginBottom: "36px",
+      display: "flex",
+      width: "70%",
+      alignItems: "center",
+      justifyContent: "space-between"
+    },
+    viewDocs: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "12px",
+      marginBottom: "36px"
+    },
+    links: {
+      fontWeight: "700",
+      fontSize: "16px",
+      lineHeight: "24px",
+      textTransform: "uppercase",
+      letterSpacing: "0.5px",
+      color: "#6941C6",
+      textDecoration: "none",
+      display: "flex",
+      alignItems: "center"
+    },
+    contacts: {
+      display: "flex",
+      gap: "14px",
+      marginTop: "10px"
+    },
+    linkedIn: {
+      fontSize: 28
+    },
+    gthb: {
+      fontSize: 28,
+      color: "#000"
+    },
+    medium: {
+      fontSize: 30,
+      color: "#000"
+    },
+    boxRight: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "32px",
+      maxWidth: "1000px"
+    },
+    subtitle: {
+      fontSize: "22px",
+      fontWeight: "600",
+      lineHeight: "28px",
       marginBottom: "16px"
     },
-    tagline: {
-      fontFamily: "Work Sans",
+    text: {
+      fontSize: "16px",
       fontWeight: "300",
-      fontSize: "22px",
-      lineHeight: "28px",
-      color: "#344054",
-      marginBottom: "63px"
+      lineHeight: "20px"
     },
-    btn: {
-      marginTop: "48px",
-      backgroundColor: "#6941c6",
-      padding: "16px",
-      borderRadius: "10px",
-      textTransform: "capitalize",
-      color: "#fff",
-      fontFamily: "Work Sans",
-      fontSize: "14px",
-      "&:hover": {
-        backgroundColor: "#6941c6",
-        color: "#fff",
-      },
-      modal: {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%",
-        p: 24,
-        width: "500px"
-      }
+    entry: {
+      display: "flex",
+      gap: "29px"
+    },
+    about: {
+      fontSize: "13px"
+    },
+    jobDesc: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "5px"
+    },
+    descBoxIII: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px"
+    },
+    achieveBox: {
+      display: "flex",
+      gap: "24px",
+      width: "100%"
+    },
+    achieveDesc: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      gap: "10px"
+    },
+    certIcon: {
+      height: "100px"
+    },
+    topTitle: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "450px"
+    },
+    issedTxt: {
+      fontSize: "12px"
+    },
+    projectWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px",
+    },
+
+    project: {
+      display: "flex",
+      gap: "20px",
+    },
+    projectDesc: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      gap: "13px",
+    },
+    projectTitle: {
+      fontSize: "16px",
+      fontWeight: "600",
+      lineHeight: "16px"
+    },
+    period: {
+      fontWeight: "400",
+      marginLeft: "8px",
     }
-  }))
+  }));
 
   const { classes } = useStyle();
+
 
   return (
     <div className={classes.container}>
       <SideBar />
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-          <ApplicationForm />
-      </Modal>
-      <Box className={classes.mainBox}>
-        <Box className={classes.leftBox}>
-          <Box className={classes.imageBox}>
-            <img className={classes.imageHolder} alt="" />
-            <Box className={classes.cameraIconBox}>
-              <img src={CameraIcon} alt="camera icon"/>
+      <Box className={classes.wrapper}>
+        <Box className={classes.boxTop}>
+          <Box className={classes.boxLeft}>
+            <Box className={classes.profileSec}>
+              <Box className={classes.imageBox}>
+                {/* <img src={profile} alt="profilePic" className={classes.profile} /> */}
+                <Box className={classes.boxIconBox}>
+                  <img src={cameraIcon} alt="profilePic" className={classes.cameraIcon} />
+                </Box>
+              </Box>
+              <span className={classes.userName}>John Doe (@john.doe)</span>
+              {/* <p className={classes.country}>🇩🇪 Germany</p>
+              <p className={classes.role}>Software Developer</p>
+              <small className={classes.location}>Melbourne, Australia</small> */}
+              <Box className={classes.metadata}>
+                {/* <p className={classes.data}><strong>0</strong> Likes</p>
+                <p className={classes.data}><strong>0</strong> Visits</p> */}
+              </Box>
+            </Box>
+            <Box className={classes.viewDocs}>
+                <Button variant="text">+ Upload Resume</Button>
+                <Button variant="text">+ Upload Cover Letter</Button>
+              {/* <Link href="#" className={classes.links}>View Resume<BiRightArrowAlt/></Link>
+              <Link href="#" className={classes.links}>View Cover letter<BiRightArrowAlt/></Link> */}
+            </Box>
+              <p className={classes.role}>Contact me</p>
+            <Box className={classes.contacts}>
+              <Button variant="text">+ Add Contact Details</Button>
+              {/* <Link href="#" className={classes.linkedIn}><GrLinkedin/></Link>
+              <Link href="#" className={classes.gthb}><GoMarkGithub/></Link>
+            <Link href="#" className={classes.medium}><AiFillMediumCircle/></Link> */}
+
             </Box>
           </Box>
-          <Box className={classes.metaData}>
-            <p className={classes.username}>@john.doe</p>
-            <Box className={classes.userData}>
-              <p className={classes.data}><span className={classes.num}>0</span> Likes</p>
-              <p className={classes.data}><span className={classes.num}>0</span> Visits</p>
+          <Box className={classes.boxRight}>
+            <Box className={classes.descBox}>
+              <h5 className={classes.subtitle}>Description</h5>
+            <Button variant="text">+ Add General information</Button>
+              {/* <p className={classes.text}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p> */}
+            </Box>
+            <Box className={classes.descBoxII}>
+              <h5 className={classes.subtitle}>Work Experience</h5>
+              {/* <Box className={classes.entry}>
+                <small className={classes.timePeriod}>Jan 2023 - present</small>
+                <Box className={classes.jobDesc}>
+                <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
+                <small className={classes.location}>Melbourne, Australia</small>
+                <p className={classes.about}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p>
+                </Box>
+              </Box> */}
+              <Button variant="text">+ Add Work Experience</Button>
+            </Box>
+            <Box className={classes.descBoxII}>
+              <h5 className={classes.subtitle}>Education</h5>
+              {/* <Box className={classes.entry}>
+                <small className={classes.timePeriod}>Jan 2023 - present</small>
+                <Box className={classes.jobDesc}>
+                <h6 className={classes.jobTitle}>Software Engineer Intern at National Bank Australia</h6>
+                <small className={classes.location}>Melbourne, Australia</small>
+                <p className={classes.about}>I’m a software engineer specializing in building (and occasionally designing) exceptional digital experiences.</p>
+                </Box>
+              </Box> */}
+
+              <Button variant="text">+ Add Education</Button>
+            </Box>
+            <Box className={classes.descBoxIII}>
+              <h5 className={classes.subtitle}>Achievements</h5>
+              {/* <Box className={classes.achieveBox}>
+                <img src={cert1} alt="certificate icon" className={classes.certIcon}/>
+                <Box className={classes.achieveDesc}>
+                <Box className={classes.topTitle}>
+                <h6 className={classes.jobTitle}>AWS Developer</h6>
+                <small className={classes.timePeriod}>Sept 2022</small>
+                </Box>
+                <small className={classes.issuedBy}>issued by AWS</small>
+                <small className={classes.issedTxt}>AWS Certification for Developer</small>
+                </Box>
+                </Box>
+                <Box className={classes.achieveBox}>
+                <img src={cert2} alt="certificate icon" className={classes.certIcon} />
+                <Box className={classes.achieveDesc}>
+                  <Box className={classes.topTitle}>
+                    <h6 className={classes.jobTitle}>AWS Developer</h6>
+                    <small className={classes.timePeriod}>Sept 2022</small>
+                  </Box>
+                  <small className={classes.issuedBy}>issued by AWS</small>
+                  <small className={classes.issedTxt}>AWS Certification for Developer</small>
+                  </Box>
+                  </Box>
+                  <Box className={classes.achieveBox}>
+                  <img src={cert3} alt="certificate icon" className={classes.certIcon}/>
+                  <Box className={classes.achieveDesc}>
+                  <Box className={classes.topTitle}>
+                  <h6 className={classes.jobTitle}>AWS Developer</h6>
+                  <small className={classes.timePeriod}>Sept 2022</small>
+                  </Box>
+                  <small className={classes.issuedBy}>issued by AWS</small>
+                  <small className={classes.issedTxt}>AWS Certification for Developer</small>
+                  </Box>
+                  
+                </Box> */}
+                <Button variant="text">+ Add Achievements</Button>
             </Box>
           </Box>
         </Box>
-        <Box className={classes.rightBox}>
-          <Box className={classes.intro}>
-          <p className={classes.title}>Welcome to JobCom 🎉</p>
-          <p className={classes.tagline}>One-Click to showcase your best work in one site</p>
-          </Box>
-          <ol className={classes.list}>
-            <li className={classes.listItem}>Add Basic information about you</li>
-            <li>Add more stuff, like projects or achievements</li>
-            <li>Add an image and hightlight your favorite project</li>
-          </ol>
-          <Button onClick={handleOpen} className={classes.btn}>+ Make your Own Portfolio</Button>
+        <Box className={classes.boxBottom}>
+          <h5 className={classes.subtitle}>Projects</h5>
+
+            <Button variant="text">+ Add Project</Button>
+          {/* <Box className={classes.projectWrapper}>
+            <Box className={classes.projects}>
+              <Box className={classes.project}>
+                <img src={project1} alt="project screenshot" />
+                <Box className={classes.projectDesc}>
+                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
+                  <small className={classes.industry}>Artificial Intelligence</small>
+                  <small className={classes.text}>
+                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
+                  </small>
+                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                </Box>
+              </Box>
+            </Box>
+            <Box className={classes.projects}>
+              <Box className={classes.project}>
+                <img src={project2} alt="project screenshot" />
+                <Box className={classes.projectDesc}>
+                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
+                  <small className={classes.industry}>Artificial Intelligence</small>
+                  <small className={classes.text}>
+                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
+                  </small>
+                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                </Box>
+              </Box>
+            </Box>
+            <Box className={classes.projects}>
+              <Box className={classes.project}>
+                <img src={project3} alt="project screenshot" />
+                <Box className={classes.projectDesc}>
+                  <h6 className={classes.projectTitle}>Ai ChatBox <span className={classes.period}>2023</span></h6>
+                  <small className={classes.industry}>Artificial Intelligence</small>
+                  <small className={classes.text}>
+                    ChatBot's Visual Builder empowers you to create perfect AI chatbots quickly and with no coding. Drag and drop conversational elements, and test them in real time to design engaging chatbot Stories.
+                  </small>
+                  <Link href="#" classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                </Box>
+              </Box>
+            </Box>
+          </Box> */}
         </Box>
       </Box>
     </div>
