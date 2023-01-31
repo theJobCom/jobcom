@@ -28,7 +28,9 @@ const ProfilePage = () => {
       position: "relative",
       width: "250px",
       height: "250px",
-      marginBottom: "22px"
+      marginBottom: "22px",
+      backgroundColor: "#f2f4f7",
+      borderRadius: "10px"
     },
     profile: {
       width: "100%",
