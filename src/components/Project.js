@@ -1,8 +1,7 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Button, Box} from '@mui/material';
+import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
-import CameraIcon from '../icons/Icons/camera.png'
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
 
@@ -31,23 +30,35 @@ const Project = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      marginTop: "50px",
       width: "100%"
     },
+    input: {
+      marginBottom: "18px",
+    },
+    label: {
+      fontFamily: "Work Sans",
+      marginBottom: "8px",
+      color: "#344054"
+    },
+    formTitle: {
+      marginBottom: "20px"
+    }
   }));
 
   const { classes } = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <h3 className={classes.formTitle}>Project</h3>
-      <label className={classes.label}>Project cover</label>
+      <label className={classes.label}>Project cover*</label>
       <TextField
+      className={classes.input}
         type="file"
         sx={{width: 300}}
         {...register("projectCover", {required: "Add project screenshot"})}
       />
-      <label className={classes.label}>Project cover</label>
+      <label className={classes.label}>Project name*</label>
       <TextField
+      className={classes.input}
         variant='outlined'
         type="text"
         label="project name"
@@ -56,8 +67,8 @@ const Project = () => {
         error={!!errors?.projectName}
         helperText={errors?.userprojectName ? errors.projectName.message : null}
       />
-      <label className={classes.label}>Project cover</label>
-      <FormControl>
+      <label className={classes.label}>Year*</label>
+      <FormControl className={classes.input}>
         <InputLabel id="demo-simple-select-helper-label">Select year*</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -73,8 +84,8 @@ const Project = () => {
           <MenuItem value={"2020"}>2020</MenuItem>
         </Select>
       </FormControl>
-      <label className={classes.label}>Project cover</label>
-      <FormControl>
+      <label className={classes.label}>Project Category*</label>
+      <FormControl className={classes.input}>
         <InputLabel id="demo-simple-select-helper-label">Select Project category</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -91,8 +102,9 @@ const Project = () => {
           <MenuItem value={"Other"}>Other</MenuItem>
         </Select>
       </FormControl>
-      <label className={classes.label}>Project cover</label>
+      <label className={classes.label}>Description*</label>
       <TextField
+      className={classes.input}
         variant='outlined'
         type="text"
         {...register("description", { required: "Add project description" })}
@@ -101,8 +113,9 @@ const Project = () => {
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
       />
-      <label className={classes.label}>Project cover</label>
+      <label className={classes.label}>Project URL*</label>
       <TextField
+      className={classes.input}
         variant='outlined'
         type="text"
         label="Project Link"
