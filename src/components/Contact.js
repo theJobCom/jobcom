@@ -20,62 +20,80 @@ const Contact = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "30px",
-      marginTop: "88px",
       width: "100%"
+    },
+    input: {
+      marginBottom: "18px",
+    },
+    label: {
+      fontFamily: "Work Sans",
+      marginBottom: "8px",
+      color: "#344054"
+    },
+    formTitle: {
+      marginBottom: "20px"
     }
   }));
 
   const {classes} = useStyle();
   return (
-<form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <h3 className={classes.formTitle}>Contact</h3>
+      <label className={classes.label}>Email address*</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="email"
       label="Email address*"
-      sx={{width: "400px"}}
       fullWidth
         {...register("email", { required: "Add Your email" })}
         error={!!errors?.email}
         helperText={errors?.email ? errors.email.message : null} 
       />
+      <label className={classes.label}>LinkedIn</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="url"
         label="LinkedIn"
-        sx={{width: "400px"}}
       fullWidth
         {...register("linkedIn", { required: "Add Your LinkedIn" })}
         error={!!errors?.linkedin}
         helperText={errors?.linkedin ? errors.linkedin.message : null} 
       />
+      <label className={classes.label}>GitHub</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="url"
       label="GitHub"
       fullWidth
       {...register("role")}
       />
+      <label className={classes.label}>Behance</label>
       <TextField
+      className={classes.input}
         variant='outlined'
         label="Behance"
       type="url"
       fullWidth
       {...register("behance")}
       />
+      <label className={classes.label}>Twitter</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="url"
       label="Twitter"
-      sx={{width: "400px"}}
       fullWidth
       {...register("twitter")}
       />
+      <label className={classes.label}>Portfolio</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="url"
       label="portfolio"
-      sx={{width: "400px"}}
       fullWidth
       {...register("portfolio")}
       />
