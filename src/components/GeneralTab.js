@@ -4,6 +4,7 @@ import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mu
 import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore'
 import firebaseEngine from '../initFirebase/configureFirebase';
+import { fontFamily } from '@mui/system';
 
 const GeneralTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -32,10 +33,11 @@ const GeneralTab = () => {
       marginBottom: "33px"
     },
     label: {
-      marginBottom: "8px"
+      marginBottom: "8px",
+      fontFamily: "Work Sans"
     },
     input: {
-      marginBottom: 20
+      marginBottom: 13
     }
   }));
 
