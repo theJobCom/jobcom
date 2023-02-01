@@ -1,22 +1,16 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Button, Box} from '@mui/material';
+import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
-import CameraIcon from '../icons/Icons/camera.png'
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
 
 const Achievement = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [year, setYear] = React.useState('');
-  const [job, setJob] = React.useState('');
   const { db } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
   const appData = collection(db, "Achievements")
-
-  const handleChange = (event) => {
-    setJob(event.target.value)
-  }
 
   const handleChangeYear = (event) => {
     setYear(event.target.value);
@@ -30,52 +24,29 @@ const Achievement = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "30px",
       marginTop: "50px",
       width: "100%"
-    },
-    imageBox: {
-      width: "160px",
-      height: "160px",
-      position: "relative",
-      borderRadius: "10px",
-      backgroundColor: "#f2f4f7",
-    },
-    cameraIconBox: {
-      position: "absolute",
-      width: "44px",
-      height: "44px",
-      bottom: "10px",
-      right: "10px",
-      borderRadius: "50%",
-      backgroundColor: "#e4e7ec",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      cursor: "pointer"
     },
   }));
 
   const { classes } = useStyle();
   return (
-        <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <Box className={classes.imageBox}>
-        <Box className={classes.cameraIconBox}>
-          <img src={CameraIcon} alt="camera icon"/>
-        </Box>
-      </Box>
+    <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <h3 className={classes.formTitle}>Achievement</h3>
+      <label className={classes.label}>Achievement Title</label>
       <TextField
+      className={classes.input}
         variant='outlined'
         type="text"
-        label="project name"
-        sx={{ width: "400px" }}
+        label="Achievement Title"
         fullWidth
         {...register("projectName", { required: "Add the Project name" })}
         error={!!errors?.projectName}
         helperText={errors?.userprojectName ? errors.projectName.message : null}
       />
+      <label className={classes.label}>Achievement Title</label>
       <FormControl>
-        <InputLabel  id="demo-simple-select-helper-label">Select year*</InputLabel>
+        <InputLabel className={classes.input} id="demo-simple-select-helper-label">Select year*</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -90,24 +61,31 @@ const Achievement = () => {
           <MenuItem value={"2020"}>2020</MenuItem>
         </Select>
       </FormControl>
-      <FormControl>
-        <InputLabel id="demo-simple-select-helper-label">Select Project category</InputLabel>
-        <Select
-          labelId="demo-simple-select-helper-label"
-          {...register("category")}
-          id="demo-simple-select-helper"
-          value={job}
-          label="Select Project category"
-          onChange={handleChange}
-        >
-          <MenuItem value={"Ai"}>Ai</MenuItem>
-          <MenuItem value={"FinTech"}>FinTech</MenuItem>
-          <MenuItem value={"E-commerce"}>E-commerce</MenuItem>
-          <MenuItem value={"Education"}>Education</MenuItem>
-          <MenuItem value={"other"}>Other</MenuItem>
-        </Select>
-      </FormControl>
+      <label className={classes.label}>Presented By</label>
       <TextField
+      className={classes.input}
+        variant='outlined'
+        type="text"
+        label="Presented by"
+        fullWidth
+        {...register("presentedBy", { required: "Please add the name of the institution that presented the achievement" })}
+        error={!!errors?.presentedBy}
+        helperText={!!errors?.presentedBy ? errors.presentedBy.message : null}
+      />
+      <label className={classes.label}>Credential URL</label>
+      <TextField
+      className={classes.input}
+        variant='outlined'
+        type="text"
+        label="Credential URL"
+        fullWidth
+        {...register("projectLink", { required: "Add Your projectLink" })}
+        error={!!errors?.projectLink}
+        helperText={errors?.projectLink ? errors.projectLink.message : null}
+      />
+      <label className={classes.label}>Description</label>
+      <TextField
+      className={classes.input}
         variant='outlined'
         type="text"
         label="Description"
@@ -115,16 +93,6 @@ const Achievement = () => {
         {...register("description", { required: "Add project description" })}
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
-      />
-      <TextField
-        variant='outlined'
-        type="text"
-        label="Project Link"
-        sx={{ width: "400px" }}
-        fullWidth
-        {...register("projectLink", { required: "Add Your projectLink" })}
-        error={!!errors?.projectLink}
-        helperText={errors?.projectLink ? errors.projectLink.message : null}
       />
       <Button type="submit" variant='contained' sx={{ backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end" }}>Done</Button>
     </form>
