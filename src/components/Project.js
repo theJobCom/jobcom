@@ -31,56 +31,32 @@ const Project = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "30px",
       marginTop: "50px",
       width: "100%"
-    },
-    imageBox: {
-      width: "160px",
-      height: "160px",
-      position: "relative",
-      borderRadius: "10px",
-    },
-    imageHolder: {
-      width: "100%",
-      height: "100%",
-      backgroundColor: "#f2f4f7",
-      borderRadius: "10px"
-    },
-    cameraIconBox: {
-      position: "absolute",
-      width: "44px",
-      height: "44px",
-      bottom: "10px",
-      right: "10px",
-      borderRadius: "50%",
-      backgroundColor: "#e4e7ec",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      cursor: "pointer"
     },
   }));
 
   const { classes } = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <Box className={classes.imageBox}>
-        <img className={classes.imageHolder} alt="" />
-        <Box className={classes.cameraIconBox}>
-          <img src={CameraIcon} alt="camera icon"/>
-        </Box>
-      </Box>
+      <h3 className={classes.formTitle}>Project</h3>
+      <label className={classes.label}>Project cover</label>
+      <TextField
+        type="file"
+        sx={{width: 300}}
+        {...register("projectCover", {required: "Add project screenshot"})}
+      />
+      <label className={classes.label}>Project cover</label>
       <TextField
         variant='outlined'
         type="text"
         label="project name"
-        sx={{ width: "400px" }}
         fullWidth
         {...register("projectName", { required: "Add the Project name" })}
         error={!!errors?.projectName}
         helperText={errors?.userprojectName ? errors.projectName.message : null}
       />
+      <label className={classes.label}>Project cover</label>
       <FormControl>
         <InputLabel id="demo-simple-select-helper-label">Select year*</InputLabel>
         <Select
@@ -97,6 +73,7 @@ const Project = () => {
           <MenuItem value={"2020"}>2020</MenuItem>
         </Select>
       </FormControl>
+      <label className={classes.label}>Project cover</label>
       <FormControl>
         <InputLabel id="demo-simple-select-helper-label">Select Project category</InputLabel>
         <Select
@@ -114,6 +91,7 @@ const Project = () => {
           <MenuItem value={"Other"}>Other</MenuItem>
         </Select>
       </FormControl>
+      <label className={classes.label}>Project cover</label>
       <TextField
         variant='outlined'
         type="text"
@@ -123,11 +101,11 @@ const Project = () => {
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
       />
+      <label className={classes.label}>Project cover</label>
       <TextField
         variant='outlined'
         type="text"
         label="Project Link"
-        sx={{ width: "400px" }}
         fullWidth
         {...register("projectLink", { required: "Add Your projectLink" })}
         error={!!errors?.projectLink}
