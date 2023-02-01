@@ -26,55 +26,70 @@ const GeneralTab = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "30px",
-      marginTop: "88px",
       width: "100%"
+    },
+    formTitle: {
+      marginBottom: "33px"
+    },
+    label: {
+      marginBottom: "8px"
+    },
+    input: {
+      marginBottom: 20
     }
   }));
 
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <h2 className={classes.formTitle}>General information</h2>
+      <label className={classes.label}>Display name*</label>
       <TextField
       variant='outlined'
       type="text"
-        label="Display name"
-        sx={{width: "400px"}}
+      label="Display name"
       fullWidth
-        {...register("name", { required: "Add Your name" })}
-        error={!!errors?.name}
-        helperText={errors?.username ? errors.name.message : null} 
+      className={classes.input}
+      {...register("name", { required: "Add Your name" })}
+      error={!!errors?.name}
+      helperText={errors?.username ? errors.name.message : null} 
       />
+      <label className={classes.label}>Nationality*</label>
       <TextField
       variant='outlined'
       type="text"
-        label="Nationality*"
-        sx={{width: "400px"}}
+      label="Nationality*"
+      className={classes.input}
       fullWidth
         {...register("nationality", { required: "Add Your name" })}
         error={!!errors?.nationality}
         helperText={errors?.nationality ? errors.nationality.message : null} 
       />
+      <label className={classes.label}>Role*</label>
       <TextField
       variant='outlined'
       type="text"
-      label="Designer / Developer / Architect ..."
+      label="Designer/Developer/Architect..."
+      className={classes.input}
       fullWidth
       {...register("role", { required: "Add Your role" })}
       error={!!errors?.role}
       helperText={errors?.role ? errors.role.message : null}
       />
+      <label className={classes.label}>Location*</label>
       <TextField
-        variant='outlined'
-        label="Location*"
+      variant='outlined'
+      label="Location*"
       type="text"
+      className={classes.input}
       fullWidth
       {...register("location", { required: "Add Your location" })}
       error={!!errors?.location}
       helperText={errors?.location ? errors.location.message : null}
       />
-      <FormControl>
-        <InputLabel id="demo-simple-select-helper-label">Role*</InputLabel>
+      <label className={classes.label}>Job Role*</label>
+      <FormControl className={classes.input}>
+        <InputLabel id="demo-simple-select-helper-label">Job Category*</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -88,11 +103,12 @@ const GeneralTab = () => {
             <MenuItem value={30}>UI/UX Designer</MenuItem>
           </Select>
       </FormControl>
+      <label className={classes.label}>About*</label>
       <TextField
       variant='outlined'
       type="text"
       label="About*"
-      sx={{width: "400px"}}
+      className={classes.input}
       fullWidth
         {...register("about", { required: "Add Your about" })}
         error={!!errors?.about}
