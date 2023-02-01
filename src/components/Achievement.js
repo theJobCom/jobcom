@@ -24,16 +24,25 @@ const Achievement = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      marginTop: "50px",
       width: "100%"
     },
+    input: {
+      marginBottom: "18px",
+    },
+    label: {
+      fontFamily: "Work Sans",
+      marginBottom: "8px",
+    },
+    formTitle: {
+      marginBottom: "20px"
+    }
   }));
 
   const { classes } = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <h3 className={classes.formTitle}>Achievement</h3>
-      <label className={classes.label}>Achievement Title</label>
+      <label className={classes.label}>Achievement Title*</label>
       <TextField
       className={classes.input}
         variant='outlined'
@@ -44,8 +53,8 @@ const Achievement = () => {
         error={!!errors?.projectName}
         helperText={errors?.userprojectName ? errors.projectName.message : null}
       />
-      <label className={classes.label}>Achievement Title</label>
-      <FormControl>
+      <label className={classes.label}>Select year*</label>
+      <FormControl className={classes.input}>
         <InputLabel className={classes.input} id="demo-simple-select-helper-label">Select year*</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -61,7 +70,7 @@ const Achievement = () => {
           <MenuItem value={"2020"}>2020</MenuItem>
         </Select>
       </FormControl>
-      <label className={classes.label}>Presented By</label>
+      <label className={classes.label}>Presented By*</label>
       <TextField
       className={classes.input}
         variant='outlined'
@@ -72,7 +81,7 @@ const Achievement = () => {
         error={!!errors?.presentedBy}
         helperText={!!errors?.presentedBy ? errors.presentedBy.message : null}
       />
-      <label className={classes.label}>Credential URL</label>
+      <label className={classes.label}>Credential URL*</label>
       <TextField
       className={classes.input}
         variant='outlined'
@@ -83,7 +92,7 @@ const Achievement = () => {
         error={!!errors?.projectLink}
         helperText={errors?.projectLink ? errors.projectLink.message : null}
       />
-      <label className={classes.label}>Description</label>
+      <label className={classes.label}>Description*</label>
       <TextField
       className={classes.input}
         variant='outlined'
@@ -94,7 +103,7 @@ const Achievement = () => {
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
       />
-      <Button type="submit" variant='contained' sx={{ backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end" }}>Done</Button>
+      <Button type="submit" variant='contained' sx={{ backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end" }}>Save</Button>
     </form>
   )
 }
