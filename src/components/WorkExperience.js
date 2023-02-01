@@ -20,13 +20,22 @@ const WorkExperience = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "15px",
       width: "100%"
     },
     formDate: {
       display: "flex",
       width: "100%",
       justifyContent: "space-between"
+    },
+    input: {
+      marginBottom: "18px",
+    },
+    label: {
+      fontFamily: "Work Sans",
+      marginBottom: "8px",
+    },
+    formTitle: {
+      marginBottom: "20px"
     }
   }));
 
@@ -36,7 +45,9 @@ const WorkExperience = () => {
       <h3 className={classes.formTitle}>Work Experience</h3>
       <Box className={classes.formDate}>
         <FormControl>
+          <label className={classes.label}>From*</label>
           <TextField
+            className={classes.input}
             id="date"
             type="date"
             sx={{ width: 220 }}
@@ -50,7 +61,9 @@ const WorkExperience = () => {
           />
         </FormControl>
         <FormControl>
+          <label className={classes.label}>To*</label>
           <TextField
+          className={classes.input}
             id="date"
             type="date"
             sx={{ width: 220 }}
@@ -64,18 +77,21 @@ const WorkExperience = () => {
           />
         </FormControl>
       </Box>
-      <FormControlLabel {...register("currently")} control={<Checkbox />} label="I'm currently working here" sx={{color: "grey", fontSize:"1px"}} />
+      <FormControlLabel className={classes.input} {...register("currently")} control={<Checkbox />} label="I'm currently working here" sx={{ color: "grey", fontSize: "1px" }} />
+      <label className={classes.label}>Title*</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="text"
       label="title"
-      sx={{width: "400px"}}
       fullWidth
         {...register("title", { required: "Add Your Job title" })}
         error={!!errors?.title}
         helperText={errors?.title ? errors.title.message : null} 
       />
+      <label className={classes.label}>Company*</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="text"
       label="company*"
@@ -84,14 +100,18 @@ const WorkExperience = () => {
       error={!!errors?.company}
       helperText={errors?.company ? errors.company.message : null}
       />
+      <label className={classes.label}>Location*</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       label="location"
       type="text"
       fullWidth
         {...register("location")}
       />
+      <label className={classes.label}>Description*</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       label="Description"
       type="text"
