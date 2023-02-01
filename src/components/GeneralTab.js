@@ -33,7 +33,8 @@ const GeneralTab = () => {
     },
     label: {
       marginBottom: "8px",
-      fontFamily: "Work Sans"
+      fontFamily: "Work Sans",
+      color: "#344054"
     },
     input: {
       marginBottom: 13

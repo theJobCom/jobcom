@@ -34,6 +34,7 @@ const Education = () => {
     label: {
       fontFamily: "Work Sans",
       marginBottom: "8px",
+      color: "#344054"
     },
     formTitle: {
       marginBottom: "20px"
