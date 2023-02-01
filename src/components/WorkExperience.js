@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { TextField, Button, FormControlLabel, Checkbox, Box } from '@mui/material';
+import { TextField, Button, FormControlLabel, Checkbox, Box, FormControl } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { collection, doc, addDoc } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
@@ -20,7 +20,7 @@ const WorkExperience = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "30px",
+      gap: "15px",
       width: "100%"
     },
     formDate: {
@@ -33,33 +33,36 @@ const WorkExperience = () => {
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <h3 className={classes.formTitle}>Work Experience</h3>
       <Box className={classes.formDate}>
-        <TextField
-          id="date"
-          label="From*"
-          type="date"
-          sx={{ width: 220 }}
-          InputLabelProps={{
+        <FormControl>
+          <TextField
+            id="date"
+            type="date"
+            sx={{ width: 220 }}
+            InputLabelProps={{
             shrink: true,
-          }}
-        fullWidth
-          {...register("fromDate", { required: "Add Your education start Date" })}
-          error={!!errors?.fromDate}
-          helperText={errors?.fromDate ? errors.fromDate.message : null} 
-        />
-        <TextField
-          id="date"
-          label="to*"
-          type="date"
-          sx={{ width: 220 }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        fullWidth
-          {...register("endDate", { required: "Add Your education end Date" })}
-          error={!!errors?.endDate}
-          helperText={errors?.endDate ? errors.endDate.message : null} 
-        />
+            }}
+          fullWidth
+            {...register("fromDate", { required: "Add Your education start Date" })}
+            error={!!errors?.fromDate}
+            helperText={errors?.fromDate ? errors.fromDate.message : null} 
+          />
+        </FormControl>
+        <FormControl>
+          <TextField
+            id="date"
+            type="date"
+            sx={{ width: 220 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          fullWidth
+            {...register("endDate", { required: "Add Your education end Date" })}
+            error={!!errors?.endDate}
+            helperText={errors?.endDate ? errors.endDate.message : null} 
+          />
+        </FormControl>
       </Box>
       <FormControlLabel {...register("currently")} control={<Checkbox />} label="I'm currently working here" sx={{color: "grey", fontSize:"1px"}} />
       <TextField
