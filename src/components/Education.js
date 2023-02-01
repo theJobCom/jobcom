@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { TextField, Button} from '@mui/material';
+import { TextField, Button, Box, FormControl} from '@mui/material';
 import { useForm } from 'react-hook-form'
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
@@ -21,52 +21,77 @@ const Education = () => {
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "30px",
-      marginTop: "88px",
       width: "100%"
+    },
+    formDate: {
+      display: "flex",
+      width: "100%",
+      justifyContent: "space-between"
+    },
+    input: {
+      marginBottom: "18px",
+    },
+    label: {
+      fontFamily: "Work Sans",
+      marginBottom: "8px",
+    },
+    formTitle: {
+      marginBottom: "20px"
     }
   }));
 
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <h3 className={classes.formTitle}>Education</h3>
+      <Box className={classes.formDate}>
+        <FormControl>
+          <label className={classes.label}>From*</label>
+          <TextField
+            className={classes.input}
+            id="date"
+            type="date"
+            sx={{ width: 220 }}
+            InputLabelProps={{
+            shrink: true,
+            }}
+          fullWidth
+            {...register("fromDate", { required: "Add Your education start Date" })}
+            error={!!errors?.fromDate}
+            helperText={errors?.fromDate ? errors.fromDate.message : null} 
+          />
+        </FormControl>
+        <FormControl>
+          <label className={classes.label}>To*</label>
+          <TextField
+          className={classes.input}
+            id="date"
+            type="date"
+            sx={{ width: 220 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          fullWidth
+            {...register("endDate", { required: "Add Your education end Date" })}
+            error={!!errors?.endDate}
+            helperText={errors?.endDate ? errors.endDate.message : null} 
+          />
+        </FormControl>
+      </Box>
+      <label className={classes.label}>Degree/Certification*</label>
       <TextField
-        id="date"
-        label="From*"
-        type="date"
-        sx={{ width: 220 }}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      fullWidth
-        {...register("fromDate", { required: "Add Your education start Date" })}
-        error={!!errors?.fromDate}
-        helperText={errors?.fromDate ? errors.fromDate.message : null} 
-      />
-      <TextField
-        id="date"
-        label="to*"
-        type="date"
-        sx={{ width: 220 }}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      fullWidth
-        {...register("endDate", { required: "Add Your education end Date" })}
-        error={!!errors?.endDate}
-        helperText={errors?.endDate ? errors.endDate.message : null} 
-      />
-      <TextField
+      className={classes.input}
       variant='outlined'
       type="text"
       label="Degree/Certification*"
-      sx={{width: "400px"}}
       fullWidth
         {...register("degree", { required: "Add Your Degree/certification" })}
         error={!!errors?.degree}
         helperText={errors?.degree ? errors.degree.message : null} 
       />
+      <label className={classes.label}>school/University*</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       type="text"
       label="school/University*"
@@ -75,7 +100,9 @@ const Education = () => {
       error={!!errors?.school}
       helperText={errors?.school ? errors.school.message : null}
       />
+      <label className={classes.label}>Description*</label>
       <TextField
+      className={classes.input}
       variant='outlined'
       label="Description"
       type="text"
