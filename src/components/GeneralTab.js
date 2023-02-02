@@ -98,6 +98,9 @@ const GeneralTab = () => {
           value={location}
           label="location"
           onChange={handleChange}
+          {...register("jobCategory", { required: "Please add your Job category" })}
+          error={!!errors?.jobCategory}
+          helperText={errors?.jobCategory ? errors.jobCategory.message : null}
           >
             <MenuItem value={10}>Software Engineer</MenuItem>
             <MenuItem value={20}>Accountant</MenuItem>
