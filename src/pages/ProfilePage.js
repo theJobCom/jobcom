@@ -54,6 +54,15 @@ const ProfilePage = () => {
   const closeAchievements = () => setAchievements(false);
 
   const { education, contact, achievement, project, general, work } = DataStoreState();
+  
+  const generalInfo = general[0];
+  const educationInfo = education[0];
+  const contactInfo = contact[0];
+  const achievementInfo = achievement[0];
+  const projectInfo = project;
+  const workInfo = work[0];
+
+  console.log(generalInfo);
 
   const useStyle = makeStyles()(() => ({
     container: {
@@ -267,7 +276,7 @@ const ProfilePage = () => {
                   <img src={cameraIcon} alt="profilePic" className={classes.cameraIcon} />
                 </Box>
               </Box>
-              <span className={classes.userName}>John Doe (@john.doe)</span>
+              <span className={classes.userName}>{generalInfo.name || 'Your Name'}</span>
               <Box className={classes.metadata}>
               </Box>
             </Box>
