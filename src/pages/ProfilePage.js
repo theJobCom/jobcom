@@ -276,10 +276,10 @@ const ProfilePage = () => {
                   <img src={cameraIcon} alt="profilePic" className={classes.cameraIcon} />
                 </Box>
               </Box>
-              <span className={classes.userName}>{generalInfo.name || 'Your Name'}</span>
-              {generalInfo.nationality ? <p className={classes.country}>{generalInfo.nationality}</p> : ""}
-              {generalInfo.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
-              {generalInfo.location ? <small className={classes.location}>{generalInfo.location}</small> : ""}
+              <span className={classes.userName}>{generalInfo?.name || 'Your Name'}</span>
+              {generalInfo?.nationality ? <p className={classes.country}>{generalInfo?.nationality}</p> : ""}
+              {generalInfo?.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
+              {generalInfo?.location ? <small className={classes.location}>{generalInfo?.location}</small> : ""}
               <Box className={classes.metadata}>
               </Box>
             </Box>
@@ -295,8 +295,8 @@ const ProfilePage = () => {
           <Box className={classes.boxRight}>
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
-              <p className={classes.text}>{generalInfo.about || ''}</p>
-            {generalInfo.about ? "" : <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>}
+              <p className={classes.text}>{generalInfo?.about || ''}</p>
+            {generalInfo?.about ? "" : <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>}
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Work Experience</h5>
