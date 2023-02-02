@@ -11,6 +11,7 @@ import Contact from '../components/Contact'
 import WorkExperience from '../components/WorkExperience';
 import Education from '../components/Education';
 import Achievements from '../components/Achievement';
+import { DataStoreState } from '../store/ContexApi';
 
 const style = {
   position: 'absolute',
@@ -28,29 +29,31 @@ const style = {
 const ProfilePage = () => {
   const [resume, setResume] = useState(false);
   const [letter, setLetter] = useState(false);
-  const [contact, setContact] = useState(false);
-  const [project, setProject] = useState(false);
-  const [general, setGeneral] = useState(false);
+  const [contacts, setContacts] = useState(false);
+  const [projects, setProjects] = useState(false);
+  const [generals, setGenerals] = useState(false);
   const [experience, setExperience] = useState(false);
-  const [education, setEducation] = useState(false);
+  const [educations, setEducations] = useState(false);
   const [achievements, setAchievements] = useState(false);
 
   const openResume = () => setResume(true);
   const closeResume = () => setResume(false);
   const openLetter = () => setLetter(true);
   const closeLetter = () => setLetter(false);
-  const openContact = () => setContact(true);
-  const closeContact = () => setContact(false)
-  const openProject = () => setProject(true);
-  const closeProject = () => setProject(false);
-  const openGeneral = () => setGeneral(true);
-  const closeGeneral = () => setGeneral(false);
+  const openContact = () => setContacts(true);
+  const closeContact = () => setContacts(false)
+  const openProject = () => setProjects(true);
+  const closeProject = () => setProjects(false);
+  const openGeneral = () => setGenerals(true);
+  const closeGeneral = () => setGenerals(false);
   const openExperience = () => setExperience(true);
   const closeExperience = () => setExperience(false);
-  const openEducation = () => setEducation(true);
-  const closeEducation = () => setEducation(false);
+  const openEducation = () => setEducations(true);
+  const closeEducation = () => setEducations(false);
   const openAchievements = () => setAchievements(true);
   const closeAchievements = () => setAchievements(false);
+
+  const { education, contact, achievement, project, general, work } = DataStoreState();
 
   const useStyle = makeStyles()(() => ({
     container: {
@@ -322,7 +325,7 @@ const ProfilePage = () => {
         </Box>
       </Modal>
       <Modal
-        open={contact}
+        open={contacts}
         onClose={closeContact}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -332,7 +335,7 @@ const ProfilePage = () => {
         </Box>
       </Modal>
       <Modal
-        open={general}
+        open={generals}
         onClose={closeGeneral}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -342,7 +345,7 @@ const ProfilePage = () => {
         </Box>
       </Modal>
       <Modal
-        open={project}
+        open={projects}
         onClose={closeProject}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -362,7 +365,7 @@ const ProfilePage = () => {
         </Box>
       </Modal>
       <Modal
-        open={education}
+        open={educations}
         onClose={closeEducation}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
