@@ -54,7 +54,7 @@ const ProfilePage = () => {
   const closeAchievements = () => setAchievements(false);
 
   const { education, contact, achievement, project, general, work } = DataStoreState();
-  
+
   const generalInfo = general[0];
   const educationInfo = education[0];
   const contactInfo = contact[0];
@@ -292,6 +292,7 @@ const ProfilePage = () => {
           <Box className={classes.boxRight}>
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
+              <p className={classes.text}>{generalInfo.about || ''}</p>
             <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>
             </Box>
             <Box className={classes.descBoxII}>
