@@ -293,7 +293,7 @@ const ProfilePage = () => {
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
               <p className={classes.text}>{generalInfo.about || ''}</p>
-            <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>
+            {generalInfo.about ? "" : <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>}
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Work Experience</h5>
