@@ -7,7 +7,7 @@ import firebaseEngine from '../initFirebase/configureFirebase';
 
 const GeneralTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [location, setLocation] = React.useState('');
+  const [category, setCategory] = React.useState('');
   const user = JSON.parse(localStorage.getItem('user'));
   const { db } = firebaseEngine;
   const userId = user.uid;
@@ -15,7 +15,7 @@ const GeneralTab = () => {
 
   const appData = collection(db, "General")
   const handleChange = (event) => {
-    setLocation(event.target.value)
+    setCategory(event.target.value)
   }
 
   const onSubmit = async (data) => {
@@ -95,18 +95,16 @@ const GeneralTab = () => {
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={location}
-          label="location"
+          value={category}
+          {...register("category")}
+          label="Select Job Category"
           onChange={handleChange}
-          {...register("jobCategory", { required: "Please add your Job category" })}
-          error={!!errors?.jobCategory}
-          helperText={errors?.jobCategory ? errors.jobCategory.message : null}
-          >
-            <MenuItem value={10}>Software Engineer</MenuItem>
-            <MenuItem value={20}>Accountant</MenuItem>
-            <MenuItem value={30}>Product Management</MenuItem>
-            <MenuItem value={30}>UI/UX Designer</MenuItem>
-          </Select>
+        >
+          <MenuItem value={"SoftWare Development"}>SoftWare Development</MenuItem>
+          <MenuItem value={"Finance"}>Finance</MenuItem>
+          <MenuItem value={"Education"}>Education</MenuItem>
+          <MenuItem value={"Agriculture"}>Agriculture</MenuItem>
+        </Select>
       </FormControl>
       <label className={classes.label}>About*</label>
       <TextField
