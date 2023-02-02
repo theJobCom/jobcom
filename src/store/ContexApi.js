@@ -121,23 +121,13 @@ const DataStoreContext = ({ children }) => {
     })
   })
 
-  console.log([education,
-      contact,
-      achievement,
-      project,
-      general,
-      work])
+  const apiData = [education, contact, achievement, project, general, work]
 
   return (
     <DataStore.Provider value={{
       user,
       setUser,
-      education,
-      contact,
-      achievement,
-      project,
-      general,
-      work,
+      apiData,
       alert,
       setAlert
     }}>
