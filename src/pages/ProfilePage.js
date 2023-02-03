@@ -277,7 +277,7 @@ const ProfilePage = () => {
 
   const { classes } = useStyle();
 
-  const dateFunc = (str) => {
+  const dateConvtr = (str) => {
     const dateArr = (str.split('-').slice(0, 2))
     let month;
     switch (+dateArr[1]) {
@@ -323,7 +323,7 @@ const ProfilePage = () => {
     console.log(`${month} ${dateArr[0]}`)
   }
 
-  dateFunc('2021-11-18');
+  dateConvtr('2021-11-18');
 
 
   return (
