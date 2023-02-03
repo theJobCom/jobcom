@@ -14,6 +14,9 @@ import Achievements from '../components/Achievement';
 import { DataStoreState } from '../store/ContexApi';
 import uuid from 'react-uuid';
 import cert1 from '../images/cert1.png'
+import Link from '@mui/material/Link';
+import project3 from '../images/project3.png'
+import { HiExternalLink } from 'react-icons/hi';
 
 const style = {
   position: 'absolute',
@@ -360,6 +363,23 @@ const ProfilePage = () => {
         </Box>
         <Box className={classes.boxBottom}>
           <h5 className={classes.subtitle}>Projects</h5>
+          {
+            projectInfo.map((project) => {
+              return (
+                <Box className={classes.project}>
+                  <img src={project3} alt="project screenshot" />
+                  <Box className={classes.projectDesc}>
+                    <h6 className={classes.projectTitle}>{project?.projectName}<span className={classes.period}>{project?.name}</span></h6>
+                    <small className={classes.industry}>{project?.category}</small>
+                    <small className={classes.text}>
+                      {project?.description}
+                    </small>
+                    <Link href={project?.projectLink} classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                  </Box>
+                </Box>
+              )
+            })
+          }
             <Button variant="text" className={classes.btnAdd} onClick={openProject}>+ Add Project</Button>
         </Box>
       </Box>
