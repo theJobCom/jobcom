@@ -13,6 +13,7 @@ import Education from '../components/Education';
 import Achievements from '../components/Achievement';
 import { DataStoreState } from '../store/ContexApi';
 import uuid from 'react-uuid';
+import cert1 from '../images/cert1.png'
 
 const style = {
   position: 'absolute',
@@ -59,12 +60,12 @@ const ProfilePage = () => {
   const generalInfo = general[0];
   const educationInfo = education;
   const contactInfo = contact[0];
-  const achievementInfo = achievement[0];
+  const achievementInfo = achievement;
   const projectInfo = project;
   const workInfo = work;
   console.log(workInfo);
 
-  console.log(generalInfo);
+  console.log(achievementInfo);
 
   const useStyle = makeStyles()(() => ({
     container: {
@@ -336,6 +337,23 @@ const ProfilePage = () => {
             </Box>
             <Box className={classes.descBoxIII}>
               <h5 className={classes.subtitle}>Achievements</h5>
+              {
+                achievementInfo.map((achievement) => {
+                  return (
+                  <Box className={classes.achieveBox} key={uuid()}>
+                    <img src={cert1} alt="certificate icon" className={classes.certIcon}/>
+                    <Box className={classes.achieveDesc}>
+                      <Box className={classes.topTitle}>
+                          <h6 className={classes.jobTitle}>{achievement?.projectName}</h6>
+                          <small className={classes.timePeriod}>{achievement?.achievementYear}</small>
+                      </Box>
+                        <small className={classes.issuedBy}>issued by {achievement.presentedBy}</small>
+                        <small className={classes.issedTxt}>{achievement?.description}</small>
+                    </Box>
+                  </Box>
+                  )
+                })
+              }
                 <Button variant="text" className={classes.btnAdd} onClick={openAchievements}>+ Add Achievements</Button>
             </Box>
           </Box>
