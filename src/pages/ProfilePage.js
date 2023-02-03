@@ -282,49 +282,46 @@ const ProfilePage = () => {
     let month;
     switch (+dateArr[1]) {
       case 1:
-        month = "January"
+        month = "Jan"
         break;
       case 2:
-        month = "February"
+        month = "Feb"
         break;
       case 3:
-        month = "March"
+        month = "Mar"
         break;
       case 4:
-        month = "April"
+        month = "Apr"
         break;
       case 5:
         month = "May"
         break;
       case 6:
-        month = "June"
+        month = "Jun"
         break;
       case 7:
-        month = "July"
+        month = "Jul"
         break;
       case 8:
-        month = "August"
+        month = "Aug"
         break;
       case 9:
-        month = "September"
+        month = "Sept"
         break;
       case 10:
-        month = "October"
+        month = "Oct"
         break;
       case 11:
-        month = "November"
+        month = "Nov"
         break;
       case 12:
-        month = "December"
+        month = "Dec"
         break;
       default:
         month = ''
     }
-    console.log(`${month} ${dateArr[0]}`)
+    return `${month} ${dateArr[0]}`
   }
-
-  dateConvtr('2021-11-18');
-
 
   return (
     <div className={classes.container}>
@@ -373,7 +370,7 @@ const ProfilePage = () => {
               {
                 workInfo?.map((work) => {
               return (<Box className={classes.entry} key={uuid()}>
-                <small className={classes.timePeriod}>{`${work.fromDate} - ${work.endDate}`}</small>
+                <small className={classes.timePeriod}>{`${dateConvtr(work.fromDate)} - ${dateConvtr(work.endDate)}`}</small>
                 <Box className={classes.jobDesc}>
                   <h6 className={classes.jobTitle}>{work.title}</h6>
                   <small className={classes.location}>{work.location}</small>
