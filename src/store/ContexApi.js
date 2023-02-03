@@ -23,7 +23,7 @@ const DataStoreContext = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      const q = query(collection(db, "Achievement"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const q = query(collection(db, "Achievements"), where("createdBy", "==", doc(db, "User", user.uid)));
       const unsubScribe = onSnapshot(q, (snapShot) => {
         let dataArr = []
         snapShot.docs.forEach((doc) => {
