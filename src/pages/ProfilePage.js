@@ -164,8 +164,13 @@ const ProfilePage = () => {
     },
     contacts: {
       display: "flex",
+      flexDirection: "column",
       gap: "14px",
       marginTop: "10px"
+    },
+    contactBox: {
+      display: "flex",
+      gap: "20px"
     },
     linkedIn: {
       fontSize: 28
@@ -300,11 +305,11 @@ const ProfilePage = () => {
             <Box className={classes.contacts}>
               {
                 contactInfo &&
-              <>
+              <Box className={classes.contactBox}>
                 <Link href={contactInfo?.linkedIn} className={classes.linkedIn}><GrLinkedin/></Link>
                 <Link href={contactInfo?.role} className={classes.gthb}><GoMarkGithub/></Link>
                 <Link href={contactInfo?.behance} className={classes.medium}><AiFillMediumCircle/></Link>
-              </>
+              </Box>
               }
               <Button variant="text" className={classes.btnAdd} onClick={openContact}>+ Add Contact Details</Button>
             </Box>
