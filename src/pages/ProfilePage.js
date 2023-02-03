@@ -17,6 +17,9 @@ import cert1 from '../images/cert1.png'
 import Link from '@mui/material/Link';
 import project3 from '../images/project3.png'
 import { HiExternalLink } from 'react-icons/hi';
+import { GrLinkedin } from 'react-icons/gr';
+import { GoMarkGithub } from 'react-icons/go';
+import { AiFillMediumCircle } from 'react-icons/ai';
 
 const style = {
   position: 'absolute',
@@ -295,6 +298,14 @@ const ProfilePage = () => {
             </Box>
               <h5 className={classes.subtitle}>Contact me</h5>
             <Box className={classes.contacts}>
+              {
+                contactInfo &&
+              <>
+                <Link href={contactInfo?.linkedIn} className={classes.linkedIn}><GrLinkedin/></Link>
+                <Link href={contactInfo?.role} className={classes.gthb}><GoMarkGithub/></Link>
+                <Link href={contactInfo?.behance} className={classes.medium}><AiFillMediumCircle/></Link>
+              </>
+              }
               <Button variant="text" className={classes.btnAdd} onClick={openContact}>+ Add Contact Details</Button>
             </Box>
           </Box>
