@@ -187,7 +187,7 @@ const ProfilePage = () => {
       display: "flex",
       flexDirection: "column",
       gap: "32px",
-      maxWidth: "1000px"
+      // maxWidth: "1000px"
     },
     subtitle: {
       fontSize: "22px",
@@ -202,10 +202,19 @@ const ProfilePage = () => {
     },
     entry: {
       display: "flex",
-      gap: "29px"
+      width: "100%",
+      justifyContent: "space-beteen"
+    },
+    timePeriod: {
+      flexWrap: "nowrap",
+      width: "150px"
     },
     about: {
-      fontSize: "13px"
+      fontSize: "13px",
+      maxWidth: "650px"
+    },
+    projectAbout: {
+      fontSize: "13px",
     },
     jobDesc: {
       display: "flex",
@@ -213,6 +222,11 @@ const ProfilePage = () => {
       gap: "5px"
     },
     descBoxIII: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "20px"
+    },
+    descBoxII: {
       display: "flex",
       flexDirection: "column",
       gap: "20px"
@@ -248,7 +262,7 @@ const ProfilePage = () => {
 
     project: {
       display: "flex",
-      gap: "20px",
+      gap: "20px"
     },
     projectDesc: {
       display: "flex",
