@@ -12,6 +12,7 @@ import WorkExperience from '../components/WorkExperience';
 import Education from '../components/Education';
 import Achievements from '../components/Achievement';
 import { DataStoreState } from '../store/ContexApi';
+import uuid from 'react-uuid';
 
 const style = {
   position: 'absolute',
@@ -303,7 +304,7 @@ const ProfilePage = () => {
               <h5 className={classes.subtitle}>Work Experience</h5>
               {
                 workInfo?.map((work) => {
-              return (<Box className={classes.entry} key={work.fromDate}>
+              return (<Box className={classes.entry} key={uuid()}>
                 <small className={classes.timePeriod}>{`${work.fromDate} - ${work.endDate}`}</small>
                 <Box className={classes.jobDesc}>
                   <h6 className={classes.jobTitle}>{work.title}</h6>
