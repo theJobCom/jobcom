@@ -78,7 +78,9 @@ const ProfilePage = () => {
       height: "100vh",
       width: "100vw",
       display: "flex",
-      overflowX: "hidden"
+      overflowX: "hidden",
+      fontFamily: "Work Sans",
+      color: "#344054",
     },
     wrapper: {
       padding: "50px 20px 20px 160px",
@@ -196,9 +198,9 @@ const ProfilePage = () => {
       marginBottom: "16px"
     },
     text: {
-      fontSize: "16px",
+      fontSize: "14px",
+      color: "#344054",
       fontWeight: "300",
-      lineHeight: "20px"
     },
     entry: {
       display: "flex",
@@ -206,12 +208,16 @@ const ProfilePage = () => {
       justifyContent: "space-beteen"
     },
     timePeriod: {
+      display: "flex",
       flexWrap: "nowrap",
-      width: "150px"
+      width: "150px",
+      paddingTop: "2px"
     },
     about: {
-      fontSize: "13px",
-      maxWidth: "650px"
+      fontSize: "14px",
+      fontWeight: "400",
+      maxWidth: "650px",
+      color: "#344054"
     },
     projectAbout: {
       fontSize: "13px",
@@ -240,19 +246,20 @@ const ProfilePage = () => {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      gap: "10px"
+      gap: "10px",
     },
     certIcon: {
-      height: "100px"
+      height: "100px",
+      marginRight: "20px"
     },
     topTitle: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      width: "450px"
+      width: "100%"
     },
     issedTxt: {
-      fontSize: "12px"
+      fontSize: "14px",
     },
     projectWrapper: {
       display: "flex",
@@ -282,10 +289,13 @@ const ProfilePage = () => {
     btnAdd: {
       display: "flex",
       justifyContent: "start",
-      fontFamily: "Work Sans",
       fontWeight: "500",
       fontSize: "14px",
       color: "#667085"
+    },
+    jobTitle: {
+      fontSize: "16px",
+      textTransform: "capitalize"
     }
   }));
 
