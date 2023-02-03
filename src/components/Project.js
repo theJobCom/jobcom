@@ -49,13 +49,13 @@ const Project = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <h3 className={classes.formTitle}>Project</h3>
-      <label className={classes.label}>Project cover*</label>
-      <TextField
+      {/* A */}
+      {/* <TextField
       className={classes.input}
         type="file"
         sx={{width: 300}}
         {...register("projectCover", {required: "Add project screenshot"})}
-      />
+      /> */}
       <label className={classes.label}>Project name*</label>
       <TextField
       className={classes.input}
