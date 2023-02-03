@@ -60,7 +60,8 @@ const ProfilePage = () => {
   const contactInfo = contact[0];
   const achievementInfo = achievement[0];
   const projectInfo = project;
-  const workInfo = work[0];
+  const workInfo = work;
+  console.log(workInfo);
 
   console.log(generalInfo);
 
@@ -300,6 +301,18 @@ const ProfilePage = () => {
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Work Experience</h5>
+              {
+                workInfo?.map((work) => {
+              return (<Box className={classes.entry} key={work.fromDate}>
+                <small className={classes.timePeriod}>{`${work.fromDate} - ${work.endDate}`}</small>
+                <Box className={classes.jobDesc}>
+                  <h6 className={classes.jobTitle}>{work.title}</h6>
+                  <small className={classes.location}>{work.location}</small>
+                  <p className={classes.about}>{work.description}</p>
+                </Box>
+              </Box>)
+                })
+              }
               <Button variant="text" className={classes.btnAdd} onClick={openExperience}>+ Add Work Experience</Button>
             </Box>
             <Box className={classes.descBoxII}>
