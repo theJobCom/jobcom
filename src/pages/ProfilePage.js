@@ -57,7 +57,7 @@ const ProfilePage = () => {
   const { education, contact, achievement, project, general, work } = DataStoreState();
 
   const generalInfo = general[0];
-  const educationInfo = education[0];
+  const educationInfo = education;
   const contactInfo = contact[0];
   const achievementInfo = achievement[0];
   const projectInfo = project;
@@ -318,7 +318,20 @@ const ProfilePage = () => {
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Education</h5>
-
+              {
+                educationInfo.map((education) => {
+                  return (
+                    <Box className={classes.entry} key={uuid()}>
+                      <small className={classes.timePeriod}>{`${education.fromDate} - ${education.endDate}`}</small>
+                      <Box className={classes.jobDesc}>
+                        <h6 className={classes.jobTitle}>{education.degree}</h6>
+                        <small className={classes.location}>{education.location}</small>
+                        <p className={classes.about}>{education.description}</p>
+                      </Box>
+                    </Box>
+                  )
+                })
+              }
               <Button variant="text" className={classes.btnAdd} onClick={openEducation}>+ Add Education</Button>
             </Box>
             <Box className={classes.descBoxIII}>
