@@ -387,7 +387,7 @@ const ProfilePage = () => {
                 educationInfo.map((education) => {
                   return (
                     <Box className={classes.entry} key={uuid()}>
-                      <small className={classes.timePeriod}>{`${education.fromDate} - ${education.endDate}`}</small>
+                      <small className={classes.timePeriod}>{`${dateConvtr(education.fromDate)} - ${dateConvtr(education.endDate)}`}</small>
                       <Box className={classes.jobDesc}>
                         <h6 className={classes.jobTitle}>{education.degree}</h6>
                         <small className={classes.location}>{education.location}</small>
