@@ -547,7 +547,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Achievements/>
+          <Achievements closeAchievements={closeAchievements} />
         </Box>
       </Modal>
 

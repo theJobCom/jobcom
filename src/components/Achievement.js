@@ -4,10 +4,13 @@ import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mu
 import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
+import { MdCancel } from 'react-icons/md';
+import { DataStoreState } from '../store/ContexApi';
 
-const Achievement = () => {
+const Achievement = ({closeAchievements}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [year, setYear] = React.useState('');
+  const { setAlert } = DataStoreState();
   const { db } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
   const appData = collection(db, "Achievements")
@@ -18,13 +21,28 @@ const Achievement = () => {
 
   const onSubmit = async (data) => {
     await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) });
+    setAlert({
+      open: true,
+      message: "Your achievement has been submitted successfully",
+      type: "success"
+    })
+    closeAchievements()
   }
 
   const useStyle = makeStyles()((theme) => ({
     form: {
       display: "flex",
       flexDirection: "column",
-      width: "100%"
+      width: "100%",
+      position: "relative"
+    },
+    cancel: {
+      position: "absolute",
+      right: 0,
+      top: 0,
+      color: "#98a2b3",
+      fontSize: 29,
+      cursor: "pointer"
     },
     input: {
       marginBottom: "18px",
@@ -43,6 +61,7 @@ const Achievement = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <h3 className={classes.formTitle}>Achievement</h3>
+      <MdCancel className={classes.cancel} onClick={closeAchievements}/>
       <label className={classes.label}>Achievement Title*</label>
       <TextField
       className={classes.input}
