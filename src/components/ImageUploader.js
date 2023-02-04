@@ -111,10 +111,10 @@ const ImageUploader = () => {
         accept='.jpg, .png, .jpeg'
         onChange={pickedHandler}
       />
-    {previewUrl && <img src={avatarInfo?.photoURL} alt="user avatar" className={classes.profile} />}
-      <Box className={classes.boxIconBox} onClick={!file ? pickedImageHandler : () => console.log('delete')}>
-        {!file && <AiFillCamera className={classes.cameraIcon}/>}
-        {file && <FaTrash className={classes.cameraIcon}/>}
+    <img src={avatarInfo?.photoURL} alt="user avatar" className={classes.profile} />
+      <Box className={classes.boxIconBox} onClick={!avatarInfo? pickedImageHandler : () => console.log('delete')}>
+        {!avatarInfo && <AiFillCamera className={classes.cameraIcon}/>}
+        {avatarInfo && <FaTrash className={classes.cameraIcon}/>}
       </Box>
   </Box>
   )
