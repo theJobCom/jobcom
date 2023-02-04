@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -7,7 +7,8 @@ import firebaseEngine from '../initFirebase/configureFirebase';
 import { MdCancel } from 'react-icons/md';
 import { DataStoreState } from '../store/ContexApi';
 
-const Project = ({closeProject}) => {
+const Project = ({ closeProject }) => {
+  const [file, setFile] = useState();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { setAlert } = DataStoreState();
   const [location, setLocation] = React.useState('');
@@ -59,7 +60,13 @@ const Project = ({closeProject}) => {
       color: "#344054"
     },
     formTitle: {
-      marginBottom: "20px"
+      marginBottom: "20px",
+    },
+    btn: {
+      color: "#344054",
+      width: "150px",
+      textTransform: "capitalize", 
+      marginBottom: "18px",
     }
   }));
 
@@ -68,13 +75,13 @@ const Project = ({closeProject}) => {
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <MdCancel className={classes.cancel} onClick={closeProject}/>
       <h3 className={classes.formTitle}>Project</h3>
-      {/* A */}
-      {/* <TextField
-      className={classes.input}
+      <label className={classes.label}>Project cover</label>
+      <input
+        style={{ display: "none" }}
         type="file"
-        sx={{width: 300}}
-        {...register("projectCover", {required: "Add project screenshot"})}
-      /> */}
+        accept='.jpg, .png, .jpeg'
+      />
+      {!file && <Button variant="text" className={classes.btn}>+ image</Button>}
       <label className={classes.label}>Project name*</label>
       <TextField
       className={classes.input}

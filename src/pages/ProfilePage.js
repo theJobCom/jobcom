@@ -12,7 +12,7 @@ import Education from '../components/Education';
 import Achievements from '../components/Achievement';
 import { DataStoreState } from '../store/ContexApi';
 import uuid from 'react-uuid';
-import cert1 from '../images/cert1.png'
+import {GiLaurelsTrophy} from 'react-icons/gi'
 import Link from '@mui/material/Link';
 import project3 from '../images/project3.png'
 import { HiExternalLink } from 'react-icons/hi';
@@ -224,7 +224,7 @@ const ProfilePage = () => {
       gap: "10px",
     },
     certIcon: {
-      height: "100px",
+      fontSize: "350px",
       marginRight: "20px"
     },
     topTitle: {
@@ -400,7 +400,7 @@ const ProfilePage = () => {
                 achievementInfo.map((achievement) => {
                   return (
                   <Box className={classes.achieveBox} key={uuid()}>
-                    <img src={cert1} alt="certificate icon" className={classes.certIcon}/>
+                    <GiLaurelsTrophy className={classes.certIcon}/>
                     <Box className={classes.achieveDesc}>
                       <Box className={classes.topTitle}>
                           <h6 className={classes.jobTitle}>{achievement?.projectName}</h6>
