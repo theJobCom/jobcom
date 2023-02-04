@@ -422,7 +422,7 @@ const ProfilePage = () => {
           {
             projectInfo.map((project) => {
               return (
-                <Box className={classes.project}>
+                <Box className={classes.project} key={uuid()}>
                   <img src={project3} alt="project screenshot" />
                   <Box className={classes.projectDesc}>
                     <h6 className={classes.projectTitle}>{project?.projectName}<span className={classes.period}>{project?.name}</span></h6>

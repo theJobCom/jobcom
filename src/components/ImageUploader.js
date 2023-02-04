@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box } from '@mui/system';
-import { AiFillCamera, AiFillSave } from 'react-icons/ai';
+import { AiFillCamera } from 'react-icons/ai';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from "../initFirebase/configureFirebase";
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { FaTrash } from 'react-icons/fa';
 
 const ImageUploader = () => {
-  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  // const userId = JSON.parse(localStorage.getItem('user')).uid;
   const { storage } = firebaseEngine;
 
 
@@ -14,6 +15,7 @@ const ImageUploader = () => {
   const [progress, setProgress] = useState(0);
   const [previewUrl, setPreviewUrl] = useState(null);
   const filePickerRef = useRef();
+  console.log(progress)
 
   
   const uploadPhoto = (file) => {
@@ -43,6 +45,7 @@ const ImageUploader = () => {
     };
     fileReader.readAsDataURL(file)
     uploadPhoto(file)
+    // eslint-disable-next-line
   }, [file])
 
   function pickedHandler(event) {
@@ -103,8 +106,9 @@ const ImageUploader = () => {
         onChange={pickedHandler}
       />
     {previewUrl && <img src={previewUrl} alt="user avatar" className={classes.profile} />}
-      <Box className={classes.boxIconBox} onClick={pickedImageHandler}>
-        <AiFillCamera className={classes.cameraIcon}/>
+      <Box className={classes.boxIconBox} onClick={!file ? pickedImageHandler : () => console.log('delete')}>
+        {!file && <AiFillCamera className={classes.cameraIcon}/>}
+        {file && <FaTrash className={classes.cameraIcon}/>}
       </Box>
   </Box>
   )
