@@ -6,9 +6,11 @@ import { collection, doc, addDoc } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import {MdCancel} from 'react-icons/md';
 import { positions } from '@mui/system';
+import { DataStoreState } from '../store/ContexApi';
 
 const WorkExperience = ({closeExperience}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const {setAlert} = DataStoreState();
 
   const { db } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
@@ -16,6 +18,11 @@ const WorkExperience = ({closeExperience}) => {
 
   const onSubmit = async (data) => {
     await addDoc(appData, { ...data, createdBy: doc(db, "User", userId) });
+    setAlert({
+      open: true,
+      message: "Your data has been submitted successfully",
+      type: "success"
+    })
     closeExperience()
   }
 
