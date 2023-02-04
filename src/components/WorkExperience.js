@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { collection, doc, addDoc } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import {MdCancel} from 'react-icons/md';
-import { positions } from '@mui/system';
 import { DataStoreState } from '../store/ContexApi';
 
 const WorkExperience = ({closeExperience}) => {

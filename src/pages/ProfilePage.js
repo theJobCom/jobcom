@@ -497,7 +497,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Contact />
+          <Contact closeContact={closeContact} />
         </Box>
       </Modal>
       <Modal

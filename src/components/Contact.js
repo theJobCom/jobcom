@@ -4,16 +4,24 @@ import { TextField, Button} from '@mui/material';
 import { useForm } from 'react-hook-form'
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
+import { DataStoreState } from '../store/ContexApi';
 
-const Contact = () => {
+const Contact = ({closeContact}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const {setAlert} = DataStoreState();
   const { db } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
   const appData = collection(db, "Contact");
 
 
   const onSubmit = async (data) => {
-    await addDoc(appData, {...data, createdBy: doc(db, "User", userId), createdAt: serverTimestamp()})
+    await addDoc(appData, { ...data, createdBy: doc(db, "User", userId), createdAt: serverTimestamp() })
+    setAlert({
+      open: true,
+      message: "Your work experience has been submitted successfully",
+      type: "success"
+    })
+    closeContact();
   }
 
   const useStyle = makeStyles()((theme) => ({
