@@ -537,7 +537,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Education />
+          <Education closeEducation={closeEducation} />
         </Box>
       </Modal>
       <Modal
