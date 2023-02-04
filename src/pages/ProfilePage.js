@@ -517,7 +517,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Project/>
+          <Project closeProject={closeProject} />
         </Box>
       </Modal>
       <Modal

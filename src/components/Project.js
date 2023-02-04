@@ -4,9 +4,12 @@ import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mu
 import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
+import { MdCancel } from 'react-icons/md';
+import { DataStoreState } from '../store/ContexApi';
 
-const Project = () => {
+const Project = ({closeProject}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { setAlert } = DataStoreState();
   const [location, setLocation] = React.useState('');
   const [year, setYear] = React.useState('');
   const { db } = firebaseEngine;
@@ -23,14 +26,29 @@ const Project = () => {
   }
 
   const onSubmit = async (data) => {
-    await addDoc(appData, {...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
+    await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) })
+    setAlert({
+      open: true,
+      message: "Your project has been submitted successfully",
+      type: "success"
+    })
+    closeProject();
   }
 
   const useStyle = makeStyles()((theme) => ({
     form: {
       display: "flex",
       flexDirection: "column",
-      width: "100%"
+      width: "100%",
+      position: "relative"
+    },
+    cancel: {
+      position: "absolute",
+      right: 0,
+      top: 0,
+      color: "#98a2b3",
+      fontSize: 29,
+      cursor: "pointer"
     },
     input: {
       marginBottom: "18px",
@@ -48,6 +66,7 @@ const Project = () => {
   const { classes } = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <MdCancel className={classes.cancel} onClick={closeProject}/>
       <h3 className={classes.formTitle}>Project</h3>
       {/* A */}
       {/* <TextField
