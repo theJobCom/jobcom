@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { DataStoreState } from '../store/ContexApi';
+import { MdCancel } from 'react-icons/md';
 
 const Contact = ({closeContact}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,7 +19,7 @@ const Contact = ({closeContact}) => {
     await addDoc(appData, { ...data, createdBy: doc(db, "User", userId), createdAt: serverTimestamp() })
     setAlert({
       open: true,
-      message: "Your work experience has been submitted successfully",
+      message: "Your contact info has been submitted successfully",
       type: "success"
     })
     closeContact();
@@ -28,7 +29,16 @@ const Contact = ({closeContact}) => {
     form: {
       display: "flex",
       flexDirection: "column",
-      width: "100%"
+      width: "100%",
+      position: "relative"
+    },
+    cancel: {
+      position: "absolute",
+      right: 0,
+      top: 0,
+      color: "#98a2b3",
+      fontSize: 29,
+      cursor: "pointer"
     },
     input: {
       marginBottom: "18px",
@@ -46,6 +56,7 @@ const Contact = ({closeContact}) => {
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <MdCancel className={classes.cancel} onClick={closeContact}/>
       <h3 className={classes.formTitle}>Contact</h3>
       <label className={classes.label}>Email address*</label>
       <TextField
