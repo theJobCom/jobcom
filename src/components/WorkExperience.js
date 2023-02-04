@@ -4,8 +4,10 @@ import { TextField, Button, FormControlLabel, Checkbox, Box, FormControl } from 
 import { useForm } from 'react-hook-form';
 import { collection, doc, addDoc } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
+import {MdCancel} from 'react-icons/md';
+import { positions } from '@mui/system';
 
-const WorkExperience = () => {
+const WorkExperience = ({closeExperience}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const { db } = firebaseEngine;
@@ -14,18 +16,28 @@ const WorkExperience = () => {
 
   const onSubmit = async (data) => {
     await addDoc(appData, { ...data, createdBy: doc(db, "User", userId) });
+    closeExperience()
   }
 
   const useStyle = makeStyles()((theme) => ({
     form: {
       display: "flex",
       flexDirection: "column",
-      width: "100%"
+      width: "100%",
+      position: "relative"
     },
     formDate: {
       display: "flex",
       width: "100%",
       justifyContent: "space-between"
+    },
+    cancel: {
+      position: "absolute",
+      right: 0,
+      top: 0,
+      color: "#98a2b3",
+      fontSize: 29,
+      cursor: "pointer"
     },
     input: {
       marginBottom: "18px",
@@ -43,6 +55,7 @@ const WorkExperience = () => {
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <MdCancel className={classes.cancel} onClick={closeExperience}/>
       <h3 className={classes.formTitle}>Work Experience</h3>
       <Box className={classes.formDate}>
         <FormControl>

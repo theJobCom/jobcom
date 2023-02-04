@@ -69,9 +69,10 @@ const ProfilePage = () => {
   const achievementInfo = achievement;
   const projectInfo = project;
   const workInfo = work;
-  console.log(workInfo);
 
-  console.log(achievementInfo);
+  const userData = JSON.parse(localStorage.getItem('user'));
+
+  console.log(userData)
 
   const useStyle = makeStyles()(() => ({
     container: {
@@ -84,7 +85,8 @@ const ProfilePage = () => {
     },
     wrapper: {
       padding: "50px 20px 20px 160px",
-      maxWidth: "1400px"
+      maxWidth: "1400px",
+      margin: "1.5rem auto"
     },
     boxTop: {
       width: "100%",
@@ -355,6 +357,7 @@ const ProfilePage = () => {
           <Box className={classes.boxLeft}>
             <Box className={classes.profileSec}>
               <Box className={classes.imageBox}>
+                <img src={userData.photoURL} alt="user avatar" className={classes.profile} />
                 <Box className={classes.boxIconBox}>
                   <img src={cameraIcon} alt="profilePic" className={classes.cameraIcon} />
                 </Box>
@@ -494,7 +497,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Contact/>
+          <Contact />
         </Box>
       </Modal>
       <Modal
@@ -524,7 +527,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <WorkExperience/>
+          <WorkExperience closeExperience={closeExperience} />
         </Box>
       </Modal>
       <Modal
