@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { makeStyles } from 'tss-react/mui'
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
-import cameraIcon from '../icons/Icons/camera.png'
 import SideBar from '../components/SideBar';
 import Modal from '@mui/material/Modal';
 import GeneralTab from '../components/GeneralTab';
@@ -20,6 +19,7 @@ import { HiExternalLink } from 'react-icons/hi';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
 import { AiFillMediumCircle } from 'react-icons/ai';
+import ImageUploader from '../components/ImageUploader';
 
 const style = {
   position: 'absolute',
@@ -94,33 +94,6 @@ const ProfilePage = () => {
       gap: "71px",
       marginBottom: "80px"
     },
-    imageBox: {
-      position: "relative",
-      width: "250px",
-      height: "250px",
-      marginBottom: "22px",
-      backgroundColor: "#f2f4f7",
-      borderRadius: "10px"
-    },
-    profile: {
-      width: "100%",
-      height: "100%",
-      borderRadius: "10px",
-      position: "relative"
-    },
-    boxIconBox: {
-      position: "absolute",
-      bottom: "11px",
-      right: "11px",
-      width: "54px",
-      height: "54px",
-      borderRadius: "50%",
-      backgroundColor: "#e4e7eC",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      cursor: "pointer"
-    },
     userName: {
       fontWeight: "600",
       fontSize: "21px",
@@ -191,7 +164,7 @@ const ProfilePage = () => {
       display: "flex",
       flexDirection: "column",
       gap: "32px",
-      // maxWidth: "1000px"
+      maxWidth: "1000px"
     },
     subtitle: {
       fontSize: "22px",
@@ -356,12 +329,7 @@ const ProfilePage = () => {
         <Box className={classes.boxTop}>
           <Box className={classes.boxLeft}>
             <Box className={classes.profileSec}>
-              <Box className={classes.imageBox}>
-                <img src={userData.photoURL} alt="user avatar" className={classes.profile} />
-                <Box className={classes.boxIconBox}>
-                  <img src={cameraIcon} alt="profilePic" className={classes.cameraIcon} />
-                </Box>
-              </Box>
+              <ImageUploader/>
               <span className={classes.userName}>{generalInfo?.name || 'Your Name'}</span>
               {generalInfo?.nationality ? <p className={classes.country}>{generalInfo?.nationality}</p> : ""}
               {generalInfo?.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
