@@ -20,7 +20,7 @@ const WorkExperience = ({closeExperience}) => {
     await addDoc(appData, { ...data, createdBy: doc(db, "User", userId) });
     setAlert({
       open: true,
-      message: "Your data has been submitted successfully",
+      message: "Your work experience has been submitted successfully",
       type: "success"
     })
     closeExperience()
