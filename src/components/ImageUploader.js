@@ -5,10 +5,12 @@ import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from "../initFirebase/configureFirebase";
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { FaTrash } from 'react-icons/fa';
+import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 
 const ImageUploader = () => {
-  // const userId = JSON.parse(localStorage.getItem('user')).uid;
-  const { storage } = firebaseEngine;
+  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const { storage, db } = firebaseEngine;
+  const appData = collection(db, "Avatars");
 
 
   const [file, setFile] = useState();
@@ -30,7 +32,7 @@ const ImageUploader = () => {
       (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref)
-        .then(url => console.log(url))
+        .then(url => addDoc(appData, {photoURL: url, createdBy: doc(db, "User", userId), createdAt: serverTimestamp()}))
     }
     );
   }
