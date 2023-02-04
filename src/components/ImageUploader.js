@@ -6,11 +6,15 @@ import firebaseEngine from "../initFirebase/configureFirebase";
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { FaTrash } from 'react-icons/fa';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { DataStoreState } from '../store/ContexApi';
 
 const ImageUploader = () => {
   const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const { avatar } = DataStoreState();
+  const avatarInfo = avatar[0];
   const { storage, db } = firebaseEngine;
   const appData = collection(db, "Avatars");
+  console.log(avatarInfo?.photoURL);
 
 
   const [file, setFile] = useState();
@@ -107,7 +111,7 @@ const ImageUploader = () => {
         accept='.jpg, .png, .jpeg'
         onChange={pickedHandler}
       />
-    {previewUrl && <img src={previewUrl} alt="user avatar" className={classes.profile} />}
+    {previewUrl && <img src={avatarInfo?.photoURL} alt="user avatar" className={classes.profile} />}
       <Box className={classes.boxIconBox} onClick={!file ? pickedImageHandler : () => console.log('delete')}>
         {!file && <AiFillCamera className={classes.cameraIcon}/>}
         {file && <FaTrash className={classes.cameraIcon}/>}
