@@ -12,6 +12,7 @@ const Project = ({ closeProject }) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(null);
   const [progess, setProgress] = useState(0);
+  const [photoURL, setPhotoURL] = useState('');
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { setAlert } = DataStoreState();
   const [location, setLocation] = React.useState('');
@@ -44,7 +45,7 @@ const Project = ({ closeProject }) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref)
           .then(url => {
-          console.log(url)
+          setPhotoURL(url)
         })
     }
     )
@@ -77,7 +78,7 @@ const Project = ({ closeProject }) => {
   }
 
   const onSubmit = async (data) => {
-    await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) })
+    await addDoc(appData, { ...data, screenshotURL: photoURL, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) })
     setAlert({
       open: true,
       message: "Your project has been submitted successfully",
