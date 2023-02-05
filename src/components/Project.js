@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -9,6 +9,7 @@ import { DataStoreState } from '../store/ContexApi';
 
 const Project = ({ closeProject }) => {
   const [file, setFile] = useState();
+  const [previewUrl, setPreviewUrl] = useState(null);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { setAlert } = DataStoreState();
   const [location, setLocation] = React.useState('');
@@ -24,6 +25,32 @@ const Project = ({ closeProject }) => {
 
   const handleChangeYear = (event) => {
     setYear(event.target.value)
+  }
+
+  const filePickerRef = useRef();
+
+  useEffect(() => {
+    if (!file) {
+      return
+    }
+
+    const fileReader = new FileReader()
+    fileReader.onload = () => {
+      setPreviewUrl(fileReader.result);
+    };
+    fileReader.readAsDataURL(file)
+  }, [file])
+
+  function pickedHandler(event) {
+    let pickedFile;
+    if (event.target.files && event.target.files.length === 1) {
+      pickedFile = event.target.files[0];
+      setFile(pickedFile);
+    }
+  }
+
+  function pickedImageHandler() {
+    filePickerRef.current.click()
   }
 
   const onSubmit = async (data) => {
@@ -80,8 +107,10 @@ const Project = ({ closeProject }) => {
         style={{ display: "none" }}
         type="file"
         accept='.jpg, .png, .jpeg'
+        ref={filePickerRef}
+        onChange={pickedHandler}
       />
-      {!file && <Button variant="text" className={classes.btn}>+ image</Button>}
+      {!file && <Button variant="text" className={classes.btn} onClick={pickedImageHandler}>+ Cover image</Button>}
       <label className={classes.label}>Project name*</label>
       <TextField
       className={classes.input}
