@@ -6,15 +6,17 @@ import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { MdCancel } from 'react-icons/md';
 import { DataStoreState } from '../store/ContexApi';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 const Project = ({ closeProject }) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [progess, setProgress] = useState(0);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { setAlert } = DataStoreState();
   const [location, setLocation] = React.useState('');
   const [year, setYear] = React.useState('');
-  const { db } = firebaseEngine;
+  const { db, storage } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
 
   const appData = collection(db, "Project");
@@ -29,6 +31,25 @@ const Project = ({ closeProject }) => {
 
   const filePickerRef = useRef();
 
+  const uploadScreenshot = (file) => {
+    if (!file) return;
+    const storageRef = ref(storage, `/files/screenshots/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on("state_changed", (snapshot) => {
+      const prog = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
+      setProgress(prog);
+    },
+      (err) => console.log(err),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then(url => {
+          console.log(url)
+        })
+    }
+    )
+  }
+
   useEffect(() => {
     if (!file) {
       return
@@ -39,6 +60,8 @@ const Project = ({ closeProject }) => {
       setPreviewUrl(fileReader.result);
     };
     fileReader.readAsDataURL(file)
+    uploadScreenshot(file)
+    // eslint-disable-next-line
   }, [file])
 
   function pickedHandler(event) {
