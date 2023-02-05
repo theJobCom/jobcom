@@ -110,7 +110,7 @@ const Project = ({ closeProject }) => {
         ref={filePickerRef}
         onChange={pickedHandler}
       />
-      {!file && <Button variant="text" className={classes.btn} onClick={pickedImageHandler}>+ Cover image</Button>}
+      {!file ? <Button variant="text" className={classes.btn} onClick={pickedImageHandler}>+ Cover image</Button> : <p className={classes.btn}>{file.name}</p>}
       <label className={classes.label}>Project name*</label>
       <TextField
       className={classes.input}
