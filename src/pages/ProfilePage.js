@@ -241,10 +241,12 @@ const ProfilePage = () => {
       flexDirection: "column",
       gap: "20px",
     },
-
     project: {
       display: "flex",
       gap: "20px"
+    },
+    screenshot: {
+      width: "290px"
     },
     projectDesc: {
       display: "flex",
@@ -423,7 +425,7 @@ const ProfilePage = () => {
             projectInfo.map((project) => {
               return (
                 <Box className={classes.project} key={uuid()}>
-                  <img src={project3} alt="project screenshot" />
+                  <img src={project?.screenshotURL} alt="project screenshot" className={classes.screenshot} />
                   <Box className={classes.projectDesc}>
                     <h6 className={classes.projectTitle}>{project?.projectName}<span className={classes.period}>{project?.name}</span></h6>
                     <small className={classes.industry}>{project?.category}</small>
