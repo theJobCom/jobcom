@@ -18,6 +18,9 @@ import { HiExternalLink } from 'react-icons/hi';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
 import { AiFillMediumCircle } from 'react-icons/ai';
+import { BsLaptop } from 'react-icons/bs';
+import { MdAlternateEmail } from 'react-icons/md';
+import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
 
 const style = {
@@ -349,7 +352,9 @@ const ProfilePage = () => {
               <Box className={classes.contactBox}>
                 <Link href={contactInfo?.linkedIn} className={classes.linkedIn}><GrLinkedin/></Link>
                 <Link href={contactInfo?.role} className={classes.gthb}><GoMarkGithub/></Link>
-                <Link href={contactInfo?.behance} className={classes.medium}><AiFillMediumCircle/></Link>
+                <Link href={contactInfo?.behance} className={classes.medium}><ImBehance2/></Link>
+                <Link href={contactInfo?.email} className={classes.medium}><MdAlternateEmail/></Link>
+                <Link href={contactInfo?.portfolio} className={classes.medium}><BsLaptop/></Link>
               </Box>
               }
               <Button variant="text" className={classes.btnAdd} onClick={openContact}>+ Add Contact Details</Button>
