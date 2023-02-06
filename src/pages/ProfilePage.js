@@ -17,7 +17,6 @@ import Link from '@mui/material/Link';
 import { HiExternalLink } from 'react-icons/hi';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
-import { AiFillMediumCircle } from 'react-icons/ai';
 import { BsLaptop } from 'react-icons/bs';
 import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
@@ -357,7 +356,7 @@ const ProfilePage = () => {
                 <Link href={contactInfo?.portfolio} className={classes.medium}><BsLaptop/></Link>
               </Box>
               }
-              <Button variant="text" className={classes.btnAdd} onClick={openContact}>+ Add Contact Details</Button>
+              {!contactInfo && <Button variant="text" className={classes.btnAdd} onClick={openContact}>+ Add Contact Details</Button>}
             </Box>
           </Box>
           <Box className={classes.boxRight}>
