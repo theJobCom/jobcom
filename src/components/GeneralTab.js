@@ -38,6 +38,11 @@ const GeneralTab = () => {
     },
     input: {
       marginBottom: 13
+    },
+    textarea: {
+      height: 100,
+      marginBottom: 13,
+      padding: "15px"
     }
   }));
 
@@ -107,12 +112,10 @@ const GeneralTab = () => {
         </Select>
       </FormControl>
       <label className={classes.label}>About*</label>
-      <TextField
-      variant='outlined'
-      type="text"
-      label="About*"
-      className={classes.input}
-      fullWidth
+      <textarea
+        col={60}
+        row={20}
+        className={classes.textarea}
         {...register("about", { required: "Add Your about" })}
         error={!!errors?.about}
         helperText={errors?.userabout ? errors.name.message : null} 
