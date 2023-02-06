@@ -223,7 +223,7 @@ const ProfilePage = () => {
       gap: "10px",
     },
     certIcon: {
-      fontSize: "350px",
+      fontSize: "120px",
       marginRight: "20px"
     },
     topTitle: {
@@ -366,7 +366,7 @@ const ProfilePage = () => {
               {
                 workInfo?.map((work) => {
               return (<Box className={classes.entry} key={uuid()}>
-                <small className={classes.timePeriod}>{`${dateConvtr(work.fromDate)} - ${dateConvtr(work.endDate)}`}</small>
+                <small className={classes.timePeriod}>{`${dateConvtr(work.fromDate)} - ${(work?.endDate && dateConvtr(work.endDate)) || (work?.currently && 'Present')}`}</small>
                 <Box className={classes.jobDesc}>
                   <h6 className={classes.jobTitle}>{work.title}</h6>
                   <small className={classes.location}>{work.location}</small>

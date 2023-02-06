@@ -118,6 +118,11 @@ const Project = ({ closeProject }) => {
       width: "150px",
       textTransform: "capitalize", 
       marginBottom: "18px",
+    },
+    textarea: {
+      height: 100,
+      marginBottom: 13,
+      padding: "15px"
     }
   }));
 
@@ -182,10 +187,10 @@ const Project = ({ closeProject }) => {
         </Select>
       </FormControl>
       <label className={classes.label}>Description*</label>
-      <TextField
-      className={classes.input}
-        variant='outlined'
-        type="text"
+      <textarea
+        className={classes.textarea}
+        col={60}
+        row={20}
         {...register("description", { required: "Add project description" })}
         label="Description"
         fullWidth

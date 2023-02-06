@@ -96,9 +96,9 @@ const WorkExperience = ({closeExperience}) => {
               shrink: true,
             }}
           fullWidth
-            {...register("endDate", { required: "Add Your education end Date" })}
-            error={!!errors?.endDate}
-            helperText={errors?.endDate ? errors.endDate.message : null} 
+            {...register("endDate")}
+            // error={!!errors?.endDate}
+            // helperText={errors?.endDate ? errors.endDate.message : null} 
           />
         </FormControl>
       </Box>
