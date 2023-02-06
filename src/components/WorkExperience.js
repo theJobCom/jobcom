@@ -130,13 +130,13 @@ const WorkExperience = ({closeExperience}) => {
         {...register("location")}
       />
       <label className={classes.label}>Description*</label>
-      <TextField
-      className={classes.input}
-      variant='outlined'
-      label="Description"
-      type="text"
-      fullWidth
-      {...register("description")}
+      <textarea
+        className={classes.textarea}
+        col={60}
+        row={20}
+        {...register("description", { required: "Add the description" })}
+        error={!!errors?.description}
+        helperText={errors?.description ? errors.description.message : null}
       />
       <Button type="submit" variant='contained' sx={{backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end"}}>save</Button>
     </form>
