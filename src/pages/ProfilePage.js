@@ -332,9 +332,9 @@ const ProfilePage = () => {
             <Box className={classes.profileSec}>
               <ImageUploader/>
               <span className={classes.userName}>{generalInfo?.name || 'Your Name'}</span>
-              {generalInfo?.nationality ? <p className={classes.country}>{generalInfo?.nationality}</p> : ""}
+              {generalInfo?.nationality ? <p className={classes.country}>{`${generalInfo?.location}, ${generalInfo?.nationality}`}</p> : ""}
               {generalInfo?.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
-              {generalInfo?.location ? <small className={classes.location}>{generalInfo?.location}</small> : ""}
+              {/* {generalInfo?.location ? <small className={classes.location}>{generalInfo?.location}</small> : ""} */}
               <Box className={classes.metadata}>
               </Box>
             </Box>
