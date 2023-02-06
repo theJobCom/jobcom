@@ -54,6 +54,11 @@ const Achievement = ({closeAchievements}) => {
     },
     formTitle: {
       marginBottom: "20px"
+    },
+    textarea: {
+      height: 100,
+      marginBottom: 13,
+      padding: "15px"
     }
   }));
 
@@ -113,12 +118,10 @@ const Achievement = ({closeAchievements}) => {
         helperText={errors?.projectLink ? errors.projectLink.message : null}
       />
       <label className={classes.label}>Description*</label>
-      <TextField
-      className={classes.input}
-        variant='outlined'
-        type="text"
-        label="Description"
-        fullWidth
+      <textarea
+        className={classes.textarea}
+        col={60}
+        row={20}
         {...register("description", { required: "Add project description" })}
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
