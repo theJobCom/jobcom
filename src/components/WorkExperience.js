@@ -55,6 +55,11 @@ const WorkExperience = ({closeExperience}) => {
     },
     formTitle: {
       marginBottom: "20px"
+    },
+    textarea: {
+      height: 100,
+      marginBottom: 13,
+      padding: "15px"
     }
   }));
 
