@@ -4,96 +4,137 @@ import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mu
 import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore'
 import firebaseEngine from '../initFirebase/configureFirebase';
+import { DataStoreState } from '../store/ContexApi';
+import { MdCancel } from 'react-icons/md';
 
-const GeneralTab = () => {
+const GeneralTab = ({closeGeneral}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [location, setLocation] = React.useState('');
+  const [category, setCategory] = React.useState('');
   const user = JSON.parse(localStorage.getItem('user'));
   const { db } = firebaseEngine;
+  const { setAlert } = DataStoreState();
   const userId = user.uid;
 
 
   const appData = collection(db, "General")
   const handleChange = (event) => {
-    setLocation(event.target.value)
+    setCategory(event.target.value)
   }
 
   const onSubmit = async (data) => {
-    await addDoc(appData, {...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
+    await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) })
+    setAlert({
+      open: true,
+      message: "Your general information has been submitted successfully",
+      type: "success"
+    })
+    closeGeneral()
   }
 
   const useStyle = makeStyles()((theme) => ({
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "30px",
-      marginTop: "88px",
-      width: "100%"
+      width: "100%",
+      position: "relative"
+    },
+    cancel: {
+      position: "absolute",
+      right: 0,
+      top: 0,
+      color: "#98a2b3",
+      fontSize: 29,
+      cursor: "pointer"
+    },
+    formTitle: {
+      marginBottom: "33px"
+    },
+    label: {
+      marginBottom: "8px",
+      fontFamily: "Work Sans",
+      color: "#344054"
+    },
+    input: {
+      marginBottom: 13
+    },
+    textarea: {
+      height: 100,
+      marginBottom: 13,
+      padding: "15px"
     }
   }));
 
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <MdCancel className={classes.cancel} onClick={closeGeneral}/>
+      <h2 className={classes.formTitle}>General information</h2>
+      <label className={classes.label}>Display name*</label>
       <TextField
       variant='outlined'
       type="text"
-        label="Display name"
-        sx={{width: "400px"}}
+      label="Display name"
       fullWidth
-        {...register("name", { required: "Add Your name" })}
-        error={!!errors?.name}
-        helperText={errors?.username ? errors.name.message : null} 
+      className={classes.input}
+      {...register("name", { required: "Add Your name" })}
+      error={!!errors?.name}
+      helperText={errors?.username ? errors.name.message : null} 
       />
+      <label className={classes.label}>Nationality*</label>
       <TextField
       variant='outlined'
       type="text"
-        label="Nationality*"
-        sx={{width: "400px"}}
+      label="Nationality*"
+      className={classes.input}
       fullWidth
         {...register("nationality", { required: "Add Your name" })}
         error={!!errors?.nationality}
         helperText={errors?.nationality ? errors.nationality.message : null} 
       />
+      <label className={classes.label}>Role*</label>
       <TextField
       variant='outlined'
       type="text"
-      label="Designer / Developer / Architect ..."
+      label="Designer/Developer/Architect..."
+      className={classes.input}
       fullWidth
       {...register("role", { required: "Add Your role" })}
       error={!!errors?.role}
       helperText={errors?.role ? errors.role.message : null}
       />
+      <label className={classes.label}>Location*</label>
       <TextField
-        variant='outlined'
-        label="Location*"
+      variant='outlined'
+      label="Location*"
       type="text"
+      className={classes.input}
       fullWidth
       {...register("location", { required: "Add Your location" })}
       error={!!errors?.location}
       helperText={errors?.location ? errors.location.message : null}
       />
-      <FormControl>
-        <InputLabel id="demo-simple-select-helper-label">Role*</InputLabel>
+      <label className={classes.label}>Job Role*</label>
+      <FormControl className={classes.input}>
+        <InputLabel id="demo-simple-select-helper-label">Job Category*</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={location}
-          label="location"
+          value={category}
+          {...register("category")}
+          label="Select Job Category"
           onChange={handleChange}
-          >
-            <MenuItem value={10}>Software Engineer</MenuItem>
-            <MenuItem value={20}>Accountant</MenuItem>
-            <MenuItem value={30}>Product Management</MenuItem>
-            <MenuItem value={30}>UI/UX Designer</MenuItem>
-          </Select>
+        >
+          <MenuItem value={"SoftWare Development"}>SoftWare Development</MenuItem>
+          <MenuItem value={"Finance"}>Finance</MenuItem>
+          <MenuItem value={"Education"}>Education</MenuItem>
+          <MenuItem value={"Agriculture"}>Agriculture</MenuItem>
+        </Select>
       </FormControl>
-      <TextField
-      variant='outlined'
-      type="text"
-      label="About*"
-      sx={{width: "400px"}}
-      fullWidth
+      <label className={classes.label}>About*</label>
+      <textarea
+        col={60}
+        row={20}
+        className={classes.textarea}
         {...register("about", { required: "Add Your about" })}
         error={!!errors?.about}
         helperText={errors?.userabout ? errors.name.message : null} 

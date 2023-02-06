@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Button, Box} from '@mui/material';
+import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
-import CameraIcon from '../icons/Icons/camera.png'
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
+import { MdCancel } from 'react-icons/md';
+import { DataStoreState } from '../store/ContexApi';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
-const Project = () => {
+const Project = ({ closeProject }) => {
+  const [file, setFile] = useState();
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [progess, setProgress] = useState(0);
+  const [photoURL, setPhotoURL] = useState('');
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { setAlert } = DataStoreState();
   const [location, setLocation] = React.useState('');
   const [year, setYear] = React.useState('');
-  const { db } = firebaseEngine;
+  const { db, storage } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
 
   const appData = collection(db, "Project");
@@ -23,65 +30,129 @@ const Project = () => {
     setYear(event.target.value)
   }
 
+  const filePickerRef = useRef();
+
+  const uploadScreenshot = (file) => {
+    if (!file) return;
+    const storageRef = ref(storage, `/files/screenshots/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on("state_changed", (snapshot) => {
+      const prog = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
+      setProgress(prog);
+    },
+      (err) => console.log(err),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then(url => {
+          setPhotoURL(url)
+        })
+    }
+    )
+  }
+
+  useEffect(() => {
+    if (!file) {
+      return
+    }
+
+    const fileReader = new FileReader()
+    fileReader.onload = () => {
+      setPreviewUrl(fileReader.result);
+    };
+    fileReader.readAsDataURL(file)
+    uploadScreenshot(file)
+    // eslint-disable-next-line
+  }, [file])
+
+  function pickedHandler(event) {
+    let pickedFile;
+    if (event.target.files && event.target.files.length === 1) {
+      pickedFile = event.target.files[0];
+      setFile(pickedFile);
+    }
+  }
+
+  function pickedImageHandler() {
+    filePickerRef.current.click()
+  }
+
   const onSubmit = async (data) => {
-    await addDoc(appData, {...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
+    await addDoc(appData, { ...data, screenshotURL: photoURL, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) })
+    setAlert({
+      open: true,
+      message: "Your project has been submitted successfully",
+      type: "success"
+    })
+    closeProject();
   }
 
   const useStyle = makeStyles()((theme) => ({
     form: {
       display: "flex",
       flexDirection: "column",
-      gap: "30px",
-      marginTop: "50px",
-      width: "100%"
-    },
-    imageBox: {
-      width: "160px",
-      height: "160px",
-      position: "relative",
-      borderRadius: "10px",
-    },
-    imageHolder: {
       width: "100%",
-      height: "100%",
-      backgroundColor: "#f2f4f7",
-      borderRadius: "10px"
+      position: "relative"
     },
-    cameraIconBox: {
+    cancel: {
       position: "absolute",
-      width: "44px",
-      height: "44px",
-      bottom: "10px",
-      right: "10px",
-      borderRadius: "50%",
-      backgroundColor: "#e4e7ec",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      right: 0,
+      top: 0,
+      color: "#98a2b3",
+      fontSize: 29,
       cursor: "pointer"
     },
+    input: {
+      marginBottom: "18px",
+    },
+    label: {
+      fontFamily: "Work Sans",
+      marginBottom: "8px",
+      color: "#344054"
+    },
+    formTitle: {
+      marginBottom: "20px",
+    },
+    btn: {
+      color: "#344054",
+      width: "150px",
+      textTransform: "capitalize", 
+      marginBottom: "18px",
+    },
+    textarea: {
+      height: 100,
+      marginBottom: 13,
+      padding: "15px"
+    }
   }));
 
   const { classes } = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <Box className={classes.imageBox}>
-        <img className={classes.imageHolder} alt="" />
-        <Box className={classes.cameraIconBox}>
-          <img src={CameraIcon} alt="camera icon"/>
-        </Box>
-      </Box>
+      <MdCancel className={classes.cancel} onClick={closeProject}/>
+      <h3 className={classes.formTitle}>Project</h3>
+      <label className={classes.label}>Project cover</label>
+      <input
+        style={{ display: "none" }}
+        type="file"
+        accept='.jpg, .png, .jpeg'
+        ref={filePickerRef}
+        onChange={pickedHandler}
+      />
+      {!file ? <Button variant="text" className={classes.btn} onClick={pickedImageHandler}>+ Cover image</Button> : <p className={classes.btn}>{file.name}</p>}
+      <label className={classes.label}>Project name*</label>
       <TextField
+      className={classes.input}
         variant='outlined'
         type="text"
         label="project name"
-        sx={{ width: "400px" }}
         fullWidth
         {...register("projectName", { required: "Add the Project name" })}
         error={!!errors?.projectName}
         helperText={errors?.userprojectName ? errors.projectName.message : null}
       />
-      <FormControl>
+      <label className={classes.label}>Year*</label>
+      <FormControl className={classes.input}>
         <InputLabel id="demo-simple-select-helper-label">Select year*</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -97,7 +168,8 @@ const Project = () => {
           <MenuItem value={"2020"}>2020</MenuItem>
         </Select>
       </FormControl>
-      <FormControl>
+      <label className={classes.label}>Project Category*</label>
+      <FormControl className={classes.input}>
         <InputLabel id="demo-simple-select-helper-label">Select Project category</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -114,20 +186,23 @@ const Project = () => {
           <MenuItem value={"Other"}>Other</MenuItem>
         </Select>
       </FormControl>
-      <TextField
-        variant='outlined'
-        type="text"
+      <label className={classes.label}>Description*</label>
+      <textarea
+        className={classes.textarea}
+        col={60}
+        row={20}
         {...register("description", { required: "Add project description" })}
         label="Description"
         fullWidth
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
       />
+      <label className={classes.label}>Project URL*</label>
       <TextField
+      className={classes.input}
         variant='outlined'
         type="text"
         label="Project Link"
-        sx={{ width: "400px" }}
         fullWidth
         {...register("projectLink", { required: "Add Your projectLink" })}
         error={!!errors?.projectLink}
