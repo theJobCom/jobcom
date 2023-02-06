@@ -56,6 +56,11 @@ const Education = ({closeEducation}) => {
     },
     formTitle: {
       marginBottom: "20px"
+    },
+    textarea: {
+      height: 100,
+      marginBottom: 13,
+      padding: "15px"
     }
   }));
 
@@ -121,12 +126,10 @@ const Education = ({closeEducation}) => {
       helperText={errors?.school ? errors.school.message : null}
       />
       <label className={classes.label}>Description*</label>
-      <TextField
-      className={classes.input}
-      variant='outlined'
-      label="Description"
-      type="text"
-      fullWidth
+      <textarea
+        className={classes.textarea}
+        col={60}
+        row={20}
       {...register("description")}
       />
       <Button type="submit" variant='contained' sx={{backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end"}}>save</Button>
