@@ -476,7 +476,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <GeneralTab/>
+          <GeneralTab closeGeneral={closeGeneral} />
         </Box>
       </Modal>
       <Modal

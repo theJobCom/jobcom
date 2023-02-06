@@ -4,12 +4,15 @@ import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mu
 import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore'
 import firebaseEngine from '../initFirebase/configureFirebase';
+import { DataStoreState } from '../store/ContexApi';
+import { MdCancel } from 'react-icons/md';
 
-const GeneralTab = () => {
+const GeneralTab = ({closeGeneral}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [category, setCategory] = React.useState('');
   const user = JSON.parse(localStorage.getItem('user'));
   const { db } = firebaseEngine;
+  const { setAlert } = DataStoreState();
   const userId = user.uid;
 
 
@@ -19,14 +22,29 @@ const GeneralTab = () => {
   }
 
   const onSubmit = async (data) => {
-    await addDoc(appData, {...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId)})
+    await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) })
+    setAlert({
+      open: true,
+      message: "Your general information has been submitted successfully",
+      type: "success"
+    })
+    closeGeneral()
   }
 
   const useStyle = makeStyles()((theme) => ({
     form: {
       display: "flex",
       flexDirection: "column",
-      width: "100%"
+      width: "100%",
+      position: "relative"
+    },
+    cancel: {
+      position: "absolute",
+      right: 0,
+      top: 0,
+      color: "#98a2b3",
+      fontSize: 29,
+      cursor: "pointer"
     },
     formTitle: {
       marginBottom: "33px"
@@ -49,6 +67,7 @@ const GeneralTab = () => {
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <MdCancel className={classes.cancel} onClick={closeGeneral}/>
       <h2 className={classes.formTitle}>General information</h2>
       <label className={classes.label}>Display name*</label>
       <TextField
