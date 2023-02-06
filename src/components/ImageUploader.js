@@ -7,6 +7,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { FaTrash } from 'react-icons/fa';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import { DataStoreState } from '../store/ContexApi';
+import imagePlaceholder from '../images/imagePlaceholder.jpg';
 
 const ImageUploader = () => {
   const userId = JSON.parse(localStorage.getItem('user')).uid;
@@ -111,7 +112,7 @@ const ImageUploader = () => {
         accept='.jpg, .png, .jpeg'
         onChange={pickedHandler}
       />
-    <img src={avatarInfo?.photoURL} alt="user avatar" className={classes.profile} />
+    <img src={avatarInfo?.photoURL || imagePlaceholder} alt="user avatar" className={classes.profile} />
       <Box className={classes.boxIconBox} onClick={!avatarInfo? pickedImageHandler : () => console.log('delete')}>
         {!avatarInfo && <AiFillCamera className={classes.cameraIcon}/>}
         {avatarInfo && <FaTrash className={classes.cameraIcon}/>}

@@ -14,7 +14,6 @@ import { DataStoreState } from '../store/ContexApi';
 import uuid from 'react-uuid';
 import {GiLaurelsTrophy} from 'react-icons/gi'
 import Link from '@mui/material/Link';
-import project3 from '../images/project3.png'
 import { HiExternalLink } from 'react-icons/hi';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
