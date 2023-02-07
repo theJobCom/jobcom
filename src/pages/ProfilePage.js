@@ -21,6 +21,7 @@ import { BsLaptop } from 'react-icons/bs';
 import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
+import Resume from '../components/Resume';
 
 const style = {
   position: 'absolute',
@@ -451,7 +452,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          
+          <Resume closeResume={closeResume}/> 
         </Box>
       </Modal>
       <Modal
