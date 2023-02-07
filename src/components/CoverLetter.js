@@ -68,7 +68,7 @@ const CoverLetter = ({closeLetter}) => {
     await addDoc(appData, {coverLetters: letter, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) });
     setAlert({
       open: true,
-      message: "Your Resume has been submitted successfully",
+      message: "Your cover letter has been submitted successfully",
       type: "success"
     })
 
