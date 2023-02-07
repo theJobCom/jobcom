@@ -103,7 +103,7 @@ const Resume = ({ closeResume }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <MdCancel className={classes.cancel} onClick={closeResume}/>
-      <h3>Upload Cover Letter</h3>
+      <h3>Upload Resume</h3>
       <input
         style={{ display: "none" }}
         type="file"
