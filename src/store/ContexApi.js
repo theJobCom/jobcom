@@ -14,6 +14,8 @@ const DataStoreContext = ({ children }) => {
   const [project, setProject] = useState([]);
   const [achievement, setAchievemet] = useState([]);
   const [avatar, setAvatar] = useState([]);
+  const [resumes, setResumes] = useState([])
+  const [coverLetters, setCoverLetters] = useState([]);
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -111,7 +113,37 @@ const DataStoreContext = ({ children }) => {
     }
       // eslint-disable-next-line 
     }, [user])
+
+    useEffect(() => {
+    if (user) {
+      const q = query(collection(db, "Resumes"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const unsubScribe = onSnapshot(q, (snapShot) => {
+        let dataArr = []
+        snapShot.docs.forEach((doc) => {
+          dataArr.push({...doc.data(), id: doc.id})
+        })
+        setResumes(dataArr)
+      })
+      return () => unsubScribe()
+    }
+      // eslint-disable-next-line 
+    }, [user])
   
+    useEffect(() => {
+    if (user) {
+      const q = query(collection(db, "CoverLetters"), where("createdBy", "==", doc(db, "User", user.uid)));
+      const unsubScribe = onSnapshot(q, (snapShot) => {
+        let dataArr = []
+        snapShot.docs.forEach((doc) => {
+          dataArr.push({...doc.data(), id: doc.id})
+        })
+        setCoverLetters(dataArr)
+      })
+      return () => unsubScribe()
+    }
+      // eslint-disable-next-line 
+    }, [user])
+
     useEffect(() => {
     if (user) {
       const q = query(collection(db, "Avatars"), where("createdBy", "==", doc(db, "User", user.uid)));
@@ -152,6 +184,8 @@ const DataStoreContext = ({ children }) => {
       work,
       alert,
       setAlert,
+      resumes,
+      coverLetters
     }}>
       {children}
     </DataStore.Provider>
