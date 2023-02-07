@@ -107,6 +107,7 @@ const Resume = ({ closeResume }) => {
       />
       {!file ? <Button variant="text" className={classes.btn} onClick={pickedResumeHandler}><MdFileUpload /> Upload file</Button> : <p className={classes.btn}>{file.name}</p>}
       <small>Accepted file: Microsoft Office Document or PDF. Max file size 5MB</small>
+      <Button type="submit" variant='contained' sx={{backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end"}}>save</Button>
     </form>
   )
 }
