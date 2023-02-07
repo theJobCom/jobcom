@@ -64,7 +64,7 @@ const ProfilePage = () => {
   const openAchievements = () => setAchievements(true);
   const closeAchievements = () => setAchievements(false);
 
-  const { education, contact, achievement, project, general, work } = DataStoreState();
+  const { education, contact, achievement, project, general, work, resumes, coverLetters } = DataStoreState();
 
   const generalInfo = general[0];
   const educationInfo = education;
@@ -72,6 +72,8 @@ const ProfilePage = () => {
   const achievementInfo = achievement;
   const projectInfo = project;
   const workInfo = work;
+  const resumeInfo = resumes[0];
+  const coverLetterInfo = coverLetters[0];
 
   const userData = JSON.parse(localStorage.getItem('user'));
 
@@ -343,8 +345,8 @@ const ProfilePage = () => {
               </Box>
             </Box>
             <Box className={classes.viewDocs}>
-                <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button>
-                <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button>
+                {!resumeInfo ? <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button> : <Link href={resumeInfo?.resume} target="_blank">View Resume</Link>}
+                {!coverLetterInfo ? <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button> : <Link href={coverLetterInfo?.coverLetters} target="_blank">View Cover Letter</Link>}
             </Box>
               <h5 className={classes.subtitle}>Contact me</h5>
             <Box className={classes.contacts}>
