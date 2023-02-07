@@ -90,6 +90,12 @@ const Resume = ({ closeResume }) => {
       fontSize: 29,
       cursor: "pointer"
     },
+    btn: {
+      color: "#344054",
+      textTransform: "capitalize", 
+      margin: "12px 0",
+      padding: "16px"
+    },
   }))
 
   const { classes } = useStyle();
@@ -106,8 +112,8 @@ const Resume = ({ closeResume }) => {
         onChange={pickedHandler}
       />
       {!file ? <Button variant="text" className={classes.btn} onClick={pickedResumeHandler}><MdFileUpload /> Upload file</Button> : <p className={classes.btn}>{file.name}</p>}
-      <small>Accepted file: Microsoft Office Document or PDF. Max file size 5MB</small>
-      <Button type="submit" variant='contained' sx={{backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end"}}>save</Button>
+      <small style={{fontFamily: "Work Sans", color: "#344054", marginTop: "16px"}}>Accepted file: Microsoft Office Document or PDF. Max file size 5MB</small>
+      <Button type="submit" variant='contained' sx={{backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end", marginTop: "48px"}}>save</Button>
     </form>
   )
 }
