@@ -22,6 +22,7 @@ import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
 import Resume from '../components/Resume';
+import CoverLetter from '../components/CoverLetter';
 
 const style = {
   position: 'absolute',
@@ -462,6 +463,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <CoverLetter closeLetter={closeLetter}/>
         </Box>
       </Modal>
       <Modal
