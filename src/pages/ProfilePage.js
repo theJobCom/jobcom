@@ -17,6 +17,7 @@ import Link from '@mui/material/Link';
 import { HiExternalLink } from 'react-icons/hi';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
+import { FaTrashAlt } from 'react-icons/fa';
 import { BsLaptop } from 'react-icons/bs';
 import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
@@ -278,6 +279,11 @@ const ProfilePage = () => {
     jobTitle: {
       fontSize: "16px",
       textTransform: "capitalize"
+    },
+    linkDocs: {
+      display: "flex",
+      gap: "10px",
+      alignItems: "center"
     }
   }));
 
@@ -345,8 +351,8 @@ const ProfilePage = () => {
               </Box>
             </Box>
             <Box className={classes.viewDocs}>
-                {!resumeInfo ? <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button> : <Link href={resumeInfo?.resume} target="_blank">View Resume</Link>}
-                {!coverLetterInfo ? <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button> : <Link href={coverLetterInfo?.coverLetters} target="_blank">View Cover Letter</Link>}
+              {!resumeInfo ? <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button> : (<Box className={classes.linkDocs}><Link href={resumeInfo?.resume} target="_blank">View Resume</Link><FaTrashAlt/></Box>)}
+                {!coverLetterInfo ? <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button> : (<Box className={classes.linkDocs}><Link href={coverLetterInfo?.coverLetters} target="_blank">View Cover Letter</Link><FaTrashAlt/></Box>)}
             </Box>
               <h5 className={classes.subtitle}>Contact me</h5>
             <Box className={classes.contacts}>
