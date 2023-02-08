@@ -24,6 +24,7 @@ import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
 import Resume from '../components/Resume';
 import CoverLetter from '../components/CoverLetter';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -77,6 +78,7 @@ const ProfilePage = () => {
   const coverLetterInfo = coverLetters[0];
 
   const userData = JSON.parse(localStorage.getItem('user'));
+  const navigate = useNavigate();
 
   console.log(userData)
 
@@ -349,7 +351,7 @@ const ProfilePage = () => {
               <span className={classes.userName}>{generalInfo?.name || 'Your Name'}</span>
               {generalInfo?.nationality ? <p className={classes.country}>{`${generalInfo?.location}, ${generalInfo?.nationality}`}</p> : ""}
               {generalInfo?.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
-              {/* {generalInfo?.location ? <small className={classes.location}>{generalInfo?.location}</small> : ""} */}
+              {generalInfo && <Button onClick={() => navigate('/portfolioPage')}>View Public portfolio</Button>}
               <Box className={classes.metadata}>
               </Box>
             </Box>
