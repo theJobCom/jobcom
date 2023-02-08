@@ -1,15 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from 'tss-react/mui'
 import { Box } from '@mui/system';
-import Button from '@mui/material/Button';
 import SideBar from '../components/SideBar';
-import Modal from '@mui/material/Modal';
-import GeneralTab from '../components/GeneralTab';
-import Project from '../components/Project';
-import Contact from '../components/Contact'
-import WorkExperience from '../components/WorkExperience';
-import Education from '../components/Education';
-import Achievements from '../components/Achievement';
 import { DataStoreState } from '../store/ContexApi';
 import uuid from 'react-uuid';
 import {GiLaurelsTrophy} from 'react-icons/gi'
@@ -17,53 +9,12 @@ import Link from '@mui/material/Link';
 import { HiExternalLink } from 'react-icons/hi';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
-import { FaTrashAlt } from 'react-icons/fa';
 import { BsLaptop } from 'react-icons/bs';
 import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
-import Resume from '../components/Resume';
-import CoverLetter from '../components/CoverLetter';
-import { useNavigate } from 'react-router-dom';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 600,
-  bgcolor: 'white',
-  boxShadow: 24,
-  borderRadius: "10px",
-  p: 4,
-};
 
 const PortfolioPage = () => {
-const [resume, setResume] = useState(false);
-  const [letter, setLetter] = useState(false);
-  const [contacts, setContacts] = useState(false);
-  const [projects, setProjects] = useState(false);
-  const [generals, setGenerals] = useState(false);
-  const [experience, setExperience] = useState(false);
-  const [educations, setEducations] = useState(false);
-  const [achievements, setAchievements] = useState(false);
-
-  const openResume = () => setResume(true);
-  const closeResume = () => setResume(false);
-  const openLetter = () => setLetter(true);
-  const closeLetter = () => setLetter(false);
-  const openContact = () => setContacts(true);
-  const closeContact = () => setContacts(false)
-  const openProject = () => setProjects(true);
-  const closeProject = () => setProjects(false);
-  const openGeneral = () => setGenerals(true);
-  const closeGeneral = () => setGenerals(false);
-  const openExperience = () => setExperience(true);
-  const closeExperience = () => setExperience(false);
-  const openEducation = () => setEducations(true);
-  const closeEducation = () => setEducations(false);
-  const openAchievements = () => setAchievements(true);
-  const closeAchievements = () => setAchievements(false);
 
   const { education, contact, achievement, project, general, work, resumes, coverLetters } = DataStoreState();
 
@@ -77,7 +28,6 @@ const [resume, setResume] = useState(false);
   const coverLetterInfo = coverLetters[0];
 
   const userData = JSON.parse(localStorage.getItem('user'));
-  const navigate = useNavigate();
 
   console.log(userData)
 
@@ -369,14 +319,12 @@ const [resume, setResume] = useState(false);
                 <Link href={contactInfo?.portfolio} className={classes.medium}><BsLaptop/></Link>
               </Box>
               }
-              {!contactInfo && <Button variant="text" className={classes.btnAdd} onClick={openContact}>+ Add Contact Details</Button>}
             </Box>
           </Box>
           <Box className={classes.boxRight}>
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
               <p className={classes.text}>{generalInfo?.about || ''}</p>
-            {generalInfo?.about ? "" : <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>}
             </Box>
             <Box className={classes.descBoxII}>
               <h5 className={classes.subtitle}>Work Experience</h5>
