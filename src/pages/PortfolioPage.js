@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from 'tss-react/mui'
 import { Box } from '@mui/system';
 import SideBar from '../components/SideBar';
@@ -33,7 +33,7 @@ const PortfolioPage = () => {
 
   const useStyle = makeStyles()(() => ({
     container: {
-      height: "100vh",
+      height: "100%",
       width: "100vw",
       display: "flex",
       overflowX: "hidden",
@@ -238,6 +238,10 @@ const PortfolioPage = () => {
     },
     delDocs: {
       cursor: "pointer"
+    },
+    boxBottom: {
+      marginBottom: "70px",
+      overflowX: "hidden"
     }
   }));
 
@@ -342,7 +346,7 @@ const PortfolioPage = () => {
               }
             </Box>
             <Box className={classes.descBoxII}>
-              <h5 className={classes.subtitle}>Education</h5>
+              {educationInfo && <h5 className={classes.subtitle}>Education</h5>}
               {
                 educationInfo.map((education) => {
                   return (
@@ -359,7 +363,7 @@ const PortfolioPage = () => {
               }
             </Box>
             <Box className={classes.descBoxIII}>
-              <h5 className={classes.subtitle}>Achievements</h5>
+              {achievementInfo && <h5 className={classes.subtitle}>Achievements</h5>}
               {
                 achievementInfo.map((achievement) => {
                   return (
@@ -381,7 +385,7 @@ const PortfolioPage = () => {
           </Box>
         </Box>
         <Box className={classes.boxBottom}>
-          <h5 className={classes.subtitle}>Projects</h5>
+          {projectInfo && <h5 className={classes.subtitle}>Projects</h5>}
           {
             projectInfo.map((project) => {
               return (
