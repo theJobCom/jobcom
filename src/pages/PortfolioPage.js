@@ -327,15 +327,15 @@ const PortfolioPage = () => {
               <p className={classes.text}>{generalInfo?.about || ''}</p>
             </Box>
             <Box className={classes.descBoxII}>
-              <h5 className={classes.subtitle}>Work Experience</h5>
+              {workInfo ?<h5 className={classes.subtitle}>Work Experience</h5> : ""}
               {
                 workInfo?.map((work) => {
               return (<Box className={classes.entry} key={uuid()}>
-                <small className={classes.timePeriod}>{`${dateConvtr(work.fromDate)} - ${(work?.endDate && dateConvtr(work.endDate)) || (work?.currently && 'Present')}`}</small>
+                <small className={classes.timePeriod}>{`${dateConvtr(work?.fromDate)} - ${(work?.endDate && dateConvtr(work?.endDate)) || (work?.currently && 'Present')}`}</small>
                 <Box className={classes.jobDesc}>
-                  <h6 className={classes.jobTitle}>{work.title}</h6>
-                  <small className={classes.location}>{work.location}</small>
-                  <p className={classes.about}>{work.description}</p>
+                  <h6 className={classes.jobTitle}>{work?.title}</h6>
+                  <small className={classes.location}>{work?.location}</small>
+                  <p className={classes.about}>{work?.description}</p>
                 </Box>
               </Box>)
                 })
