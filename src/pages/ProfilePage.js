@@ -17,10 +17,14 @@ import Link from '@mui/material/Link';
 import { HiExternalLink } from 'react-icons/hi';
 import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
+import { FaTrashAlt } from 'react-icons/fa';
 import { BsLaptop } from 'react-icons/bs';
 import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
+import Resume from '../components/Resume';
+import CoverLetter from '../components/CoverLetter';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -62,7 +66,7 @@ const ProfilePage = () => {
   const openAchievements = () => setAchievements(true);
   const closeAchievements = () => setAchievements(false);
 
-  const { education, contact, achievement, project, general, work } = DataStoreState();
+  const { education, contact, achievement, project, general, work, resumes, coverLetters } = DataStoreState();
 
   const generalInfo = general[0];
   const educationInfo = education;
@@ -70,8 +74,11 @@ const ProfilePage = () => {
   const achievementInfo = achievement;
   const projectInfo = project;
   const workInfo = work;
+  const resumeInfo = resumes[0];
+  const coverLetterInfo = coverLetters[0];
 
   const userData = JSON.parse(localStorage.getItem('user'));
+  const navigate = useNavigate();
 
   console.log(userData)
 
@@ -274,6 +281,14 @@ const ProfilePage = () => {
     jobTitle: {
       fontSize: "16px",
       textTransform: "capitalize"
+    },
+    linkDocs: {
+      display: "flex",
+      gap: "10px",
+      alignItems: "center"
+    },
+    delDocs: {
+      cursor: "pointer"
     }
   }));
 
@@ -336,13 +351,13 @@ const ProfilePage = () => {
               <span className={classes.userName}>{generalInfo?.name || 'Your Name'}</span>
               {generalInfo?.nationality ? <p className={classes.country}>{`${generalInfo?.location}, ${generalInfo?.nationality}`}</p> : ""}
               {generalInfo?.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
-              {/* {generalInfo?.location ? <small className={classes.location}>{generalInfo?.location}</small> : ""} */}
+              {generalInfo && <Button onClick={() => navigate('/portfolioPage')}>View Public portfolio</Button>}
               <Box className={classes.metadata}>
               </Box>
             </Box>
             <Box className={classes.viewDocs}>
-                <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button>
-                <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button>
+              {!resumeInfo ? <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button> : (<Box className={classes.linkDocs}><Link href={resumeInfo?.resume} target="_blank">View Resume</Link><FaTrashAlt className={classes.delDocs}/></Box>)}
+                {!coverLetterInfo ? <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button> : (<Box className={classes.linkDocs}><Link href={coverLetterInfo?.coverLetters} target="_blank">View Cover Letter</Link><FaTrashAlt className={classes.delDocs}/></Box>)}
             </Box>
               <h5 className={classes.subtitle}>Contact me</h5>
             <Box className={classes.contacts}>
@@ -451,7 +466,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          
+          <Resume closeResume={closeResume}/> 
         </Box>
       </Modal>
       <Modal
@@ -461,6 +476,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <CoverLetter closeLetter={closeLetter}/>
         </Box>
       </Modal>
       <Modal
