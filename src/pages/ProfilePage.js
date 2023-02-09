@@ -84,7 +84,6 @@ const ProfilePage = () => {
 
   const useStyle = makeStyles()(() => ({
     container: {
-      height: "100vh",
       width: "100vw",
       display: "flex",
       overflowX: "hidden",
