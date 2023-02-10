@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { makeStyles } from 'tss-react/mui';
 import { TextField, Button } from '@mui/material';
 import { useForm } from 'react-hook-form'
@@ -11,16 +11,17 @@ import { DataStoreState } from '../store/ContexApi';
 const LoginTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { setAlert } = DataStoreState();
+  const [disable, setDisable] = useState(false);
   const navigate = useNavigate();
   const { auth } = firebaseEngine;
   
   
   const onSubmit = async (data) => {
+    setDisable(true);
     const { email, password } = data;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const user = userCredentials.user
-        console.log(user);
         setAlert({
           open: true,
           message: `You have successfully logged in as ${user.email}`,
@@ -47,10 +48,11 @@ const LoginTab = () => {
     }
   }));
 
-  const {classes} = useStyle();
+  const { classes } = useStyle();
+  console.log(disable);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+    <form  onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <label>Email</label>
       <TextField
       variant='outlined'
@@ -72,6 +74,7 @@ const LoginTab = () => {
       <Button
         variant="contained"
         type="submit"
+        disabled={disable}
         size="large"
         fullWidth
         sx={{bgcolor: "#6941C6", textTransform: "capitalize", fontFamily: "Work Sans"}}
