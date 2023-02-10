@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from 'tss-react/mui';
 import { TextField, Button } from '@mui/material';
 import { useForm } from 'react-hook-form'
@@ -10,11 +10,13 @@ import { DataStoreState } from '../store/ContexApi';
 const SignUpTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate()
+  const [disable, setDisable] = useState(false);
   const { setAlert } = DataStoreState();
   const { auth } = firebaseEngine;
   
   const onSubmit = async (data) => {
     const { email, password } = data;
+    setDisable(true)
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
       const user = userCredentials.user
@@ -31,6 +33,7 @@ const SignUpTab = () => {
         message: `${error.message}`,
         type: "error"
       })
+        setDisable(false);
     })
   }
 
@@ -48,17 +51,6 @@ const SignUpTab = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      {/* <label className={classes.label}>username</label>
-      <TextField
-      className={classes.input}
-      variant='outlined'
-      type="text"
-      label="username"
-      fullWidth
-        {...register("username", { required: "Add Your Username" })}
-        error={!!errors?.username}
-        helperText={errors?.username ? errors.username.message : null} 
-      /> */}
       <label className={classes.label}>email</label>
       <TextField
       className={classes.input}
@@ -96,6 +88,7 @@ const SignUpTab = () => {
         variant="contained"
         type="submit"
         size="large"
+        disabled={disable}
         fullWidth
         sx={{bgcolor: "#6941C6", textTransform: "capitalize", fontFamily: "Work Sans"}}
       >
