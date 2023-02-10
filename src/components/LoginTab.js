@@ -35,6 +35,7 @@ const LoginTab = () => {
           message: `${error.message}`,
           type: "error"
         })
+        setDisable(false);
     })
   }
 
