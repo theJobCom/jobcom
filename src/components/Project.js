@@ -7,6 +7,7 @@ import firebaseEngine from '../initFirebase/configureFirebase';
 import { MdCancel } from 'react-icons/md';
 import { DataStoreState } from '../store/ContexApi';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { handleYears } from '../utils/years';
 
 const Project = ({ closeProject }) => {
   const [file, setFile] = useState();
@@ -19,6 +20,7 @@ const Project = ({ closeProject }) => {
   const [year, setYear] = React.useState('');
   const { db, storage } = firebaseEngine;
   const userId = JSON.parse(localStorage.getItem('user')).uid;
+    const prevYears = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
 
   const appData = collection(db, "Project");
 
@@ -162,10 +164,13 @@ const Project = ({ closeProject }) => {
           label="Select Year"
           onChange={handleChangeYear}
         >
-          <MenuItem value={"2023"}>2023</MenuItem>
-          <MenuItem value={"2022"}>2022</MenuItem>
-          <MenuItem value={"2021"}>2021</MenuItem>
-          <MenuItem value={"2020"}>2020</MenuItem>
+          {
+            handleYears(prevYears).map((year) => {
+              return (
+                <MenuItem value={`${year}`}>{year}</MenuItem>
+              )
+            })
+          }
         </Select>
       </FormControl>
       <label className={classes.label}>Project Category*</label>
