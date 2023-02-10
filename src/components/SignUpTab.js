@@ -5,11 +5,13 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { DataStoreState } from '../store/ContexApi';
 
 const SignUpTab = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate()
-  const { auth, setAlert } = firebaseEngine;
+  const { setAlert } = DataStoreState();
+  const { auth } = firebaseEngine;
   
   const onSubmit = async (data) => {
     const { email, password } = data;
