@@ -60,7 +60,9 @@ const Education = ({closeEducation}) => {
     textarea: {
       height: 100,
       marginBottom: 13,
-      padding: "15px"
+      padding: "15px",
+      fontSize: "inherit",
+      fontFamily: "inherit",
     }
   }));
 
