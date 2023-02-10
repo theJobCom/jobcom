@@ -84,7 +84,6 @@ const ProfilePage = () => {
 
   const useStyle = makeStyles()(() => ({
     container: {
-      height: "100vh",
       width: "100vw",
       display: "flex",
       overflowX: "hidden",
@@ -364,11 +363,11 @@ const ProfilePage = () => {
               {
                 contactInfo &&
               <Box className={classes.contactBox}>
-                <Link href={contactInfo?.linkedIn} className={classes.linkedIn}><GrLinkedin/></Link>
-                <Link href={contactInfo?.role} className={classes.gthb}><GoMarkGithub/></Link>
-                <Link href={contactInfo?.behance} className={classes.medium}><ImBehance2/></Link>
+                {contactInfo?.linkedIn === "" ? "" : <Link href={contactInfo?.linkedIn} className={classes.linkedIn}><GrLinkedin/></Link>}
+                {contactInfo?.role === "" ? "" :<Link href={contactInfo?.role} className={classes.gthb}><GoMarkGithub/></Link>}
+                {contactInfo?.behance === "" ? "" : <Link href={contactInfo?.behance} className={classes.medium}><ImBehance2/></Link>}
                 <Link href={contactInfo?.email} className={classes.medium}><MdAlternateEmail/></Link>
-                <Link href={contactInfo?.portfolio} className={classes.medium}><BsLaptop/></Link>
+                {contactInfo?.portfolio === "" ? "" :<Link href={contactInfo?.portfolio} className={classes.medium}><BsLaptop/></Link>}
               </Box>
               }
               {!contactInfo && <Button variant="text" className={classes.btnAdd} onClick={openContact}>+ Add Contact Details</Button>}
