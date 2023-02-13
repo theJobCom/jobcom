@@ -13,6 +13,8 @@ function App() {
     }
   }))
 
+  const id = JSON.parse(localStorage.getItem('user')).uid
+
   const { classes } = useStyle();
 
   return (
@@ -22,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} exact/>
           <Route path="/profilepage" element={<PrivateRoute><ProfilePage/></PrivateRoute>} exact/>
-          <Route path="/portfolioPage" element={<PrivateRoute><PortfolioPage/></PrivateRoute>} exact/>
+          <Route path="/portfolioPage/:id" element={<PortfolioPage/>} exact/>
         </Routes>
       </div>
     </BrowserRouter>

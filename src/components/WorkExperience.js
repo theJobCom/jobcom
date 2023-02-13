@@ -9,10 +9,10 @@ import { DataStoreState } from '../store/ContexApi';
 
 const WorkExperience = ({closeExperience}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const {setAlert} = DataStoreState();
+  const { setAlert, user } = DataStoreState();
 
   const { db } = firebaseEngine;
-  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const userId = user?.uid;
   const appData = collection(db, 'WorkExperience')
 
   const onSubmit = async (data) => {

@@ -10,10 +10,10 @@ import { MdCancel } from 'react-icons/md';
 const GeneralTab = ({closeGeneral}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [category, setCategory] = React.useState('');
-  const user = JSON.parse(localStorage.getItem('user'));
+  // const user = JSON.parse(localStorage.getItem('user'));
   const { db } = firebaseEngine;
-  const { setAlert } = DataStoreState();
-  const userId = user.uid;
+  const { setAlert, user } = DataStoreState();
+  const userId = user?.uid;
 
 
   const appData = collection(db, "General")

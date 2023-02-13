@@ -15,7 +15,6 @@ import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
 
 const PortfolioPage = () => {
-
   const { education, contact, achievement, project, general, work, resumes, coverLetters } = DataStoreState();
 
   const generalInfo = general[0];
@@ -27,9 +26,6 @@ const PortfolioPage = () => {
   const resumeInfo = resumes[0];
   const coverLetterInfo = coverLetters[0];
 
-  const userData = JSON.parse(localStorage.getItem('user'));
-
-  console.log(userData)
 
   const useStyle = makeStyles()(() => ({
     container: {

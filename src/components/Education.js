@@ -9,9 +9,9 @@ import { DataStoreState } from '../store/ContexApi';
 
 const Education = ({closeEducation}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const userId = JSON.parse(localStorage.getItem("user")).uid;
   const { db } = firebaseEngine;
-  const { setAlert } = DataStoreState();
+  const { setAlert, user } = DataStoreState();
+  const userId = user?.uid;
 
 
   const appData = collection(db, "Education");

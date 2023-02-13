@@ -9,9 +9,9 @@ import { MdCancel } from 'react-icons/md';
 
 const Contact = ({closeContact}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const {setAlert} = DataStoreState();
+  const { setAlert, user } = DataStoreState();
   const { db } = firebaseEngine;
-  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const userId = user?.uid;
   const appData = collection(db, "Contact");
 
 

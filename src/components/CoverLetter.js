@@ -15,9 +15,9 @@ const CoverLetter = ({closeLetter}) => {
   const [progess, setProgress] = useState();
   const [file, setFile] = useState();
   const [previewurl, setPreviewUrl] = useState(null)
-  const { setAlert } = DataStoreState();
+  const { setAlert, user } = DataStoreState();
   const { db, storage } = firebaseEngine;
-  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const userId = user?.uid;
   const appData = collection(db, "CoverLetters");
 
   const filePickerRef = useRef();

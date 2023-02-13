@@ -10,11 +10,12 @@ import { DataStoreState } from '../store/ContexApi';
 import imagePlaceholder from '../images/imagePlaceholder.jpg';
 
 const ImageUploader = () => {
-  const userId = JSON.parse(localStorage.getItem('user')).uid;
   const { avatar } = DataStoreState();
+  const { user } = DataStoreState();
   const avatarInfo = avatar[0];
   const { storage, db } = firebaseEngine;
   const appData = collection(db, "Avatars");
+  const userId = user?.uid;
   console.log(avatarInfo?.photoURL);
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -11,9 +11,10 @@ import { handleYears } from '../utils/years';
 const Achievement = ({closeAchievements}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [year, setYear] = React.useState('');
-  const { setAlert } = DataStoreState();
+  const [disable, setDisable] = useState(false);
+  const { setAlert, user } = DataStoreState();
   const { db } = firebaseEngine;
-  const userId = JSON.parse(localStorage.getItem('user')).uid;
+  const userId = user?.uid;
   const appData = collection(db, "Achievements")
   const prevYears = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
 
@@ -22,6 +23,7 @@ const Achievement = ({closeAchievements}) => {
   }
 
   const onSubmit = async (data) => {
+    setDisable(true);
     await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) });
     setAlert({
       open: true,
@@ -133,7 +135,7 @@ const Achievement = ({closeAchievements}) => {
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
       />
-      <Button type="submit" variant='contained' sx={{ backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end" }}>Save</Button>
+      <Button type="submit" disabled={disable} variant='contained' sx={{ backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end" }}>Save</Button>
     </form>
   )
 }

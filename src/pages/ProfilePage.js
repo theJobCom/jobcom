@@ -24,7 +24,7 @@ import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
 import Resume from '../components/Resume';
 import CoverLetter from '../components/CoverLetter';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -40,6 +40,9 @@ const style = {
 
 
 const ProfilePage = () => {
+  const { id } = useParams();
+  console.log("yes");
+
   const [resume, setResume] = useState(false);
   const [letter, setLetter] = useState(false);
   const [contacts, setContacts] = useState(false);
@@ -77,10 +80,9 @@ const ProfilePage = () => {
   const resumeInfo = resumes[0];
   const coverLetterInfo = coverLetters[0];
 
-  const userData = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
 
-  console.log(userData)
+ 
 
   const useStyle = makeStyles()(() => ({
     container: {
