@@ -13,8 +13,12 @@ import { BsLaptop } from 'react-icons/bs';
 import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
+import { useParams } from 'react-router-dom';
 
 const PortfolioPage = () => {
+  const params = useParams();
+  console.log(params);
+  
   const { education, contact, achievement, project, general, work, resumes, coverLetters } = DataStoreState();
 
   const generalInfo = general[0];
