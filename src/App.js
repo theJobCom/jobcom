@@ -13,8 +13,6 @@ function App() {
     }
   }))
 
-  const id = JSON.parse(localStorage.getItem('user')).uid
-
   const { classes } = useStyle();
 
   return (
