@@ -40,8 +40,8 @@ const style = {
 
 
 const ProfilePage = () => {
-  const { id } = useParams();
-  console.log("yes");
+  const { user } = DataStoreState();
+  const id = user.uid;
 
   const [resume, setResume] = useState(false);
   const [letter, setLetter] = useState(false);
@@ -352,7 +352,7 @@ const ProfilePage = () => {
               <span className={classes.userName}>{generalInfo?.name || 'Your Name'}</span>
               {generalInfo?.nationality ? <p className={classes.country}>{`${generalInfo?.location}, ${generalInfo?.nationality}`}</p> : ""}
               {generalInfo?.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
-              {generalInfo && <Button onClick={() => navigate('/portfolioPage')}>View Public portfolio</Button>}
+              {generalInfo && <Button onClick={() => navigate(`/portfolioPage/${id}`)}>View Public portfolio</Button>}
               <Box className={classes.metadata}>
               </Box>
             </Box>
