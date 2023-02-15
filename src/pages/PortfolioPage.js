@@ -28,7 +28,8 @@ const PortfolioPage = () => {
   const [resumes, setResumes] = useState([])
   const [coverLetters, setCoverLetters] = useState([]);
   const { db } = firebaseEngine;
-  console.log(id);
+
+  const userId = localStorage.getItem('user') === null ? false :  JSON.parse(localStorage.getItem('user')).uid
 
   useEffect(() => {
     const q = query(collection(db, "General"), where("createdBy", "==", doc(db, "User", id)));
@@ -435,7 +436,7 @@ const PortfolioPage = () => {
 
   return (
     <div className={classes.container}>
-      <SideBar />
+      { userId === id && <SideBar /> }
       <Box className={classes.wrapper}>
         <Box className={classes.boxTop}>
           <Box className={classes.boxLeft}>
