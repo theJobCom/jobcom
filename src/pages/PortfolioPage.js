@@ -368,7 +368,21 @@ const PortfolioPage = () => {
     boxBottom: {
       marginBottom: "70px",
       overflowX: "hidden"
-    }
+    },
+    imageBox: {
+      position: "relative",
+      width: "250px",
+      height: "250px",
+      marginBottom: "22px",
+      backgroundColor: "#f2f4f7",
+      borderRadius: "10px"
+    },
+    profile: {
+      width: "100%",
+      height: "100%",
+      borderRadius: "10px",
+      position: "relative"
+    },
   }));
 
   const { classes } = useStyle();
