@@ -55,7 +55,20 @@ const PortfolioPage = () => {
     })
     return () => unsubScribe()
     // eslint-disable-next-line 
-  }, []);
+    }, []);
+  
+  useEffect(() => {
+    const q = query(collection(db, "Project"), where("createdBy", "==", doc(db, "User", id)));
+    const unsubScribe = onSnapshot(q, (snapShot) => {
+      let dataArr = []
+      snapShot.docs.forEach((doc) => {
+        dataArr.push({...doc.data(), id: doc.id})
+      })
+        setProject(dataArr)
+      })
+    return () => unsubScribe()
+    // eslint-disable-next-line 
+  }, [])
 
   const generalInfo = general[0];
   const educationInfo = education;
