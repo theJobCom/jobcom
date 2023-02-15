@@ -70,6 +70,18 @@ const PortfolioPage = () => {
     // eslint-disable-next-line 
   }, [])
 
+  useEffect(() => {
+    const q = query(collection(db, "Education"), where("createdBy", "==", doc(db, "User", id)));
+    const unsubScribe = onSnapshot(q, (snapShot) => {
+      let dataArr = []
+      snapShot.docs.forEach((doc) => {
+        dataArr.push({ ...doc.data(), id: doc.id })
+      })
+      setEducation(dataArr)
+    })
+    return () => unsubScribe()
+  }, []);
+
   const generalInfo = general[0];
   const educationInfo = education;
   const contactInfo = contact[0];
