@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from 'tss-react/mui'
 import { Box } from '@mui/system';
 import SideBar from '../components/SideBar';
@@ -14,12 +14,29 @@ import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
 import { useParams } from 'react-router-dom';
+import firebaseEngine from "../initFirebase/configureFirebase";
+import { doc, onSnapshot, query, where, collection } from "firebase/firestore";
 
 const PortfolioPage = () => {
-  const params = useParams();
-  console.log(params);
+  const { id } = useParams();
+  const [general, setGeneral] = useState([]);
+  const { db } = firebaseEngine;
+  console.log(id);
+
+  useEffect(() => {
+    const q = query(collection(db, "General"), where("createdBy", "==", doc(db, "User", id)));
+    const unsubScribe = onSnapshot(q, (snapShot) => {
+      let dataArr = []
+      snapShot.docs.forEach((doc) => {
+        dataArr.push({ ...doc.data(), id: doc.id })
+      })
+      setGeneral(dataArr)
+    })
+    return () => unsubScribe()
+    // eslint-disable-next-line 
+  }, []);
   
-  const { education, contact, achievement, project, general, work, resumes, coverLetters } = DataStoreState();
+  const { education, contact, achievement, project, work, resumes, coverLetters } = DataStoreState();
 
   const generalInfo = general[0];
   const educationInfo = education;
