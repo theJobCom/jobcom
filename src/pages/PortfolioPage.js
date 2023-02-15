@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from 'tss-react/mui'
 import { Box } from '@mui/system';
 import SideBar from '../components/SideBar';
-import { DataStoreState } from '../store/ContexApi';
 import uuid from 'react-uuid';
 import {GiLaurelsTrophy} from 'react-icons/gi'
 import Link from '@mui/material/Link';
@@ -12,10 +11,10 @@ import { GoMarkGithub } from 'react-icons/go';
 import { BsLaptop } from 'react-icons/bs';
 import { MdAlternateEmail } from 'react-icons/md';
 import { ImBehance2 } from 'react-icons/im';
-import ImageUploader from '../components/ImageUploader';
 import { useParams } from 'react-router-dom';
 import firebaseEngine from "../initFirebase/configureFirebase";
 import { doc, onSnapshot, query, where, collection } from "firebase/firestore";
+import imagePlaceholder from '../images/imagePlaceholder.jpg';
 
 const PortfolioPage = () => {
   const { id } = useParams();
@@ -80,6 +79,7 @@ const PortfolioPage = () => {
       setEducation(dataArr)
     })
     return () => unsubScribe()
+    // eslint-disable-next-line 
   }, []);
 
   useEffect(() => {
@@ -92,6 +92,7 @@ const PortfolioPage = () => {
       setContact(dataArr)
     })
     return () => unsubScribe()
+    // eslint-disable-next-line 
   }, []);
 
   useEffect(() => {
@@ -104,6 +105,7 @@ const PortfolioPage = () => {
       setResumes(dataArr)
     })
     return () => unsubScribe()
+    // eslint-disable-next-line 
   }, [])
 
   useEffect(() => {
@@ -116,6 +118,7 @@ const PortfolioPage = () => {
       setCoverLetters(dataArr)
     })
     return () => unsubScribe()
+    // eslint-disable-next-line 
   }, [])
 
   useEffect(() => {
@@ -128,6 +131,7 @@ const PortfolioPage = () => {
       setAvatar(dataArr)
     })
     return () => unsubScribe()
+    // eslint-disable-next-line 
   }, []);
 
   useEffect(() => {
@@ -150,6 +154,7 @@ const PortfolioPage = () => {
   const workInfo = work;
   const resumeInfo = resumes[0];
   const coverLetterInfo = coverLetters[0];
+  const avatarInfo =  avatar[0]
 
 
   const useStyle = makeStyles()(() => ({
@@ -421,7 +426,9 @@ const PortfolioPage = () => {
         <Box className={classes.boxTop}>
           <Box className={classes.boxLeft}>
             <Box className={classes.profileSec}>
-              <ImageUploader/>
+      <Box className={classes.imageBox}>
+        <img src={avatarInfo?.photoURL || imagePlaceholder} alt="user avatar" className={classes.profile} />
+      </Box>
               <span className={classes.userName}>{generalInfo?.name}</span>
               {generalInfo?.nationality ? <p className={classes.country}>{`${generalInfo?.location}, ${generalInfo?.nationality}`}</p> : ""}
               {generalInfo?.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
