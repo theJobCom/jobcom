@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} exact/>
           <Route path="/profilepage" element={<PrivateRoute><ProfilePage/></PrivateRoute>} exact/>
-          <Route path="/portfolioPage/:id" element={<PortfolioPage/>} exact/>
+          <Route path="/:username/:id" element={<PortfolioPage/>} exact/>
         </Routes>
       </div>
     </BrowserRouter>

@@ -24,7 +24,7 @@ import { ImBehance2 } from 'react-icons/im';
 import ImageUploader from '../components/ImageUploader';
 import Resume from '../components/Resume';
 import CoverLetter from '../components/CoverLetter';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -352,7 +352,7 @@ const ProfilePage = () => {
               <span className={classes.userName}>{generalInfo?.name || 'Your Name'}</span>
               {generalInfo?.nationality ? <p className={classes.country}>{`${generalInfo?.location}, ${generalInfo?.nationality}`}</p> : ""}
               {generalInfo?.role ? <p className={classes.role}>{generalInfo.role}</p> : ""}
-              {generalInfo && <Button onClick={() => navigate(`/portfolioPage/${id}`)}>View Public portfolio</Button>}
+              {generalInfo && <Button onClick={() => navigate(`/${generalInfo?.name }/${id}`)}>View Public portfolio</Button>}
               <Box className={classes.metadata}>
               </Box>
             </Box>
