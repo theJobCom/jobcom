@@ -118,6 +118,18 @@ const PortfolioPage = () => {
     return () => unsubScribe()
   }, [])
 
+  useEffect(() => {
+    const q = query(collection(db, "Avatars"), where("createdBy", "==", doc(db, "User", id)));
+    const unsubScribe = onSnapshot(q, (snapShot) => {
+      let dataArr = []
+      snapShot.docs.forEach((doc) => {
+        dataArr.push({ ...doc.data(), id: doc.id })
+      })
+      setAvatar(dataArr)
+    })
+    return () => unsubScribe()
+  }, []);
+
   const generalInfo = general[0];
   const educationInfo = education;
   const contactInfo = contact[0];
