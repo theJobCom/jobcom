@@ -20,6 +20,14 @@ import { doc, onSnapshot, query, where, collection } from "firebase/firestore";
 const PortfolioPage = () => {
   const { id } = useParams();
   const [general, setGeneral] = useState([]);
+  const [work, setWork] = useState([]);
+  const [contact, setContact] = useState([]);
+  const [education, setEducation] = useState([]);
+  const [project, setProject] = useState([]);
+  const [achievement, setAchievemet] = useState([]);
+  const [avatar, setAvatar] = useState([]);
+  const [resumes, setResumes] = useState([])
+  const [coverLetters, setCoverLetters] = useState([]);
   const { db } = firebaseEngine;
   console.log(id);
 
@@ -35,8 +43,19 @@ const PortfolioPage = () => {
     return () => unsubScribe()
     // eslint-disable-next-line 
   }, []);
-  
-  const { education, contact, achievement, project, work, resumes, coverLetters } = DataStoreState();
+
+    useEffect(() => {
+    const q = query(collection(db, "WorkExperience"), where("createdBy", "==", doc(db, "User", id)));
+    const unsubScribe = onSnapshot(q, (snapShot) => {
+      let dataArr = []
+      snapShot.docs.forEach((doc) => {
+        dataArr.push({ ...doc.data(), id: doc.id })
+      })
+      setWork(dataArr)
+    })
+    return () => unsubScribe()
+    // eslint-disable-next-line 
+  }, []);
 
   const generalInfo = general[0];
   const educationInfo = education;
