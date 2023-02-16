@@ -1,6 +1,10 @@
 # JobCom
 
-JobCom is a job seeker platform, a solution that aims to provide a platform for international students in Australia to land their dream jobs. 
+<p align="center">
+  <a href="https://jobcom.vercel.app/" target="_blank"><img src="./public/thumbnail.png" alt="jobcom-thumbnail"></a>
+</p>
+
+JobCom is a platform that aims to help Tech International Students in Australia to showcase their talents through a stand-out portfolio. 
 
 It is a platform where recruiters can easily find valuable candidates for their companies, and international students can easily showcase their abilities and qualifications through their portfolios to land jobs.
 
