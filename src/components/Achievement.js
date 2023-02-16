@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from 'tss-react/mui';
+import { Textarea } from '@mui/joy';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
@@ -80,9 +81,9 @@ const Achievement = ({closeAchievements}) => {
         type="text"
         label="Achievement Title"
         fullWidth
-        {...register("projectName", { required: "Add the Project name" })}
+        {...register("projectName", { required: "Add the achievement title" })}
         error={!!errors?.projectName}
-        helperText={errors?.userprojectName ? errors.projectName.message : null}
+        helperText={errors?.projectName ? errors.projectName.message : null}
       />
       <label className={classes.label}>Select year*</label>
       <FormControl className={classes.input}>
@@ -91,7 +92,9 @@ const Achievement = ({closeAchievements}) => {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={year}
-          {...register("achievementYear")}
+          {...register("achievementYear", { required: "Add year" })}
+          error={!!errors?.achievementYear}
+          helperText={errors?.achievementYear ? errors.achievementYear.message : null}
           label="Select Year"
           onChange={handleChangeYear}
           >
@@ -122,18 +125,16 @@ const Achievement = ({closeAchievements}) => {
         type="text"
         label="Credential URL"
         fullWidth
-        {...register("projectLink", { required: "Add Your projectLink" })}
+        {...register("projectLink", { required: "Add Your Credential URL" })}
         error={!!errors?.projectLink}
         helperText={errors?.projectLink ? errors.projectLink.message : null}
       />
-      <label className={classes.label}>Description*</label>
-      <textarea
+      <label className={classes.label}>Description</label>
+      <Textarea
         className={classes.textarea}
-        col={60}
-        row={20}
-        {...register("description", { required: "Add project description" })}
-        error={!!errors?.description}
-        helperText={errors?.description ? errors.description.message : null}
+        minCol={60}
+        minRow={20}
+        {...register("description")}
       />
       <Button type="submit" disabled={disable} variant='contained' sx={{ backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end" }}>Save</Button>
     </form>

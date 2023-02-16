@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { TextField, Button, Box, FormControl} from '@mui/material';
+import { TextField, Button, Box, FormControl } from '@mui/material';
+import { Textarea } from '@mui/joy';
 import { useForm } from 'react-hook-form'
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
@@ -127,12 +128,14 @@ const Education = ({closeEducation}) => {
       error={!!errors?.school}
       helperText={errors?.school ? errors.school.message : null}
       />
-      <label className={classes.label}>Description*</label>
-      <textarea
+      <label className={classes.label}>Description</label>
+      <Textarea
         className={classes.textarea}
-        col={60}
-        row={20}
-      {...register("description")}
+        minCol={60}
+        minRow={20}
+        {...register("description", { required: "Add the description" })}
+        error={!!errors?.description}
+        helperText={errors?.description ? errors.description.message : null}
       />
       <Button type="submit" variant='contained' sx={{backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end"}}>save</Button>
     </form>
