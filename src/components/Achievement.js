@@ -122,7 +122,7 @@ const Achievement = ({closeAchievements}) => {
         type="text"
         label="Credential URL"
         fullWidth
-        {...register("projectLink", { required: "Add Your projectLink" })}
+        {...register("projectLink", { required: "Add Your Credential URL" })}
         error={!!errors?.projectLink}
         helperText={errors?.projectLink ? errors.projectLink.message : null}
       />
