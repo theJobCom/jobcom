@@ -18,7 +18,7 @@ It is a platform where recruiters can easily find valuable candidates for their 
 
 ## Live Project
 
-Click [here](https://jobcom.vercel.app/) for the live version of this project.
+Click [here](https://thejobcom.vercel.app/) for the live version of this project.
 
 ## Built Using
 - React v18
