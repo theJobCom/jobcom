@@ -128,7 +128,7 @@ const Education = ({closeEducation}) => {
       error={!!errors?.school}
       helperText={errors?.school ? errors.school.message : null}
       />
-      <label className={classes.label}>Description*</label>
+      <label className={classes.label}>Description</label>
       <Textarea
         className={classes.textarea}
         minCol={60}
