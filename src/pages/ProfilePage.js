@@ -108,7 +108,7 @@ const ProfilePage = () => {
     })
   }
 
-  const delteLetter = async (id) => {
+  const deleteLetter = async (id) => {
     await deleteDoc(doc(db, "CoverLetters", id))
     deleteObject(letterRef).then(() => {
       setAlert({
@@ -399,7 +399,7 @@ const ProfilePage = () => {
             </Box>
             <Box className={classes.viewDocs}>
               {!resumeInfo ? <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button> : (<Box className={classes.linkDocs}><Link href={resumeInfo?.resume} target="_blank">View Resume</Link><FaTrashAlt className={classes.delDocs} onClick={() => deleteResume(resumeInfo?.id)} /></Box>)}
-                {!coverLetterInfo ? <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button> : (<Box className={classes.linkDocs}><Link href={coverLetterInfo?.coverLetters} target="_blank">View Cover Letter</Link><FaTrashAlt className={classes.delDocs}/></Box>)}
+              {!coverLetterInfo ? <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button> : (<Box className={classes.linkDocs}><Link href={coverLetterInfo?.coverLetters} target="_blank">View Cover Letter</Link><FaTrashAlt className={classes.delDocs} onClick={() => deleteLetter(coverLetterInfo?.id)} /></Box>)}
             </Box>
               <h5 className={classes.subtitle}>Contact me</h5>
             <Box className={classes.contacts}>
