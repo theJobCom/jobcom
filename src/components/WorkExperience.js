@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
+import Textarea from '@mui/joy/Textarea';
 import { TextField, Button, FormControlLabel, Checkbox, Box, FormControl } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { collection, doc, addDoc } from 'firebase/firestore';
@@ -82,13 +83,13 @@ const WorkExperience = ({closeExperience}) => {
             shrink: true,
             }}
           fullWidth
-            {...register("fromDate", { required: "Add Your education start Date" })}
+            {...register("fromDate", { required: "Add Your work start Date" })}
             error={!!errors?.fromDate}
             helperText={errors?.fromDate ? errors.fromDate.message : null} 
           />
         </FormControl>
         <FormControl>
-          <label className={classes.label}>To*</label>
+          <label className={classes.label}>To</label>
           <TextField
           className={classes.input}
             id="date"
@@ -134,13 +135,15 @@ const WorkExperience = ({closeExperience}) => {
       label="location"
       type="text"
       fullWidth
-        {...register("location")}
+        {...register("location", { required: "Add your location" })}
+        error={!!errors.location}
+        helperText={errors?.location ? errors.location.message : null}
       />
       <label className={classes.label}>Description*</label>
-      <textarea
+      <Textarea
         className={classes.textarea}
-        col={60}
-        row={20}
+        minCol={60}
+        minRow={20}
         {...register("description", { required: "Add the description" })}
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
