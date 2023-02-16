@@ -129,16 +129,12 @@ const Achievement = ({closeAchievements}) => {
         error={!!errors?.projectLink}
         helperText={errors?.projectLink ? errors.projectLink.message : null}
       />
-      <label className={classes.label}>Description*</label>
+      <label className={classes.label}>Description</label>
       <Textarea
         className={classes.textarea}
         minCol={60}
         minRow={20}
         {...register("description")}
-        required
-        placeholder="Type in here…"
-        error
-        defaultValue="Add the description"
       />
       <Button type="submit" disabled={disable} variant='contained' sx={{ backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end" }}>Save</Button>
     </form>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { makeStyles } from 'tss-react/mui';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
+import { FormControl, InputLabel, TextField, Select, MenuItem, Button } from '@mui/material';
+import { Textarea } from '@mui/joy';
 import { useForm } from 'react-hook-form';
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
@@ -163,7 +164,9 @@ const Project = ({ closeProject }) => {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={year}
-          {...register("year")}
+          {...register("year", { required: "Please add project year" })}
+          error={!!errors?.year}
+          helperText={errors?.year ? errors.year.message : null}
           label="Select Year"
           onChange={handleChangeYear}
         >
@@ -183,7 +186,9 @@ const Project = ({ closeProject }) => {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={location}
-          {...register("category")}
+          {...register("category", { required: "Please add category" })}
+          error={!!errors?.category}
+          helperText={errors?.category ? errors.category.message : null}
           label="Select Project category"
           onChange={handleChange}
         >
@@ -194,16 +199,12 @@ const Project = ({ closeProject }) => {
           <MenuItem value={"Other"}>Other</MenuItem>
         </Select>
       </FormControl>
-      <label className={classes.label}>Description*</label>
-      <textarea
+      <label className={classes.label}>Description</label>
+      <Textarea
         className={classes.textarea}
-        col={60}
-        row={20}
-        {...register("description", { required: "Add project description" })}
-        label="Description"
-        fullWidth
-        error={!!errors?.description}
-        helperText={errors?.description ? errors.description.message : null}
+        minCol={60}
+        minRow={20}
+        {...register("description")}
       />
       <label className={classes.label}>Project URL*</label>
       <TextField
