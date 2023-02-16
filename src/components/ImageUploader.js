@@ -16,19 +16,13 @@ const ImageUploader = () => {
   const { storage, db } = firebaseEngine;
   const appData = collection(db, "Avatars");
   const userId = user?.uid;
-  console.log(avatarInfo?.photoURL);
-  console.log(avatarInfo?.id)
 
 
   const [file, setFile] = useState();
   const [progress, setProgress] = useState(0);
   const [previewUrl, setPreviewUrl] = useState(null);
   const filePickerRef = useRef();
-  console.log(progress)
-
   const avatarName = localStorage.getItem('avatarName')
-
-  console.log(avatarName);
   const store = getStorage();
   const desertRef = ref(store, `/files/${avatarName}`);
 
