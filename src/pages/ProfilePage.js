@@ -41,7 +41,7 @@ const style = {
 
 const ProfilePage = () => {
   const { user } = DataStoreState();
-  const id = user.uid;
+  const id = user?.uid;
 
   const [resume, setResume] = useState(false);
   const [letter, setLetter] = useState(false);

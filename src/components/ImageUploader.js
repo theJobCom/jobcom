@@ -3,20 +3,21 @@ import { Box } from '@mui/system';
 import { AiFillCamera } from 'react-icons/ai';
 import { makeStyles } from 'tss-react/mui';
 import firebaseEngine from "../initFirebase/configureFirebase";
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { FaTrash } from 'react-icons/fa';
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { DataStoreState } from '../store/ContexApi';
 import imagePlaceholder from '../images/imagePlaceholder.jpg';
 
 const ImageUploader = () => {
   const { avatar } = DataStoreState();
-  const { user } = DataStoreState();
+  const { user, setAlert } = DataStoreState();
   const avatarInfo = avatar[0];
   const { storage, db } = firebaseEngine;
   const appData = collection(db, "Avatars");
   const userId = user?.uid;
   console.log(avatarInfo?.photoURL);
+  console.log(avatarInfo?.id)
 
 
   const [file, setFile] = useState();
@@ -25,7 +26,31 @@ const ImageUploader = () => {
   const filePickerRef = useRef();
   console.log(progress)
 
-  
+  const avatarName = localStorage.getItem('avatarName')
+
+  console.log(avatarName);
+  const store = getStorage();
+  const desertRef = ref(store, `/files/${avatarName}`);
+
+  const deleteAvatar = async (id) => {
+    await deleteDoc(doc(db, "Avatars", id))
+    deleteObject(desertRef).then(() => {
+      setAlert({
+        open: true,
+        message: "You've successfully  deleted your profile picture",
+        type: "success"
+      })
+    }).catch((error) => {
+      setAlert({
+        open: true,
+        message: `${error.message}`,
+        type: "error"
+      })
+    })
+  }
+
+
+
   const uploadPhoto = (file) => {
     if (!file) return;
     const storageRef = ref(storage, `/files/${file.name}`);
@@ -52,6 +77,7 @@ const ImageUploader = () => {
       setPreviewUrl(fileReader.result);
     };
     fileReader.readAsDataURL(file)
+    localStorage.setItem('photoName', file.name)
     uploadPhoto(file)
     // eslint-disable-next-line
   }, [file])
@@ -114,7 +140,7 @@ const ImageUploader = () => {
         onChange={pickedHandler}
       />
     <img src={avatarInfo?.photoURL || imagePlaceholder} alt="user avatar" className={classes.profile} />
-      <Box className={classes.boxIconBox} onClick={!avatarInfo? pickedImageHandler : () => console.log('delete')}>
+      <Box className={classes.boxIconBox} onClick={!avatarInfo? pickedImageHandler : () => deleteAvatar(avatarInfo?.id)}>
         {!avatarInfo && <AiFillCamera className={classes.cameraIcon}/>}
         {avatarInfo && <FaTrash className={classes.cameraIcon}/>}
       </Box>
