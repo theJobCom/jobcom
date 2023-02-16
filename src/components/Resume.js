@@ -48,6 +48,7 @@ const Resume = ({ closeResume }) => {
       setPreviewUrl(fileReader.result);
     };
     fileReader.readAsDataURL(file)
+    localStorage.setItem('resumes', file.name)
     uploadResume(file)
   }, [file]);
 
