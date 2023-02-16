@@ -49,6 +49,7 @@ const CoverLetter = ({closeLetter}) => {
     };
     fileReader.readAsDataURL(file)
     uploadLetter(file)
+    localStorage.setItem('coverLetter', file.name)
   }, [file]);
 
   function pickedHandler(event) {

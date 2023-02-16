@@ -25,6 +25,9 @@ import ImageUploader from '../components/ImageUploader';
 import Resume from '../components/Resume';
 import CoverLetter from '../components/CoverLetter';
 import { useNavigate } from 'react-router-dom';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { deleteObject, getStorage, ref } from 'firebase/storage';
+import firebaseEngine from '../initFirebase/configureFirebase';
 
 const style = {
   position: 'absolute',
@@ -41,7 +44,8 @@ const style = {
 
 const ProfilePage = () => {
   const { user } = DataStoreState();
-  const id = user.uid;
+  const id = user?.uid;
+  const { db, storage } = firebaseEngine;
 
   const [resume, setResume] = useState(false);
   const [letter, setLetter] = useState(false);
@@ -69,7 +73,7 @@ const ProfilePage = () => {
   const openAchievements = () => setAchievements(true);
   const closeAchievements = () => setAchievements(false);
 
-  const { education, contact, achievement, project, general, work, resumes, coverLetters } = DataStoreState();
+  const { education, contact, achievement, project, general, work, resumes, coverLetters, setAlert } = DataStoreState();
 
   const generalInfo = general[0];
   const educationInfo = education;
@@ -79,10 +83,47 @@ const ProfilePage = () => {
   const workInfo = work;
   const resumeInfo = resumes[0];
   const coverLetterInfo = coverLetters[0];
+  const resumeName = localStorage.getItem('resumes')
+  const letterName = localStorage.getItem('coverLetter')
 
   const navigate = useNavigate();
+  const store = getStorage();
+  const delRef = ref(store, `/files/resumes/${resumeName}`)
+  const letterRef = ref(store, `files/coverLetters/${letterName}`)
 
- 
+  const deleteResume = async (id) => {
+    await deleteDoc(doc(db, "Resumes", id))
+    deleteObject(delRef).then(() => {
+      setAlert({
+        open: true,
+        message: "You've successfully  deleted your resume",
+        type: "success"
+      })
+    }).catch((error) => {
+      setAlert({
+        open: true,
+        message: `${error.message}`,
+        type: "error"
+      })
+    })
+  }
+
+  const deleteLetter = async (id) => {
+    await deleteDoc(doc(db, "CoverLetters", id))
+    deleteObject(letterRef).then(() => {
+      setAlert({
+        open: true,
+        message: "You've successfully deleted your cover letter",
+        type: "success"
+      })
+    }).catch((error) => {
+      setAlert({
+        open: true,
+        message: `${error.message}`,
+        type: "error"
+      })
+    })
+  }
 
   const useStyle = makeStyles()(() => ({
     container: {
@@ -357,8 +398,8 @@ const ProfilePage = () => {
               </Box>
             </Box>
             <Box className={classes.viewDocs}>
-              {!resumeInfo ? <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button> : (<Box className={classes.linkDocs}><Link href={resumeInfo?.resume} target="_blank">View Resume</Link><FaTrashAlt className={classes.delDocs}/></Box>)}
-                {!coverLetterInfo ? <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button> : (<Box className={classes.linkDocs}><Link href={coverLetterInfo?.coverLetters} target="_blank">View Cover Letter</Link><FaTrashAlt className={classes.delDocs}/></Box>)}
+              {!resumeInfo ? <Button variant="text" className={classes.btnAdd} onClick={openResume}>+ Upload Resume</Button> : (<Box className={classes.linkDocs}><Link href={resumeInfo?.resume} target="_blank">View Resume</Link><FaTrashAlt className={classes.delDocs} onClick={() => deleteResume(resumeInfo?.id)} /></Box>)}
+              {!coverLetterInfo ? <Button variant="text" className={classes.btnAdd} onClick={openLetter}>+ Upload Cover Letter</Button> : (<Box className={classes.linkDocs}><Link href={coverLetterInfo?.coverLetters} target="_blank">View Cover Letter</Link><FaTrashAlt className={classes.delDocs} onClick={() => deleteLetter(coverLetterInfo?.id)} /></Box>)}
             </Box>
               <h5 className={classes.subtitle}>Contact me</h5>
             <Box className={classes.contacts}>
