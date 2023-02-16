@@ -84,10 +84,12 @@ const ProfilePage = () => {
   const resumeInfo = resumes[0];
   const coverLetterInfo = coverLetters[0];
   const resumeName = localStorage.getItem('resumes')
+  const letterName = localStorage.getItem('coverLetter')
 
   const navigate = useNavigate();
   const store = getStorage();
   const delRef = ref(store, `/files/resumes/${resumeName}`)
+  const letterRef = ref(store, `files/coverLetters/${letterName}`)
 
   const deleteResume = async (id) => {
     await deleteDoc(doc(db, "Resumes", id))
@@ -95,6 +97,23 @@ const ProfilePage = () => {
       setAlert({
         open: true,
         message: "You've successfully  deleted your resume",
+        type: "success"
+      })
+    }).catch((error) => {
+      setAlert({
+        open: true,
+        message: `${error.message}`,
+        type: "error"
+      })
+    })
+  }
+
+  const delteLetter = async (id) => {
+    await deleteDoc(doc(db, "CoverLetters", id))
+    deleteObject(letterRef).then(() => {
+      setAlert({
+        open: true,
+        message: "You've successfully deleted your cover letter",
         type: "success"
       })
     }).catch((error) => {
