@@ -93,7 +93,7 @@ const ProfilePage = () => {
   const letterRef = ref(store, `files/coverLetters/${letterName}`)
 
   const deleteExperience = async (id) => {
-    await deleteDoc(doc(db, "workExperience", id))
+    await deleteDoc(doc(db, "WorkExperience", id))
     setAlert({
       open: true,
       message: "You've successfukky deleted your experience",
@@ -474,7 +474,7 @@ const ProfilePage = () => {
                   <p className={classes.about}>{work.description}</p>
                     <Box className={classes.btngrp}>
                       <Button variant="contained">Edit</Button>
-                      <Button variant="contained">Delete</Button>
+                      <Button variant="contained" onClick={() => deleteExperience(work.id)}>Delete</Button>
                     </Box>
                 </Box>
               </Box>)
