@@ -496,7 +496,7 @@ const PortfolioPage = () => {
                     <Box className={classes.entry} key={uuid()}>
                       <small className={classes.timePeriod}>{`${dateConvtr(education.fromDate)} - ${dateConvtr(education.endDate)}`}</small>
                       <Box className={classes.jobDesc}>
-                        <h6 className={classes.jobTitle}>{education.degree}</h6>
+                        <h6 className={classes.jobTitle}>{`${education.degree} at ${education.school}`}</h6>
                         <small className={classes.location}>{education.location}</small>
                         <p className={classes.about}>{education.description}</p>
                       </Box>
