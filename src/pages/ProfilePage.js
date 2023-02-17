@@ -420,6 +420,13 @@ const ProfilePage = () => {
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
               <p className={classes.text}>{generalInfo?.about || ''}</p>
+              {
+                generalInfo?.about ?
+                  <Box className={classes.btngrp}>
+                      <Button variant="contained">Edit</Button>
+                      <Button variant="contained">Delete</Button>
+                    </Box> : ""
+              }
             {generalInfo?.about ? "" : <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>}
             </Box>
             <Box className={classes.descBoxII}>
@@ -432,6 +439,10 @@ const ProfilePage = () => {
                   <h6 className={classes.jobTitle}>{work.title}</h6>
                   <small className={classes.location}>{work.location}</small>
                   <p className={classes.about}>{work.description}</p>
+                    <Box className={classes.btngrp}>
+                      <Button variant="contained">Edit</Button>
+                      <Button variant="contained">Delete</Button>
+                    </Box>
                 </Box>
               </Box>)
                 })
@@ -449,6 +460,10 @@ const ProfilePage = () => {
                         <h6 className={classes.jobTitle}>{`${education.degree} at ${education.school}`}</h6>
                         <small className={classes.location}>{education.location}</small>
                         <p className={classes.about}>{education.description}</p>
+                        <Box className={classes.btngrp}>
+                          <Button variant="contained">Edit</Button>
+                          <Button variant="contained">Delete</Button>
+                        </Box>
                       </Box>
                     </Box>
                   )
@@ -470,6 +485,10 @@ const ProfilePage = () => {
                       </Box>
                         <small className={classes.issuedBy}>issued by {achievement.presentedBy}</small>
                         <small className={classes.issedTxt}>{achievement?.description}</small>
+                        <Box className={classes.btngrp}>
+                          <Button variant="contained">Edit</Button>
+                          <Button variant="contained">Delete</Button>
+                        </Box>
                     </Box>
                   </Box>
                   )
@@ -492,7 +511,11 @@ const ProfilePage = () => {
                     <small className={classes.text}>
                       {project?.description}
                     </small>
-                    <Link href={project?.projectLink} classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                    <Link href={project?.projectLink} classes={classes.smallLink}>See more <HiExternalLink /></Link>
+                        <Box className={classes.btngrp}>
+                          <Button variant="contained">Edit</Button>
+                          <Button variant="contained">Delete</Button>
+                        </Box>
                   </Box>
                 </Box>
               )
