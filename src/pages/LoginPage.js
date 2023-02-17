@@ -21,12 +21,17 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { auth } = firebaseEngine;
   const { setAlert } = DataStoreState();
-  const userId = JSON.parse(localStorage.getItem('user')).uid
+  const userId = JSON.parse(localStorage.getItem('user'))?.uid
   const location = useLocation();
 
   useEffect(() => {
     if (location.pathname === "/" && userId) {
       navigate("/profilepage")
+      setAlert({
+        open: true,
+        message: `Welcome back`,
+        type: "success"
+      })
     } else return
     // eslint-disable-next-line
   }, [])

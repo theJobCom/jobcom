@@ -12,6 +12,7 @@ const SideBar = () => {
   }
 
   const logOut = () => {
+    localStorage.clear()
     navigate('/')
   }
   const useStyle = makeStyles()(() => ({
