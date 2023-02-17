@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { makeStyles } from 'tss-react/mui'
 import ExitIcon from "../icons/Vector.png"
 import logo from "../images/image13.png"
+import { DataStoreState } from '../store/ContexApi';
 
 const SideBar = () => {
+  const { setAlert } = DataStoreState();
   const navigate = useNavigate();
   const onClick = () => {
     navigate('/profilepage')
@@ -13,6 +15,11 @@ const SideBar = () => {
 
   const logOut = () => {
     navigate('/')
+    setAlert({
+      open: true,
+      message: `You've successfully logged out`,
+      type: "success"
+    })
   }
   const useStyle = makeStyles()(() => ({
     sideBar: {
