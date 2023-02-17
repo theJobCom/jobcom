@@ -331,6 +331,11 @@ const ProfilePage = () => {
     },
     delDocs: {
       cursor: "pointer"
+    },
+    btngrp: {
+      display: "flex",
+      gap: 10,
+      marginTop: 10
     }
   }));
 
