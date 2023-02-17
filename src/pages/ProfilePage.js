@@ -111,7 +111,7 @@ const ProfilePage = () => {
     }
   
     const deleteAchievement = async (id) => {
-    await deleteDoc(doc(db, "Achievement", id))
+    await deleteDoc(doc(db, "Achievements", id))
     setAlert({
       open: true,
       message: "You've successfukky deleted your Achievement",
@@ -520,7 +520,7 @@ const ProfilePage = () => {
                         <small className={classes.issedTxt}>{achievement?.description}</small>
                         <Box className={classes.btngrp}>
                           <Button variant="contained">Edit</Button>
-                          <Button variant="contained">Delete</Button>
+                          <Button variant="contained" onClick={() => deleteAchievement(achievement.id)}>Delete</Button>
                         </Box>
                     </Box>
                   </Box>
