@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Tabs, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system'
 import { makeStyles } from 'tss-react/mui';
@@ -11,7 +11,7 @@ import { GrLinkedin } from 'react-icons/gr';
 import { GoMarkGithub } from 'react-icons/go';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import firebaseEngine from '../initFirebase/configureFirebase';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { DataStoreState } from '../store/ContexApi';
 import coverImage from '../images/coverImage.png';
 import logo from '../images/logo.png'
@@ -21,6 +21,15 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { auth } = firebaseEngine;
   const { setAlert } = DataStoreState();
+  const userId = JSON.parse(localStorage.getItem('user')).uid
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/" && userId) {
+      navigate("/profilepage")
+    } else return
+    // eslint-disable-next-line
+  }, [])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
