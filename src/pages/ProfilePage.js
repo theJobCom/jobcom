@@ -114,7 +114,7 @@ const ProfilePage = () => {
     await deleteDoc(doc(db, "Achievements", id))
     setAlert({
       open: true,
-      message: "You've successfukky deleted your Achievement",
+      message: "You've successfully deleted your Achievement",
       type: "success"
     })
   }
@@ -495,7 +495,7 @@ const ProfilePage = () => {
                         <p className={classes.about}>{education.description}</p>
                         <Box className={classes.btngrp}>
                           <Button variant="contained">Edit</Button>
-                          <Button variant="contained">Delete</Button>
+                          <Button variant="contained" onClick={() => deleteEducation(education.id)}>Delete</Button>
                         </Box>
                       </Box>
                     </Box>
