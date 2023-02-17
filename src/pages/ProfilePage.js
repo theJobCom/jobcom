@@ -28,6 +28,7 @@ import { useNavigate } from 'react-router-dom';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { deleteObject, getStorage, ref } from 'firebase/storage';
 import firebaseEngine from '../initFirebase/configureFirebase';
+import { async } from '@firebase/util';
 
 const style = {
   position: 'absolute',
@@ -90,6 +91,33 @@ const ProfilePage = () => {
   const store = getStorage();
   const delRef = ref(store, `/files/resumes/${resumeName}`)
   const letterRef = ref(store, `files/coverLetters/${letterName}`)
+
+  const deleteExperience = async (id) => {
+    await deleteDoc(doc(db, "workExperience", id))
+    setAlert({
+      open: true,
+      message: "You've successfukky deleted your experience",
+      type: "success"
+    })
+  }
+
+    const deleteEducation = async (id) => {
+    await deleteDoc(doc(db, "Education", id))
+    setAlert({
+      open: true,
+      message: "You've successfukky deleted your Education",
+      type: "success"
+    })
+    }
+  
+    const deleteAchievement = async (id) => {
+    await deleteDoc(doc(db, "Achievement", id))
+    setAlert({
+      open: true,
+      message: "You've successfukky deleted your Achievement",
+      type: "success"
+    })
+  }
 
   const deleteResume = async (id) => {
     await deleteDoc(doc(db, "Resumes", id))
