@@ -70,12 +70,13 @@ const { register, handleSubmit, formState: { errors } } = useForm();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <MdCancel className={classes.cancel} onClick={closeEditGeneral}/>
-      <h2 className={classes.formTitle}>General information</h2>
+      <h2 className={classes.formTitle}>Edit General information</h2>
       <label className={classes.label}>Display name*</label>
       <TextField
       variant='outlined'
       type="text"
       label="Display name"
+      defaultValue={generalInfo.name}
       fullWidth
       className={classes.input}
       {...register("name", { required: "Add Your name" })}
@@ -87,6 +88,7 @@ const { register, handleSubmit, formState: { errors } } = useForm();
       variant='outlined'
       type="text"
       label="Nationality*"
+      defaultValue={generalInfo.nationality}
       className={classes.input}
       fullWidth
         {...register("nationality", { required: "Add Your name" })}
@@ -99,6 +101,7 @@ const { register, handleSubmit, formState: { errors } } = useForm();
       type="text"
       label="Designer/Developer/Architect..."
       className={classes.input}
+      defaultValue={generalInfo.role}
       fullWidth
       {...register("role", { required: "Add Your role" })}
       error={!!errors?.role}
@@ -111,6 +114,7 @@ const { register, handleSubmit, formState: { errors } } = useForm();
       type="text"
       className={classes.input}
       fullWidth
+      defaultValue={generalInfo.location}
       {...register("location", { required: "Add Your location" })}
       error={!!errors?.location}
       helperText={errors?.location ? errors.location.message : null}
@@ -125,6 +129,7 @@ const { register, handleSubmit, formState: { errors } } = useForm();
           {...register("category")}
           label="Select Job Category"
           onChange={handleChange}
+          defaultValue={generalInfo.category}
         >
           <MenuItem value={"SoftWare Development"}>SoftWare Development</MenuItem>
           <MenuItem value={"Finance"}>Finance</MenuItem>
@@ -137,6 +142,7 @@ const { register, handleSubmit, formState: { errors } } = useForm();
         col={60}
         row={20}
         className={classes.textarea}
+        defaultValue={generalInfo.about}
         {...register("about", { required: "Add Your about" })}
         error={!!errors?.about}
         helperText={errors?.userabout ? errors.name.message : null} 
