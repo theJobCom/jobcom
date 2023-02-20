@@ -131,7 +131,6 @@ const Education = ({closeEducation}) => {
       <label className={classes.label}>Description</label>
       <Textarea
         className={classes.textarea}
-        minCol={60}
         minRow={20}
         {...register("description", { required: "Add the description" })}
         error={!!errors?.description}

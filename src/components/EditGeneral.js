@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { DataStoreState } from '../store/ContexApi';
 import { MdCancel } from 'react-icons/md';
@@ -12,20 +12,19 @@ const { register, handleSubmit, formState: { errors } } = useForm();
   const [category, setCategory] = React.useState('');
   // const user = JSON.parse(localStorage.getItem('user'));
   const { db } = firebaseEngine;
-  const { setAlert, user } = DataStoreState();
-  const userId = user?.uid;
+  const { setAlert } = DataStoreState();
 
-
-  const appData = collection(db, "General")
   const handleChange = (event) => {
     setCategory(event.target.value)
   }
 
   const onSubmit = async (data) => {
-    await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) })
+    const generalDoc = doc(db, "General", generalInfo.id);
+    const newFields = { data }
+    await updateDoc(generalDoc, newFields)
     setAlert({
       open: true,
-      message: "Your general information has been submitted successfully",
+      message: "Your general information has been edited successfully",
       type: "success"
     })
     closeEditGeneral()
