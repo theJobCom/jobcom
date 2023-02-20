@@ -29,6 +29,7 @@ import { deleteDoc, doc } from 'firebase/firestore';
 import { deleteObject, getStorage, ref } from 'firebase/storage';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { async } from '@firebase/util';
+import EditGeneral from '../components/EditGeneral';
 
 const style = {
   position: 'absolute',
@@ -648,7 +649,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Achievements closeAchievements={closeEditGeneral} />
+          <EditGeneral closeEditGeneral={closeEditGeneral} generalInfo={generalInfo} />
         </Box>
       </Modal>
     </div>
