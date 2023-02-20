@@ -56,8 +56,11 @@ const ProfilePage = () => {
   const [experience, setExperience] = useState(false);
   const [educations, setEducations] = useState(false);
   const [achievements, setAchievements] = useState(false);
+  const [editGeneral, setEditGeneral] = useState(false);
 
   const openResume = () => setResume(true);
+  const openEditGeneral = () => setEditGeneral(true);
+  const closeEditGeneral = () => setEditGeneral(false);
   const closeResume = () => setResume(false);
   const openLetter = () => setLetter(true);
   const closeLetter = () => setLetter(false);
@@ -456,7 +459,8 @@ const ProfilePage = () => {
               {
                 generalInfo?.about ?
                   <Box className={classes.btngrp}>
-                      <Button variant="contained">Edit</Button>
+                    <Button variant="contained" onClick={openEditGeneral
+                    }>Edit</Button>
                       <Button variant="contained">Delete</Button>
                     </Box> : ""
               }
@@ -637,7 +641,16 @@ const ProfilePage = () => {
           <Achievements closeAchievements={closeAchievements} />
         </Box>
       </Modal>
-
+        <Modal
+        open={editGeneral}
+        onClose={closeEditGeneral}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Achievements closeAchievements={closeEditGeneral} />
+        </Box>
+      </Modal>
     </div>
   )
 }
