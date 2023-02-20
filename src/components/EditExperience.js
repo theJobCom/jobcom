@@ -107,7 +107,7 @@ const EditExperience = ({experienceData, closeEditExperience}) => {
           />
         </FormControl>
       </Box>
-      <FormControlLabel className={classes.input} {...register("currently")} control={<Checkbox />} label="I'm currently working here" sx={{ color: "grey", fontSize: "1px" }} />
+      <FormControlLabel className={classes.input} {...register("currently")} control={<Checkbox  defaultChecked={experienceData.currently}/>} label="I'm currently working here" sx={{ color: "grey", fontSize: "1px" }} />
       <label className={classes.label}>Title*</label>
       <TextField
       className={classes.input}
