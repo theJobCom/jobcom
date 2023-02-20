@@ -82,7 +82,8 @@ const EditExperience = ({experienceData, closeEditExperience}) => {
             InputLabelProps={{
             shrink: true,
             }}
-          fullWidth
+            fullWidth
+            defaultValue={experienceData.fromDate}
             {...register("fromDate", { required: "Add Your work start Date" })}
             error={!!errors?.fromDate}
             helperText={errors?.fromDate ? errors.fromDate.message : null} 
@@ -98,7 +99,8 @@ const EditExperience = ({experienceData, closeEditExperience}) => {
             InputLabelProps={{
               shrink: true,
             }}
-          fullWidth
+            fullWidth
+          defaultValue={experienceData.endDate}
             {...register("endDate")}
             // error={!!errors?.endDate}
             // helperText={errors?.endDate ? errors.endDate.message : null} 
@@ -112,7 +114,8 @@ const EditExperience = ({experienceData, closeEditExperience}) => {
       variant='outlined'
       type="text"
       label="title"
-      fullWidth
+        fullWidth
+      defaultValue={experienceData.title}
         {...register("title", { required: "Add Your Job title" })}
         error={!!errors?.title}
         helperText={errors?.title ? errors.title.message : null} 
@@ -123,7 +126,8 @@ const EditExperience = ({experienceData, closeEditExperience}) => {
       variant='outlined'
       type="text"
       label="company*"
-      fullWidth
+        fullWidth
+      defaultValue={experienceData.company}
       {...register("company", { required: "Add Your company name" })}
       error={!!errors?.company}
       helperText={errors?.company ? errors.company.message : null}
@@ -134,7 +138,8 @@ const EditExperience = ({experienceData, closeEditExperience}) => {
       variant='outlined'
       label="location"
       type="text"
-      fullWidth
+        fullWidth
+      defaultValue={experienceData.location}
         {...register("location", { required: "Add your location" })}
         error={!!errors.location}
         helperText={errors?.location ? errors.location.message : null}
@@ -143,6 +148,7 @@ const EditExperience = ({experienceData, closeEditExperience}) => {
       <Textarea
         className={classes.textarea}
         minRow={20}
+      defaultValue={experienceData.description}
         {...register("description", { required: "Add the description" })}
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
