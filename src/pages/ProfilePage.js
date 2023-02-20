@@ -28,8 +28,8 @@ import { useNavigate } from 'react-router-dom';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { deleteObject, getStorage, ref } from 'firebase/storage';
 import firebaseEngine from '../initFirebase/configureFirebase';
-import { async } from '@firebase/util';
 import EditGeneral from '../components/EditGeneral';
+import EditExperience from '../components/EditExperience';
 
 const style = {
   position: 'absolute',
@@ -47,7 +47,7 @@ const style = {
 const ProfilePage = () => {
   const { user } = DataStoreState();
   const id = user?.uid;
-  const { db, storage } = firebaseEngine;
+  const { db } = firebaseEngine;
 
   const [resume, setResume] = useState(false);
   const [letter, setLetter] = useState(false);
@@ -58,8 +58,16 @@ const ProfilePage = () => {
   const [educations, setEducations] = useState(false);
   const [achievements, setAchievements] = useState(false);
   const [editGeneral, setEditGeneral] = useState(false);
+  const [editExperience, setEditExperience] = useState(false)
+  const [experienceData, setExperienceData] = useState(null);
 
   const openResume = () => setResume(true);
+  const openEditExperience = (data) => {
+    setEditExperience(true);
+    setExperienceData(data);
+  }
+
+  const closeEditExperience = () => setEditExperience(false);
   const openEditGeneral = () => setEditGeneral(true);
   const closeEditGeneral = () => setEditGeneral(false);
   const closeResume = () => setResume(false);
@@ -478,7 +486,7 @@ const ProfilePage = () => {
                   <small className={classes.location}>{work.location}</small>
                   <p className={classes.about}>{work.description}</p>
                     <Box className={classes.btngrp}>
-                      <Button variant="contained">Edit</Button>
+                      <Button variant="contained" onClick={() => openEditExperience(work)}>Edit</Button>
                       <Button variant="contained" onClick={() => deleteExperience(work.id)}>Delete</Button>
                     </Box>
                 </Box>
@@ -650,6 +658,16 @@ const ProfilePage = () => {
       >
         <Box sx={style}>
           <EditGeneral closeEditGeneral={closeEditGeneral} generalInfo={generalInfo} />
+        </Box>
+      </Modal>
+        <Modal
+        open={editExperience}
+        onClose={closeEditExperience}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditExperience closeEditExperience={closeEditExperience} experienceData={experienceData} />
         </Box>
       </Modal>
     </div>
