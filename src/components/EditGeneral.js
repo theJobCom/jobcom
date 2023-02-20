@@ -20,7 +20,7 @@ const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
     const generalDoc = doc(db, "General", generalInfo.id);
-    const newFields = { data }
+    const newFields = { name: data.name, nationality: data.nationality, role: data.role, location: data.location, about: data.about }
     await updateDoc(generalDoc, newFields)
     setAlert({
       open: true,
