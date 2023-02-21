@@ -30,6 +30,7 @@ import { deleteObject, getStorage, ref } from 'firebase/storage';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import EditGeneral from '../components/EditGeneral';
 import EditExperience from '../components/EditExperience';
+import EditEducation from '../components/EditEducation';
 
 const style = {
   position: 'absolute',
@@ -59,6 +60,7 @@ const ProfilePage = () => {
   const [achievements, setAchievements] = useState(false);
   const [editGeneral, setEditGeneral] = useState(false);
   const [editExperience, setEditExperience] = useState(false)
+  const [editEducation, setEditEducation] = useState()
   const [experienceData, setExperienceData] = useState(null);
 
   const openResume = () => setResume(true);
@@ -67,6 +69,12 @@ const ProfilePage = () => {
     setExperienceData(data);
   }
 
+  const openEditEducation = (data) => {
+    setEditEducation(true)
+    setExperienceData(data);
+  } 
+
+  const closeEditEducation = () => setEditEducation(false)
   const closeEditExperience = () => setEditExperience(false);
   const openEditGeneral = () => setEditGeneral(true);
   const closeEditGeneral = () => setEditGeneral(false);
@@ -507,7 +515,7 @@ const ProfilePage = () => {
                         <small className={classes.location}>{education.location}</small>
                         <p className={classes.about}>{education.description}</p>
                         <Box className={classes.btngrp}>
-                          <Button variant="contained">Edit</Button>
+                          <Button variant="contained" onClick={() => openEditEducation(education)}>Edit</Button>
                           <Button variant="contained" onClick={() => deleteEducation(education.id)}>Delete</Button>
                         </Box>
                       </Box>
@@ -677,7 +685,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <EditExperience closeEditExperience={closeEditEducation} experienceData={experienceData} />
+          <EditEducation closeEditEducation={closeEditEducation} experienceData={experienceData} />
         </Box>
       </Modal>
     </div>
