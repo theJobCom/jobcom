@@ -660,7 +660,7 @@ const ProfilePage = () => {
           <EditGeneral closeEditGeneral={closeEditGeneral} generalInfo={generalInfo} />
         </Box>
       </Modal>
-        <Modal
+      <Modal
         open={editExperience}
         onClose={closeEditExperience}
         aria-labelledby="modal-modal-title"
@@ -668,6 +668,16 @@ const ProfilePage = () => {
       >
         <Box sx={style}>
           <EditExperience closeEditExperience={closeEditExperience} experienceData={experienceData} />
+        </Box>
+      </Modal>
+      <Modal
+        open={editEducation}
+        onClose={closeEditEducation}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditExperience closeEditExperience={closeEditEducation} experienceData={experienceData} />
         </Box>
       </Modal>
     </div>

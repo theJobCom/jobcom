@@ -8,18 +8,18 @@ import { doc, updateDoc, } from 'firebase/firestore';
 import { MdCancel } from 'react-icons/md';
 import { DataStoreState } from '../store/ContexApi';
 
-const EditEducation = ({educationData, closeEditEducation}) => {
+const EditEducation = ({experienceData, closeEditEducation}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { db } = firebaseEngine;
   const { setAlert } = DataStoreState();
 
   const onSubmit = async (data) => {
-    const educationDoc = doc(db, "Education", educationData.id)
+    const educationDoc = doc(db, "Education", experienceData.id)
     const newFields = { fromDate: data.fromDate, endDate: data.endDate, degree: data.degree, school: data.school, description: data.description }
     await updateDoc(educationDoc, newFields)
     setAlert({
       open: true,
-      message: "Your education has been submitted successfully",
+      message: "Your education has been edited successfully",
       type: "success"
     })
     closeEditEducation();
@@ -82,7 +82,7 @@ const EditEducation = ({educationData, closeEditEducation}) => {
             shrink: true,
             }}
             fullWidth
-            defaultValue={educationData.fromDate}
+            defaultValue={experienceData.fromDate}
             {...register("fromDate", { required: "Add Your education start Date" })}
             error={!!errors?.fromDate}
             helperText={errors?.fromDate ? errors.fromDate.message : null} 
@@ -99,7 +99,7 @@ const EditEducation = ({educationData, closeEditEducation}) => {
               shrink: true,
             }}
             fullWidth
-            defaultValue={educationData.endDate}
+            defaultValue={experienceData.endDate}
             {...register("endDate", { required: "Add Your education end Date" })}
             error={!!errors?.endDate}
             helperText={errors?.endDate ? errors.endDate.message : null} 
@@ -113,7 +113,7 @@ const EditEducation = ({educationData, closeEditEducation}) => {
       type="text"
       label="Degree/Certification*"
       fullWidth
-      defaultValue={educationData.degree}
+      defaultValue={experienceData.degree}
         {...register("degree", { required: "Add Your Degree/certification" })}
         error={!!errors?.degree}
         helperText={errors?.degree ? errors.degree.message : null} 
@@ -125,7 +125,7 @@ const EditEducation = ({educationData, closeEditEducation}) => {
       type="text"
       label="school/University*"
       fullWidth
-      defaultValue={educationData.school}
+      defaultValue={experienceData.school}
       {...register("school", { required: "Add Your school/Institution" })}
       error={!!errors?.school}
       helperText={errors?.school ? errors.school.message : null}
@@ -134,7 +134,7 @@ const EditEducation = ({educationData, closeEditEducation}) => {
       <Textarea
         className={classes.textarea}
         minRow={20}
-        defaultValue={educationData.description}
+        defaultValue={experienceData.description}
         {...register("description", { required: "Add the description" })}
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
