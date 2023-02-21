@@ -81,7 +81,8 @@ const EditEducation = ({educationData, closeEditEducation}) => {
             InputLabelProps={{
             shrink: true,
             }}
-          fullWidth
+            fullWidth
+            defaultValue={educationData.fromDate}
             {...register("fromDate", { required: "Add Your education start Date" })}
             error={!!errors?.fromDate}
             helperText={errors?.fromDate ? errors.fromDate.message : null} 
@@ -97,7 +98,8 @@ const EditEducation = ({educationData, closeEditEducation}) => {
             InputLabelProps={{
               shrink: true,
             }}
-          fullWidth
+            fullWidth
+            defaultValue={educationData.endDate}
             {...register("endDate", { required: "Add Your education end Date" })}
             error={!!errors?.endDate}
             helperText={errors?.endDate ? errors.endDate.message : null} 
@@ -111,6 +113,7 @@ const EditEducation = ({educationData, closeEditEducation}) => {
       type="text"
       label="Degree/Certification*"
       fullWidth
+      defaultValue={educationData.degree}
         {...register("degree", { required: "Add Your Degree/certification" })}
         error={!!errors?.degree}
         helperText={errors?.degree ? errors.degree.message : null} 
@@ -122,6 +125,7 @@ const EditEducation = ({educationData, closeEditEducation}) => {
       type="text"
       label="school/University*"
       fullWidth
+      defaultValue={educationData.school}
       {...register("school", { required: "Add Your school/Institution" })}
       error={!!errors?.school}
       helperText={errors?.school ? errors.school.message : null}
@@ -130,6 +134,7 @@ const EditEducation = ({educationData, closeEditEducation}) => {
       <Textarea
         className={classes.textarea}
         minRow={20}
+        defaultValue={educationData.description}
         {...register("description", { required: "Add the description" })}
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
