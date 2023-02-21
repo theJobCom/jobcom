@@ -1,4 +1,12 @@
 import React from 'react'
+import { makeStyles } from 'tss-react/mui';
+import { TextField, Button, Box, FormControl } from '@mui/material';
+import { Textarea } from '@mui/joy';
+import { useForm } from 'react-hook-form'
+import firebaseEngine from '../initFirebase/configureFirebase';
+import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { MdCancel } from 'react-icons/md';
+import { DataStoreState } from '../store/ContexApi';
 
 const EditEducation = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
