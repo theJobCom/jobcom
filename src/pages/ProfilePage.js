@@ -31,6 +31,7 @@ import firebaseEngine from '../initFirebase/configureFirebase';
 import EditGeneral from '../components/EditGeneral';
 import EditExperience from '../components/EditExperience';
 import EditEducation from '../components/EditEducation';
+import EditAchievement from '../components/EditAchievement';
 
 const style = {
   position: 'absolute',
@@ -62,6 +63,7 @@ const ProfilePage = () => {
   const [editExperience, setEditExperience] = useState(false)
   const [editEducation, setEditEducation] = useState()
   const [experienceData, setExperienceData] = useState(null);
+  const [editAchievement, setEditAchievements] = useState(false);
 
   const openResume = () => setResume(true);
   const openEditExperience = (data) => {
@@ -73,6 +75,13 @@ const ProfilePage = () => {
     setEditEducation(true)
     setExperienceData(data);
   } 
+
+  const openEditAchievement = (data) => {
+    setEditAchievements(true)
+    setExperienceData(data)
+  }
+
+  const closeEditAchievement = () => setEditAchievements(false);
 
   const closeEditEducation = () => setEditEducation(false)
   const closeEditExperience = () => setEditExperience(false);
@@ -540,7 +549,7 @@ const ProfilePage = () => {
                         <small className={classes.issuedBy}>issued by {achievement.presentedBy}</small>
                         <small className={classes.issedTxt}>{achievement?.description}</small>
                         <Box className={classes.btngrp}>
-                          <Button variant="contained">Edit</Button>
+                          <Button variant="contained" onClick={() => openEditAchievement(achievement)}>Edit</Button>
                           <Button variant="contained" onClick={() => deleteAchievement(achievement.id)}>Delete</Button>
                         </Box>
                     </Box>
@@ -686,6 +695,16 @@ const ProfilePage = () => {
       >
         <Box sx={style}>
           <EditEducation closeEditEducation={closeEditEducation} experienceData={experienceData} />
+        </Box>
+      </Modal>
+      <Modal
+        open={editAchievement}
+        onClose={closeEditAchievement}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditAchievement closeEditAchievement={closeEditAchievement} experienceData={experienceData} />
         </Box>
       </Modal>
     </div>
