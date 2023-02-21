@@ -4,27 +4,25 @@ import { TextField, Button, Box, FormControl } from '@mui/material';
 import { Textarea } from '@mui/joy';
 import { useForm } from 'react-hook-form'
 import firebaseEngine from '../initFirebase/configureFirebase';
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { doc, updateDoc, } from 'firebase/firestore';
 import { MdCancel } from 'react-icons/md';
 import { DataStoreState } from '../store/ContexApi';
 
-const EditEducation = () => {
+const EditEducation = ({educationData, closeEditEducation}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { db } = firebaseEngine;
-  const { setAlert, user } = DataStoreState();
-  const userId = user?.uid;
-
-
-  const appData = collection(db, "Education");
+  const { setAlert } = DataStoreState();
 
   const onSubmit = async (data) => {
-    await addDoc(appData, { ...data, createdBy: doc(db, "User", userId), createdAt: serverTimestamp() })
+    const educationDoc = doc(db, "Education", educationData.id)
+    const newFields = { fromDate: data.fromDate, endDate: data.endDate, degree: data.degree, school: data.school, description: data.description }
+    await updateDoc(educationDoc, newFields)
     setAlert({
       open: true,
       message: "Your education has been submitted successfully",
       type: "success"
     })
-    closeEducation();
+    closeEditEducation();
   }
 
   const useStyle = makeStyles()((theme) => ({
@@ -70,7 +68,7 @@ const EditEducation = () => {
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <MdCancel className={classes.cancel} onClick={closeEducation}/>
+      <MdCancel className={classes.cancel} onClick={closeEditEducation}/>
       <h3 className={classes.formTitle}>Education</h3>
       <Box className={classes.formDate}>
         <FormControl>
