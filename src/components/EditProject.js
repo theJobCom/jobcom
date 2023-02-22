@@ -3,11 +3,10 @@ import { makeStyles } from 'tss-react/mui';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button } from '@mui/material';
 import { Textarea } from '@mui/joy';
 import { useForm } from 'react-hook-form';
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { MdCancel } from 'react-icons/md';
 import { DataStoreState } from '../store/ContexApi';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { handleYears } from '../utils/years';
 
 const EditProject = ({closeEditProject, experienceData}) => {
@@ -28,6 +27,9 @@ const EditProject = ({closeEditProject, experienceData}) => {
 
 
   const onSubmit = async (data) => {
+    const projectDoc = doc(db, "Project", experienceData.id)
+    const newFields = { projectName: data.projectName, year: data.year, category: data.category, projectLink: data.projectLink }
+    await updateDoc(projectDoc, newFields)
     setAlert({
       open: true,
       message: "Your project has been submitted successfully",
