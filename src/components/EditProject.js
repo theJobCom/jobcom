@@ -80,6 +80,8 @@ const EditProject = ({closeEditProject, experienceData}) => {
   const { classes } = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+      <MdCancel className={classes.cancel} onClick={closeEditProject} />
+      <h3 className={classes.formTitle}>Edit Project</h3>
       <label className={classes.label}>Project name*</label>
       <TextField
       className={classes.input}
@@ -87,6 +89,7 @@ const EditProject = ({closeEditProject, experienceData}) => {
         type="text"
         label="project name"
         fullWidth
+        defaultValue={experienceData.projectName}
         {...register("projectName", { required: "Add the Project name" })}
         error={!!errors?.projectName}
         helperText={errors?.userprojectName ? errors.projectName.message : null}
@@ -98,6 +101,7 @@ const EditProject = ({closeEditProject, experienceData}) => {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={year}
+          defaultValue={experienceData.year}
           {...register("year", { required: "Please add project year" })}
           error={!!errors?.year}
           helperText={errors?.year ? errors.year.message : null}
@@ -120,6 +124,7 @@ const EditProject = ({closeEditProject, experienceData}) => {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={location}
+          defaultValue={experienceData.category}
           {...register("category", { required: "Please add category" })}
           error={!!errors?.category}
           helperText={errors?.category ? errors.category.message : null}
@@ -137,6 +142,7 @@ const EditProject = ({closeEditProject, experienceData}) => {
       <Textarea
         className={classes.textarea}
         minRow={20}
+        defaultValue={experienceData.description}
         {...register("description")}
       />
       <label className={classes.label}>Project URL*</label>
@@ -146,6 +152,7 @@ const EditProject = ({closeEditProject, experienceData}) => {
         type="text"
         label="Project Link"
         fullWidth
+        defaultValue={experienceData.projectLink}
         {...register("projectLink", { required: "Add Your projectLink" })}
         error={!!errors?.projectLink}
         helperText={errors?.projectLink ? errors.projectLink.message : null}
