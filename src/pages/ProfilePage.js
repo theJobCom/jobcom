@@ -32,6 +32,7 @@ import EditGeneral from '../components/EditGeneral';
 import EditExperience from '../components/EditExperience';
 import EditEducation from '../components/EditEducation';
 import EditAchievement from '../components/EditAchievement';
+import EditProject from '../components/EditProject';
 
 const style = {
   position: 'absolute',
@@ -722,7 +723,7 @@ const ProfilePage = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <EditAchievement closeEditProject={closeEditProject} experienceData={experienceData} />
+          <EditProject closeEditProject={closeEditProject} experienceData={experienceData} />
         </Box>
       </Modal>
     </div>
