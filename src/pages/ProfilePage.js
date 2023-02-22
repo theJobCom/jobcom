@@ -64,7 +64,15 @@ const ProfilePage = () => {
   const [editEducation, setEditEducation] = useState()
   const [experienceData, setExperienceData] = useState(null);
   const [editAchievement, setEditAchievements] = useState(false);
+  const [editProject, setEditProject] = useState(false);
+  
 
+  const openEditProject = (data) => {
+    setEditProject(true)
+    setExperienceData(data)
+  } 
+
+  const closeEditProject = () => setEditProject(false)
   const openResume = () => setResume(true);
   const openEditExperience = (data) => {
     setEditExperience(true);
@@ -576,7 +584,7 @@ const ProfilePage = () => {
                     </small>
                     <Link href={project?.projectLink} classes={classes.smallLink}>See more <HiExternalLink /></Link>
                         <Box className={classes.btngrp}>
-                          <Button variant="contained">Edit</Button>
+                          <Button variant="contained" onClick={() => openEditProject(project)}>Edit</Button>
                           <Button variant="contained">Delete</Button>
                         </Box>
                   </Box>
@@ -705,6 +713,16 @@ const ProfilePage = () => {
       >
         <Box sx={style}>
           <EditAchievement closeEditAchievement={closeEditAchievement} experienceData={experienceData} />
+        </Box>
+      </Modal>
+      <Modal
+        open={editProject}
+        onClose={closeEditProject}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditAchievement closeEditProject={closeEditProject} experienceData={experienceData} />
         </Box>
       </Modal>
     </div>
