@@ -33,6 +33,7 @@ import EditExperience from '../components/EditExperience';
 import EditEducation from '../components/EditEducation';
 import EditAchievement from '../components/EditAchievement';
 import EditProject from '../components/EditProject';
+import imageplaceholder from '../images/projectPlaceholder.png';
 
 const style = {
   position: 'absolute',
@@ -576,7 +577,7 @@ const ProfilePage = () => {
             projectInfo.map((project) => {
               return (
                 <Box className={classes.project} key={uuid()}>
-                  <img src={project?.screenshotURL} alt="project screenshot" className={classes.screenshot} />
+                  <img src={project?.screenshotURL || imageplaceholder} alt="project screenshot" className={classes.screenshot} />
                   <Box className={classes.projectDesc}>
                     <h6 className={classes.projectTitle}>{project?.projectName}<span className={classes.period}>{project?.name}</span></h6>
                     <small className={classes.industry}>{project?.category}</small>
