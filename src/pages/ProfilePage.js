@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from 'tss-react/mui'
-import { Box } from '@mui/system';
+import { Box, fontSize } from '@mui/system';
 import Button from '@mui/material/Button';
 import SideBar from '../components/SideBar';
 import Modal from '@mui/material/Modal';
@@ -363,8 +363,26 @@ const ProfilePage = () => {
       display: "flex",
       gap: "20px"
     },
+    screenshotHolder: {
+      width: "290px",
+      height: "100%",
+      position: "relative"
+    },
     screenshot: {
-      width: "290px"
+      width: "100%",
+    },
+    projectbtn: {
+      width: 50,
+      height: 50,
+      backgroundColor: "white",
+      borderRadius: "50%",
+      position: "absolute",
+      bottom: 13,
+      right: 7,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 27
     },
     projectDesc: {
       display: "flex",
@@ -578,8 +596,10 @@ const ProfilePage = () => {
             projectInfo.map((project) => {
               return (
                 <Box className={classes.project} key={uuid()}>
-                  <img src={project?.screenshotURL || imageplaceholder} alt="project screenshot" className={classes.screenshot} />
-                  <Box className={classes.projectbtn}><FaTrash/></Box>
+                  <Box className={classes.screenshotHolder}>
+                    <img src={project?.screenshotURL || imageplaceholder} alt="project screenshot" className={classes.screenshot} />
+                    <Box className={classes.projectbtn}><FaTrash/></Box>
+                  </Box>
                   <Box className={classes.projectDesc}>
                     <h6 className={classes.projectTitle}>{project?.projectName}<span className={classes.period}>{project?.name}</span></h6>
                     <small className={classes.industry}>{project?.category}</small>
