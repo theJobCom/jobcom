@@ -8,12 +8,12 @@ import { makeStyles } from 'tss-react/mui';
 const Screenshot = ({ project }) => {
   const useStyle = makeStyles()(() => ({
     screenshotHolder: {
-      width: "290px",
-      height: "100%",
+      // width: "290px",
+      // height: "100%",
       position: "relative"
     },
     screenshot: {
-      width: "100%",
+      width: "290px",
     },
     projectbtn: {
       width: 50,
