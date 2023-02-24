@@ -192,6 +192,15 @@ const ProfilePage = () => {
     })
   }
 
+  const deleteProject = async (id) => {
+    await deleteDoc(doc(db, "Project", id))
+    setAlert({
+      open: true,
+      message: "You've successfully deleted your project",
+      type: "success"
+    })
+  }
+
   const useStyle = makeStyles()(() => ({
     container: {
       width: "100vw",
@@ -584,7 +593,7 @@ const ProfilePage = () => {
                     <Link href={project?.projectLink} classes={classes.smallLink}>See more <HiExternalLink /></Link>
                         <Box className={classes.btngrp}>
                           <Button variant="contained" onClick={() => openEditProject(project)}>Edit</Button>
-                          <Button variant="contained">Delete</Button>
+                          <Button variant="contained" onClick={() => deleteProject(project?.id)}>Delete</Button>
                         </Box>
                   </Box>
                 </Box>
