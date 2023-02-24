@@ -65,6 +65,7 @@ const Project = ({ closeProject }) => {
       setPreviewUrl(fileReader.result);
     };
     fileReader.readAsDataURL(file)
+    localStorage.setItem('screenshot', file.name)
     uploadScreenshot(file)
     // eslint-disable-next-line
   }, [file])

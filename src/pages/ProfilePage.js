@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from 'tss-react/mui'
-import { Box, fontSize } from '@mui/system';
+import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import SideBar from '../components/SideBar';
 import Modal from '@mui/material/Modal';
@@ -361,27 +361,6 @@ const ProfilePage = () => {
     project: {
       display: "flex",
       gap: "20px"
-    },
-    screenshotHolder: {
-      width: "290px",
-      height: "100%",
-      position: "relative"
-    },
-    screenshot: {
-      width: "100%",
-    },
-    projectbtn: {
-      width: 50,
-      height: 50,
-      backgroundColor: "white",
-      borderRadius: "50%",
-      position: "absolute",
-      bottom: 13,
-      right: 7,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: 27
     },
     projectDesc: {
       display: "flex",
