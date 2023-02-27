@@ -1,22 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles } from 'tss-react/mui';
 import { Textarea } from '@mui/joy';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Button} from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import firebaseEngine from '../initFirebase/configureFirebase';
 import { MdCancel } from 'react-icons/md';
 import { DataStoreState } from '../store/ContexApi';
 import { handleYears } from '../utils/years';
 
-const Achievement = ({closeAchievements}) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+const EditAchievement = ({closeEditAchievement, experienceData}) => {
+const { register, handleSubmit, formState: { errors } } = useForm();
   const [year, setYear] = React.useState('');
-  const [disable, setDisable] = useState(false);
-  const { setAlert, user } = DataStoreState();
+  const [disable, setDisable] = React.useState(false);
+  const { setAlert} = DataStoreState();
   const { db } = firebaseEngine;
-  const userId = user?.uid;
-  const appData = collection(db, "Achievements")
   const prevYears = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
 
   const handleChangeYear = (event) => {
@@ -25,13 +23,15 @@ const Achievement = ({closeAchievements}) => {
 
   const onSubmit = async (data) => {
     setDisable(true);
-    await addDoc(appData, { ...data, createdAt: serverTimestamp(), createdBy: doc(db, "User", userId) });
+    const achievementDoc = doc(db, "Achievements", experienceData.id)
+    const newFields = { projectName: data.projectName, achievementYear: data.achievementYear, presentedBy: data.presentedBy, projectLink: data.projectLink, description: data.description }
+    await updateDoc(achievementDoc, newFields)
     setAlert({
       open: true,
       message: "Your achievement has been submitted successfully",
       type: "success"
     })
-    closeAchievements()
+    closeEditAchievement()
   }
 
   const useStyle = makeStyles()((theme) => ({
@@ -73,7 +73,7 @@ const Achievement = ({closeAchievements}) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
       <h3 className={classes.formTitle}>Achievement</h3>
-      <MdCancel className={classes.cancel} onClick={closeAchievements}/>
+      <MdCancel className={classes.cancel} onClick={closeEditAchievement}/>
       <label className={classes.label}>Achievement Title*</label>
       <TextField
       className={classes.input}
@@ -81,6 +81,7 @@ const Achievement = ({closeAchievements}) => {
         type="text"
         label="Achievement Title"
         fullWidth
+        defaultValue={experienceData.projectName}
         {...register("projectName", { required: "Add the achievement title" })}
         error={!!errors?.projectName}
         helperText={errors?.projectName ? errors.projectName.message : null}
@@ -92,6 +93,7 @@ const Achievement = ({closeAchievements}) => {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={year}
+          defaultValue={experienceData.achievementYear}
           {...register("achievementYear", { required: "Add year" })}
           error={!!errors?.achievementYear}
           helperText={errors?.achievementYear ? errors.achievementYear.message : null}
@@ -114,6 +116,7 @@ const Achievement = ({closeAchievements}) => {
         type="text"
         label="Presented by"
         fullWidth
+        defaultValue={experienceData.presentedBy}
         {...register("presentedBy", { required: "Please add the name of the institution that presented the achievement" })}
         error={!!errors?.presentedBy}
         helperText={!!errors?.presentedBy ? errors.presentedBy.message : null}
@@ -125,6 +128,7 @@ const Achievement = ({closeAchievements}) => {
         type="text"
         label="Credential URL"
         fullWidth
+        defaultValue={experienceData.projectLink}
         {...register("projectLink", { required: "Add Your Credential URL" })}
         error={!!errors?.projectLink}
         helperText={errors?.projectLink ? errors.projectLink.message : null}
@@ -133,6 +137,7 @@ const Achievement = ({closeAchievements}) => {
       <Textarea
         className={classes.textarea}
         minRow={20}
+        defaultValue={experienceData.description}
         {...register("description")}
       />
       <Button type="submit" disabled={disable} variant='contained' sx={{ backgroundColor: "#6941c6", padding: "16px 57px", width: "150px", alignSelf: "flex-end" }}>Save</Button>
@@ -140,4 +145,4 @@ const Achievement = ({closeAchievements}) => {
   )
 }
 
-export default Achievement
+export default EditAchievement

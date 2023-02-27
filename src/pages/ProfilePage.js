@@ -28,6 +28,12 @@ import { useNavigate } from 'react-router-dom';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { deleteObject, getStorage, ref } from 'firebase/storage';
 import firebaseEngine from '../initFirebase/configureFirebase';
+import EditGeneral from '../components/EditGeneral';
+import EditExperience from '../components/EditExperience';
+import EditEducation from '../components/EditEducation';
+import EditAchievement from '../components/EditAchievement';
+import EditProject from '../components/EditProject';
+import Screenshot from '../components/Screenshot';
 
 const style = {
   position: 'absolute',
@@ -45,7 +51,7 @@ const style = {
 const ProfilePage = () => {
   const { user } = DataStoreState();
   const id = user?.uid;
-  const { db, storage } = firebaseEngine;
+  const { db } = firebaseEngine;
 
   const [resume, setResume] = useState(false);
   const [letter, setLetter] = useState(false);
@@ -55,8 +61,42 @@ const ProfilePage = () => {
   const [experience, setExperience] = useState(false);
   const [educations, setEducations] = useState(false);
   const [achievements, setAchievements] = useState(false);
+  const [editGeneral, setEditGeneral] = useState(false);
+  const [editExperience, setEditExperience] = useState(false)
+  const [editEducation, setEditEducation] = useState()
+  const [experienceData, setExperienceData] = useState(null);
+  const [editAchievement, setEditAchievements] = useState(false);
+  const [editProject, setEditProject] = useState(false);
+  
 
+  const openEditProject = (data) => {
+    setEditProject(true)
+    setExperienceData(data)
+  } 
+
+  const closeEditProject = () => setEditProject(false)
   const openResume = () => setResume(true);
+  const openEditExperience = (data) => {
+    setEditExperience(true);
+    setExperienceData(data);
+  }
+
+  const openEditEducation = (data) => {
+    setEditEducation(true)
+    setExperienceData(data);
+  } 
+
+  const openEditAchievement = (data) => {
+    setEditAchievements(true)
+    setExperienceData(data)
+  }
+
+  const closeEditAchievement = () => setEditAchievements(false);
+
+  const closeEditEducation = () => setEditEducation(false)
+  const closeEditExperience = () => setEditExperience(false);
+  const openEditGeneral = () => setEditGeneral(true);
+  const closeEditGeneral = () => setEditGeneral(false);
   const closeResume = () => setResume(false);
   const openLetter = () => setLetter(true);
   const closeLetter = () => setLetter(false);
@@ -85,11 +125,38 @@ const ProfilePage = () => {
   const coverLetterInfo = coverLetters[0];
   const resumeName = localStorage.getItem('resumes')
   const letterName = localStorage.getItem('coverLetter')
-
   const navigate = useNavigate();
   const store = getStorage();
   const delRef = ref(store, `/files/resumes/${resumeName}`)
   const letterRef = ref(store, `files/coverLetters/${letterName}`)
+  const scrnshotRef = ref(store, 'files/screenshots/')
+
+  const deleteExperience = async (id) => {
+    await deleteDoc(doc(db, "WorkExperience", id))
+    setAlert({
+      open: true,
+      message: "You've successfully deleted your experience",
+      type: "success"
+    })
+  }
+
+    const deleteEducation = async (id) => {
+    await deleteDoc(doc(db, "Education", id))
+    setAlert({
+      open: true,
+      message: "You've successfukky deleted your Education",
+      type: "success"
+    })
+    }
+  
+    const deleteAchievement = async (id) => {
+    await deleteDoc(doc(db, "Achievements", id))
+    setAlert({
+      open: true,
+      message: "You've successfully deleted your Achievement",
+      type: "success"
+    })
+  }
 
   const deleteResume = async (id) => {
     await deleteDoc(doc(db, "Resumes", id))
@@ -122,6 +189,15 @@ const ProfilePage = () => {
         message: `${error.message}`,
         type: "error"
       })
+    })
+  }
+
+  const deleteProject = async (id) => {
+    await deleteDoc(doc(db, "Project", id))
+    setAlert({
+      open: true,
+      message: "You've successfully deleted your project",
+      type: "success"
     })
   }
 
@@ -295,9 +371,6 @@ const ProfilePage = () => {
       display: "flex",
       gap: "20px"
     },
-    screenshot: {
-      width: "290px"
-    },
     projectDesc: {
       display: "flex",
       flexDirection: "column",
@@ -331,6 +404,11 @@ const ProfilePage = () => {
     },
     delDocs: {
       cursor: "pointer"
+    },
+    btngrp: {
+      display: "flex",
+      gap: 10,
+      marginTop: 10
     }
   }));
 
@@ -420,6 +498,14 @@ const ProfilePage = () => {
             <Box className={classes.descBox}>
               <h5 className={classes.subtitle}>Description</h5>
               <p className={classes.text}>{generalInfo?.about || ''}</p>
+              {
+                generalInfo?.about ?
+                  <Box className={classes.btngrp}>
+                    <Button variant="contained" onClick={openEditGeneral
+                    }>Edit</Button>
+                      <Button variant="contained">Delete</Button>
+                    </Box> : ""
+              }
             {generalInfo?.about ? "" : <Button variant="text" className={classes.btnAdd} onClick={openGeneral}>+ Add General information</Button>}
             </Box>
             <Box className={classes.descBoxII}>
@@ -432,6 +518,10 @@ const ProfilePage = () => {
                   <h6 className={classes.jobTitle}>{work.title}</h6>
                   <small className={classes.location}>{work.location}</small>
                   <p className={classes.about}>{work.description}</p>
+                    <Box className={classes.btngrp}>
+                      <Button variant="contained" onClick={() => openEditExperience(work)}>Edit</Button>
+                      <Button variant="contained" onClick={() => deleteExperience(work.id)}>Delete</Button>
+                    </Box>
                 </Box>
               </Box>)
                 })
@@ -449,6 +539,10 @@ const ProfilePage = () => {
                         <h6 className={classes.jobTitle}>{`${education.degree} at ${education.school}`}</h6>
                         <small className={classes.location}>{education.location}</small>
                         <p className={classes.about}>{education.description}</p>
+                        <Box className={classes.btngrp}>
+                          <Button variant="contained" onClick={() => openEditEducation(education)}>Edit</Button>
+                          <Button variant="contained" onClick={() => deleteEducation(education.id)}>Delete</Button>
+                        </Box>
                       </Box>
                     </Box>
                   )
@@ -470,6 +564,10 @@ const ProfilePage = () => {
                       </Box>
                         <small className={classes.issuedBy}>issued by {achievement.presentedBy}</small>
                         <small className={classes.issedTxt}>{achievement?.description}</small>
+                        <Box className={classes.btngrp}>
+                          <Button variant="contained" onClick={() => openEditAchievement(achievement)}>Edit</Button>
+                          <Button variant="contained" onClick={() => deleteAchievement(achievement.id)}>Delete</Button>
+                        </Box>
                     </Box>
                   </Box>
                   )
@@ -485,14 +583,18 @@ const ProfilePage = () => {
             projectInfo.map((project) => {
               return (
                 <Box className={classes.project} key={uuid()}>
-                  <img src={project?.screenshotURL} alt="project screenshot" className={classes.screenshot} />
+                  <Screenshot project={project} />
                   <Box className={classes.projectDesc}>
                     <h6 className={classes.projectTitle}>{project?.projectName}<span className={classes.period}>{project?.name}</span></h6>
                     <small className={classes.industry}>{project?.category}</small>
                     <small className={classes.text}>
                       {project?.description}
                     </small>
-                    <Link href={project?.projectLink} classes={classes.smallLink}>See more <HiExternalLink/></Link>
+                    <Link href={project?.projectLink} classes={classes.smallLink}>See more <HiExternalLink /></Link>
+                        <Box className={classes.btngrp}>
+                          <Button variant="contained" onClick={() => openEditProject(project)}>Edit</Button>
+                          <Button variant="contained" onClick={() => deleteProject(project?.id)}>Delete</Button>
+                        </Box>
                   </Box>
                 </Box>
               )
@@ -581,7 +683,56 @@ const ProfilePage = () => {
           <Achievements closeAchievements={closeAchievements} />
         </Box>
       </Modal>
-
+        <Modal
+        open={editGeneral}
+        onClose={closeEditGeneral}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditGeneral closeEditGeneral={closeEditGeneral} generalInfo={generalInfo} />
+        </Box>
+      </Modal>
+      <Modal
+        open={editExperience}
+        onClose={closeEditExperience}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditExperience closeEditExperience={closeEditExperience} experienceData={experienceData} />
+        </Box>
+      </Modal>
+      <Modal
+        open={editEducation}
+        onClose={closeEditEducation}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditEducation closeEditEducation={closeEditEducation} experienceData={experienceData} />
+        </Box>
+      </Modal>
+      <Modal
+        open={editAchievement}
+        onClose={closeEditAchievement}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditAchievement closeEditAchievement={closeEditAchievement} experienceData={experienceData} />
+        </Box>
+      </Modal>
+      <Modal
+        open={editProject}
+        onClose={closeEditProject}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <EditProject closeEditProject={closeEditProject} experienceData={experienceData} />
+        </Box>
+      </Modal>
     </div>
   )
 }

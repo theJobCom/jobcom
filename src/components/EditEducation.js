@@ -1,29 +1,28 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui';
-import Textarea from '@mui/joy/Textarea';
-import { TextField, Button, FormControlLabel, Checkbox, Box, FormControl } from '@mui/material';
-import { useForm } from 'react-hook-form';
-import { collection, doc, addDoc } from 'firebase/firestore';
+import { TextField, Button, Box, FormControl } from '@mui/material';
+import { Textarea } from '@mui/joy';
+import { useForm } from 'react-hook-form'
 import firebaseEngine from '../initFirebase/configureFirebase';
-import {MdCancel} from 'react-icons/md';
+import { doc, updateDoc, } from 'firebase/firestore';
+import { MdCancel } from 'react-icons/md';
 import { DataStoreState } from '../store/ContexApi';
 
-const WorkExperience = ({closeExperience}) => {
+const EditEducation = ({experienceData, closeEditEducation}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { setAlert, user } = DataStoreState();
-
   const { db } = firebaseEngine;
-  const userId = user?.uid;
-  const appData = collection(db, 'WorkExperience')
+  const { setAlert } = DataStoreState();
 
   const onSubmit = async (data) => {
-    await addDoc(appData, { ...data, createdBy: doc(db, "User", userId) });
+    const educationDoc = doc(db, "Education", experienceData.id)
+    const newFields = { fromDate: data.fromDate, endDate: data.endDate, degree: data.degree, school: data.school, description: data.description }
+    await updateDoc(educationDoc, newFields)
     setAlert({
       open: true,
-      message: "Your work experience has been submitted successfully",
+      message: "Your education has been edited successfully",
       type: "success"
     })
-    closeExperience()
+    closeEditEducation();
   }
 
   const useStyle = makeStyles()((theme) => ({
@@ -33,11 +32,6 @@ const WorkExperience = ({closeExperience}) => {
       width: "100%",
       position: "relative"
     },
-    formDate: {
-      display: "flex",
-      width: "100%",
-      justifyContent: "space-between"
-    },
     cancel: {
       position: "absolute",
       right: 0,
@@ -45,6 +39,11 @@ const WorkExperience = ({closeExperience}) => {
       color: "#98a2b3",
       fontSize: 29,
       cursor: "pointer"
+    },
+    formDate: {
+      display: "flex",
+      width: "100%",
+      justifyContent: "space-between"
     },
     input: {
       marginBottom: "18px",
@@ -69,8 +68,8 @@ const WorkExperience = ({closeExperience}) => {
   const {classes} = useStyle();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-      <MdCancel className={classes.cancel} onClick={closeExperience}/>
-      <h3 className={classes.formTitle}>Work Experience</h3>
+      <MdCancel className={classes.cancel} onClick={closeEditEducation}/>
+      <h3 className={classes.formTitle}>Education</h3>
       <Box className={classes.formDate}>
         <FormControl>
           <label className={classes.label}>From*</label>
@@ -82,14 +81,15 @@ const WorkExperience = ({closeExperience}) => {
             InputLabelProps={{
             shrink: true,
             }}
-          fullWidth
-            {...register("fromDate", { required: "Add Your work start Date" })}
+            fullWidth
+            defaultValue={experienceData.fromDate}
+            {...register("fromDate", { required: "Add Your education start Date" })}
             error={!!errors?.fromDate}
             helperText={errors?.fromDate ? errors.fromDate.message : null} 
           />
         </FormControl>
         <FormControl>
-          <label className={classes.label}>To</label>
+          <label className={classes.label}>To*</label>
           <TextField
           className={classes.input}
             id="date"
@@ -98,51 +98,43 @@ const WorkExperience = ({closeExperience}) => {
             InputLabelProps={{
               shrink: true,
             }}
-          fullWidth
-            {...register("endDate")}
-            // error={!!errors?.endDate}
-            // helperText={errors?.endDate ? errors.endDate.message : null} 
+            fullWidth
+            defaultValue={experienceData.endDate}
+            {...register("endDate", { required: "Add Your education end Date" })}
+            error={!!errors?.endDate}
+            helperText={errors?.endDate ? errors.endDate.message : null} 
           />
         </FormControl>
       </Box>
-      <FormControlLabel className={classes.input} {...register("currently")} control={<Checkbox />} label="I'm currently working here" sx={{ color: "grey", fontSize: "1px" }} />
-      <label className={classes.label}>Title*</label>
+      <label className={classes.label}>Degree/Certification*</label>
       <TextField
       className={classes.input}
       variant='outlined'
       type="text"
-      label="title"
+      label="Degree/Certification*"
       fullWidth
-        {...register("title", { required: "Add Your Job title" })}
-        error={!!errors?.title}
-        helperText={errors?.title ? errors.title.message : null} 
+      defaultValue={experienceData.degree}
+        {...register("degree", { required: "Add Your Degree/certification" })}
+        error={!!errors?.degree}
+        helperText={errors?.degree ? errors.degree.message : null} 
       />
-      <label className={classes.label}>Company*</label>
+      <label className={classes.label}>school/University*</label>
       <TextField
       className={classes.input}
       variant='outlined'
       type="text"
-      label="company*"
+      label="school/University*"
       fullWidth
-      {...register("company", { required: "Add Your company name" })}
-      error={!!errors?.company}
-      helperText={errors?.company ? errors.company.message : null}
+      defaultValue={experienceData.school}
+      {...register("school", { required: "Add Your school/Institution" })}
+      error={!!errors?.school}
+      helperText={errors?.school ? errors.school.message : null}
       />
-      <label className={classes.label}>Location*</label>
-      <TextField
-      className={classes.input}
-      variant='outlined'
-      label="location"
-      type="text"
-      fullWidth
-        {...register("location", { required: "Add your location" })}
-        error={!!errors.location}
-        helperText={errors?.location ? errors.location.message : null}
-      />
-      <label className={classes.label}>Description*</label>
+      <label className={classes.label}>Description</label>
       <Textarea
         className={classes.textarea}
         minRow={20}
+        defaultValue={experienceData.description}
         {...register("description", { required: "Add the description" })}
         error={!!errors?.description}
         helperText={errors?.description ? errors.description.message : null}
@@ -152,4 +144,4 @@ const WorkExperience = ({closeExperience}) => {
   )
 }
 
-export default WorkExperience
+export default EditEducation
