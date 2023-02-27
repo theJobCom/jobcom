@@ -125,17 +125,17 @@ const ProfilePage = () => {
   const coverLetterInfo = coverLetters[0];
   const resumeName = localStorage.getItem('resumes')
   const letterName = localStorage.getItem('coverLetter')
-
   const navigate = useNavigate();
   const store = getStorage();
   const delRef = ref(store, `/files/resumes/${resumeName}`)
   const letterRef = ref(store, `files/coverLetters/${letterName}`)
+  const scrnshotRef = ref(store, 'files/screenshots/')
 
   const deleteExperience = async (id) => {
     await deleteDoc(doc(db, "WorkExperience", id))
     setAlert({
       open: true,
-      message: "You've successfukky deleted your experience",
+      message: "You've successfully deleted your experience",
       type: "success"
     })
   }

@@ -8,8 +8,6 @@ import { makeStyles } from 'tss-react/mui';
 const Screenshot = ({ project }) => {
   const useStyle = makeStyles()(() => ({
     screenshotHolder: {
-      // width: "290px",
-      // height: "100%",
       position: "relative"
     },
     screenshot: {
@@ -35,7 +33,7 @@ const Screenshot = ({ project }) => {
   return (
   <Box className={classes.screenshotHolder}>
     <img src={project?.screenshotURL || imageplaceholder} alt="project screenshot" className={classes.screenshot} />
-    <Box className={classes.projectbtn}>{project?.screenshotURL ? <FaTrash/> : <AiFillCamera/>}</Box>
+    {/* <Box className={classes.projectbtn}>{project?.screenshotURL ? <FaTrash/> : <AiFillCamera/>}</Box> */}
   </Box>
   )
 }
